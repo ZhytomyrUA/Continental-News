@@ -47,7 +47,8 @@ warnings.filterwarnings("ignore", category=MarkupResemblesLocatorWarning)
 
 try:
     from googlenewsdecoder import gnewsdecoder
-except Exception:
+except Exception as exc:
+    print(f"⚠️ googlenewsdecoder import failed: {type(exc).__name__}: {exc}")
     gnewsdecoder = None
 
 
@@ -1110,8 +1111,11 @@ def decode_google_url(url: str) -> Optional[str]:
         return None
     try:
         result = gnewsdecoder(url, interval=GOOGLE_DECODE_DELAY)
-        if isinstance(result, dict) and result.get("status") and result.get("decoded_url"):
-            return result["decoded_url"]
+        if isinstance(result, dict):
+            ok = bool(result.get("status", result.get("success")))
+            decoded = result.get("decoded_url")
+            if ok and decoded:
+                return decoded
         if isinstance(result, str):
             return result
     except Exception as exc:
@@ -2717,6 +2721,7 @@ def main() -> None:
 
     raw = fetch_candidates(cutoff)
     discovered_news = len(raw)
+    discovered_jobs = 0  # Jobs are intentionally disabled in v6.0.
     print(f"🔎 Gefunden: {len(raw)} | 📰 News: {discovered_news}")
 
     queued_news_added = 0
