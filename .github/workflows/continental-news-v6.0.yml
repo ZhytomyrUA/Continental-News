@@ -1,13 +1,22 @@
-name: Continental News Bot v6.0
+name: Continental News Bot v7.0
 
 on:
   schedule:
-    # GitHub Actions cron uses UTC.
-    # 07:00 UTC = 09:00 Europe/Berlin during summer time.
-    # 08:00 UTC = 09:00 Europe/Berlin during winter time.
+    # GitHub Actions cron is UTC and does not follow Europe/Berlin DST.
+    # Wake at both UTC times; bot.py itself runs discovery/publishing only
+    # when the local Europe/Berlin time is exactly 09:00.
     - cron: "0 7 * * *"
     - cron: "0 8 * * *"
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "Run mode"
+        required: true
+        type: choice
+        default: daily
+        options:
+          - daily
+          - archive
 
 concurrency:
   group: continental-news-bot
@@ -19,7 +28,7 @@ permissions:
 jobs:
   run-bot:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
 
     steps:
       - name: Checkout repository
@@ -49,11 +58,12 @@ jobs:
           python -m py_compile bot.py
           echo "bot.py compile check: OK"
 
-      - name: Run Continental News Bot v6.0
+      - name: Run Continental News Bot
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
           FORCE_RUN: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
+          BOOTSTRAP_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'archive' && '1' || '0' }}
           TZ: Europe/Berlin
         shell: bash
         run: |
@@ -71,6 +81,7 @@ jobs:
 
           echo "Workflow event: ${GITHUB_EVENT_NAME}"
           echo "FORCE_RUN: ${FORCE_RUN}"
+          echo "BOOTSTRAP_MODE: ${BOOTSTRAP_MODE}"
 
           python bot.py
 
@@ -83,11 +94,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add \
-            continental_pending.json \
-            continental_published.json \
-            continental_messages.json \
-            2>/dev/null || true
+          git add             continental_pending.json             continental_published.json             continental_messages.json             continental_jobs_seen.json             2>/dev/null || true
 
           if git diff --cached --quiet; then
             echo "No state changes to commit."
