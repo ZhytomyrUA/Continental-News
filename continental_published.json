@@ -141,5 +141,135 @@
     "published_at": "2026-10-01T08:00:48+00:00",
     "sent_at": "2026-10-05T17:15:03.482370+00:00",
     "message_id": 11
+  },
+  {
+    "article_url": "https://www.hessenschau.de/tv-sendung/windpark-fuer-continental-reifenwerk-in-korbach-setzt-auf-eigenen-strom,container-beitrag-46260.html",
+    "title": "Windpark für Continental: Reifenwerk in Korbach setzt auf eigenen Strom",
+    "source_name": "hessenschau.de",
+    "primary_category": "plants",
+    "categories": [
+      "plants",
+      "tires"
+    ],
+    "plant": {
+      "city": "Korbach",
+      "country": "Germany",
+      "country_de": "Deutschland",
+      "flag": "🇩🇪",
+      "priority": 1000,
+      "aliases": [
+        "korbach",
+        "reifenwerk korbach",
+        "continentalstrasse korbach",
+        "continentalstraße korbach"
+      ]
+    },
+    "event_families": [],
+    "summary": "Windpark für Continental: Reifenwerk in Korbach setzt auf eigenen Strom hessenschau.de Wie bleibt ein Industriestandort stark, wenn Energie teuer ist und die Wirtschaft unter Druck steht? Das Continental-Reifenwerk setzt in Nordhessen auf Windkraft und baut in Twistetal einen eigenen Windpark.",
+    "summary_de": "Wie bleibt ein Industriestandort stark, wenn Energie teuer ist und die Wirtschaft unter Druck steht? Das Continental-Reifenwerk setzt in Nordhessen auf Windkraft und baut in Twistetal einen eigenen Windpark.",
+    "article_text": "Wie bleibt ein Industriestandort stark, wenn Energie teuer ist und die Wirtschaft unter Druck steht? Das Continental-Reifenwerk setzt in Nordhessen auf Windkraft und baut in Twistetal einen eigenen Windpark.",
+    "published_at": "2026-09-23T19:06:00+00:00",
+    "sent_at": "2026-10-05T17:50:15.424782+00:00",
+    "message_id": 12
+  },
+  {
+    "article_url": "https://www.hessenschau.de/wirtschaft/fuer-reifen-werk-continental-baut-eigenen-windpark-in-korbach-v1,windpark-conti-100.html",
+    "title": "Für Reifen-Werk in Hessen: Continental baut eigenen Windpark",
+    "source_name": "hessenschau.de",
+    "primary_category": "plants",
+    "categories": [
+      "plants",
+      "tires"
+    ],
+    "plant": {
+      "city": "Korbach",
+      "country": "Germany",
+      "country_de": "Deutschland",
+      "flag": "🇩🇪",
+      "priority": 1000,
+      "aliases": [
+        "korbach",
+        "reifenwerk korbach",
+        "continentalstrasse korbach",
+        "continentalstraße korbach"
+      ]
+    },
+    "event_families": [],
+    "summary": "Für Reifen-Werk: Continental baut eigenen Windpark in Korbach hessenschau.de Um unabhängiger von Strompreisen zu werden, baut der Reifenhersteller Continental für sein Werk in Korbach einen eigenen Windpark. Zwei Drittel des Strombedarfs sollen künftig selbst mit erneuerbaren Energien erzeugt werden. Ein Modell auch für andere Unternehmen?",
+    "summary_de": "Um unabhängiger von Strompreisen zu werden, baut der Reifenhersteller Continental für sein Werk in Korbach einen eigenen Windpark. Zwei Drittel des Strombedarfs sollen künftig selbst mit erneuerbaren Energien erzeugt werden. Ein Modell auch für andere Unternehmen?",
+    "article_text": "Um unabhängiger von Strompreisen zu werden, baut der Reifenhersteller Continental für sein Werk in Korbach einen eigenen Windpark. Zwei Drittel des Strombedarfs sollen künftig selbst mit erneuerbaren Energien erzeugt werden. Ein Modell auch für andere Unternehmen?",
+    "published_at": "2026-09-23T14:43:00+00:00",
+    "sent_at": "2026-10-05T17:50:19.362652+00:00",
+    "message_id": 13
+  },
+  {
+    "article_url": "https://www.hna.de/lokales/frankenberg/korbach-ort55370/continental-baut-eigenen-windpark-strom-fliesst-direkt-ins-reifenwerk-korbach-94508646.html",
+    "title": "„Weltweit einmalig“: Continental startet Bau eines firmeneigenen Windparks in Nordhessen",
+    "source_name": "HNA",
+    "primary_category": "company",
+    "categories": [
+      "plants"
+    ],
+    "plant": null,
+    "event_families": [],
+    "summary": "„Weltweit einmalig“: Continental startet Bau eines firmeneigenen Windparks in Nordhessen HNA Windräder sollen zwei Drittel des Strombedarfs des Continental-Werks decken. Der Bürgermeister von Twistetal hält das Projekt für weltweit einmalig.",
+    "summary_de": "Windräder sollen zwei Drittel des Strombedarfs des Continental-Werks decken. Der Bürgermeister von Twistetal hält das Projekt für weltweit einmalig.",
+    "article_text": "Windräder sollen zwei Drittel des Strombedarfs des Continental-Werks decken. Der Bürgermeister von Twistetal hält das Projekt für weltweit einmalig.",
+    "published_at": "2026-09-25T07:25:46+00:00",
+    "sent_at": "2026-10-05T17:50:22.814450+00:00",
+    "message_id": 14
+  },
+  {
+    "article_url": "https://www.continental.com/de/presse/pressemitteilungen/20260924-conti-eco-ht-5/",
+    "title": "Continental vervollständigt Conti Eco Generation 5 Portfolio mit neuem Trailer-Reifen",
+    "source_name": "Continental AG",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "summary": "Continental vervollständigt Conti Eco Generation 5 Portfolio mit neuem Trailer-Reifen Continental AG Continental stellt den neuen Conti Eco HT 5 Trailer-Reifen vor und erweitert damit ihr Conti Eco Portfolio der fünften Generation für den Güterverkehr.",
+    "summary_de": "Continental stellt den neuen Conti Eco HT 5 Trailer-Reifen vor und erweitert damit ihr Conti Eco Portfolio der fünften Generation für den Güterverkehr.",
+    "article_text": "Continental stellt den neuen Conti Eco HT 5 Trailer-Reifen vor und erweitert damit ihr Conti Eco Portfolio der fünften Generation für den Güterverkehr.",
+    "published_at": "2026-09-24T00:00:00+00:00",
+    "sent_at": "2026-10-05T17:50:26.172300+00:00",
+    "message_id": 15
+  },
+  {
+    "article_url": "https://www.autohaus.de/mediathek/dsc06136-jpg-3911320",
+    "title": "UHP-Reifenentwicklung bei Continental",
+    "source_name": "autohaus.de",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "summary": "UHP-Reifenentwicklung bei Continental autohaus.de Die Antwort der Reifenindustrie auf die komplexen Anforderungen von SUV- und E-Auto-Boom sind Ultra-High-Performance-Reifen (UH...",
+    "summary_de": "Die Antwort der Reifenindustrie auf die komplexen Anforderungen von SUV- und E-Auto-Boom sind Ultra-High-Performance-Reifen (UH...",
+    "article_text": "Die Antwort der Reifenindustrie auf die komplexen Anforderungen von SUV- und E-Auto-Boom sind Ultra-High-Performance-Reifen (UH...",
+    "published_at": "2026-10-01T11:16:21+00:00",
+    "sent_at": "2026-10-05T17:50:52.800416+00:00",
+    "message_id": 16
+  },
+  {
+    "article_url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/die-continental-aktie-plant-650-neue-reifengroessen-bis-2027/70192510",
+    "title": "Die Continental-Aktie plant 650 neue Reifengrößen bis 2027",
+    "source_name": "AD HOC NEWS",
+    "primary_category": "tires",
+    "categories": [
+      "plants",
+      "tires",
+      "company"
+    ],
+    "plant": null,
+    "event_families": [],
+    "summary": "Die Continental-Aktie plant 650 neue Reifengrößen bis 2027 AD HOC NEWS Die Continental-Aktie plant bis Ende 2027 mehr als 650 neue Reifendimensionen; 2025 lag der UHP-Umsa",
+    "summary_de": "Die Continental-Aktie plant bis Ende 2027 mehr als 650 neue Reifendimensionen; 2025 lag der UHP-Umsa",
+    "article_text": "Die Continental-Aktie plant bis Ende 2027 mehr als 650 neue Reifendimensionen; 2025 lag der UHP-Umsa",
+    "published_at": "2026-09-28T11:21:00+00:00",
+    "sent_at": "2026-10-05T17:50:56.471898+00:00",
+    "message_id": 17
   }
 ]

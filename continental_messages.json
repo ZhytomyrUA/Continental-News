@@ -54,5 +54,47 @@
     "title": "CONTINENTAL TYRES JOINS A1 ACCESSORY IMPORTS - Road Rider Magazine",
     "primary_category": "tires",
     "sent_at": "2026-10-05T17:15:03.482370+00:00"
+  },
+  {
+    "message_id": 12,
+    "article_url": "https://www.hessenschau.de/tv-sendung/windpark-fuer-continental-reifenwerk-in-korbach-setzt-auf-eigenen-strom,container-beitrag-46260.html",
+    "title": "Windpark für Continental: Reifenwerk in Korbach setzt auf eigenen Strom",
+    "primary_category": "plants",
+    "sent_at": "2026-10-05T17:50:15.424782+00:00"
+  },
+  {
+    "message_id": 13,
+    "article_url": "https://www.hessenschau.de/wirtschaft/fuer-reifen-werk-continental-baut-eigenen-windpark-in-korbach-v1,windpark-conti-100.html",
+    "title": "Für Reifen-Werk in Hessen: Continental baut eigenen Windpark",
+    "primary_category": "plants",
+    "sent_at": "2026-10-05T17:50:19.362652+00:00"
+  },
+  {
+    "message_id": 14,
+    "article_url": "https://www.hna.de/lokales/frankenberg/korbach-ort55370/continental-baut-eigenen-windpark-strom-fliesst-direkt-ins-reifenwerk-korbach-94508646.html",
+    "title": "„Weltweit einmalig“: Continental startet Bau eines firmeneigenen Windparks in Nordhessen",
+    "primary_category": "company",
+    "sent_at": "2026-10-05T17:50:22.814450+00:00"
+  },
+  {
+    "message_id": 15,
+    "article_url": "https://www.continental.com/de/presse/pressemitteilungen/20260924-conti-eco-ht-5/",
+    "title": "Continental vervollständigt Conti Eco Generation 5 Portfolio mit neuem Trailer-Reifen",
+    "primary_category": "tires",
+    "sent_at": "2026-10-05T17:50:26.172300+00:00"
+  },
+  {
+    "message_id": 16,
+    "article_url": "https://www.autohaus.de/mediathek/dsc06136-jpg-3911320",
+    "title": "UHP-Reifenentwicklung bei Continental",
+    "primary_category": "tires",
+    "sent_at": "2026-10-05T17:50:52.800416+00:00"
+  },
+  {
+    "message_id": 17,
+    "article_url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/die-continental-aktie-plant-650-neue-reifengroessen-bis-2027/70192510",
+    "title": "Die Continental-Aktie plant 650 neue Reifengrößen bis 2027",
+    "primary_category": "tires",
+    "sent_at": "2026-10-05T17:50:56.471898+00:00"
   }
 ]
