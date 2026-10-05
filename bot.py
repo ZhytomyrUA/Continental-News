@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Continental News Telegram Bot v5.11.1
+Continental News Telegram Bot v7.1
 
 Логіка:
 - запуск через GitHub Actions один раз на день о 09:00 Europe/Berlin;
@@ -50,6 +50,13 @@ try:
     from deep_translator import GoogleTranslator
 except Exception:
     GoogleTranslator = None
+
+# Keep the startup log explicit: Google News is a fallback, but its resolver
+# is required whenever Google RSS returns an article candidate.
+if gnewsdecoder is None:
+    print("⚠️ googlenewsdecoder ist NICHT verfügbar – Google-RSS-Kandidaten können nicht zuverlässig aufgelöst werden.")
+else:
+    print("🟢 googlenewsdecoder verfügbar – moderne Google-News-URLs werden über den offiziellen Decoder-Flow aufgelöst.")
 
 
 # ============================================================
@@ -1199,41 +1206,88 @@ def build_queries() -> list[tuple[str, str, str, int]]:
 
 
 def decode_google_url(url: str) -> Optional[str]:
+    """Resolve a Google News URL to the real publisher URL.
+
+    Google changed the article IDs after 2024, so the opaque CBMi... token
+    cannot reliably be decoded locally as base64. The current
+    ``googlenewsdecoder`` package resolves it through Google's article
+    signature/batchexecute flow.
+
+    IMPORTANT: googlenewsdecoder 0.2.x returns ``success=True`` rather than
+    the old ``status`` field. The previous bot checked the wrong field, so a
+    successful decode was silently discarded and every Google item fell into
+    ``invalid_or_google_url``.
+    """
     if not url:
         return None
-    if "news.google.com/rss/articles/" not in url:
+
+    host = hostname_from_url(url)
+    if not is_google_host(url):
         return url
+    if host != "news.google.com":
+        print(f"⚠️ Google resolver: unerwarteter Google-Host: {host or '-'}")
+        return None
+
+    # Primary resolver: current googlenewsdecoder (0.2.1).
     if gnewsdecoder is not None:
         try:
-            result = gnewsdecoder(url, interval=GOOGLE_DECODE_DELAY)
-            if isinstance(result, dict) and result.get("status") and result.get("decoded_url"):
-                decoded = str(result["decoded_url"]).strip()
-                if decoded and not is_google_host(decoded):
-                    return decoded
-            if isinstance(result, str):
+            result = gnewsdecoder(
+                url,
+                interval=GOOGLE_DECODE_DELAY,
+                timeout=min(REQUEST_TIMEOUT, 15),
+            )
+            if isinstance(result, dict):
+                # Current API: {success: True, decoded_url: ...}
+                if result.get("success") and result.get("decoded_url"):
+                    decoded = str(result["decoded_url"]).strip()
+                    if decoded and not is_google_host(decoded) and urlparse(decoded).scheme in {"http", "https"}:
+                        print(f"🔓 Google News aufgelöst: {hostname_from_url(decoded)}")
+                        return decoded.split("#", 1)[0]
+                # Compatibility with older decoder releases.
+                if result.get("status") and result.get("decoded_url"):
+                    decoded = str(result["decoded_url"]).strip()
+                    if decoded and not is_google_host(decoded) and urlparse(decoded).scheme in {"http", "https"}:
+                        print(f"🔓 Google News aufgelöst (legacy): {hostname_from_url(decoded)}")
+                        return decoded.split("#", 1)[0]
+                message = result.get("message") or result.get("error") or "unbekannter Decoder-Fehler"
+                print(f"⚠️ Google Decoder: {message}")
+            elif isinstance(result, str):
                 decoded = result.strip()
-                if decoded and not is_google_host(decoded):
-                    return decoded
+                if decoded and not is_google_host(decoded) and urlparse(decoded).scheme in {"http", "https"}:
+                    print(f"🔓 Google News aufgelöst: {hostname_from_url(decoded)}")
+                    return decoded.split("#", 1)[0]
         except Exception as exc:
-            print(f"⚠️ googlenewsdecoder error: {exc}")
+            print(f"⚠️ googlenewsdecoder error: {type(exc).__name__}: {exc}")
+    else:
+        print("⚠️ Google Decoder nicht installiert – prüfe requirements_v6.0.txt")
 
-    # Last-resort resolver. Google News remains a discovery layer only; the
-    # Telegram post is accepted only when the redirect resolves to the real
-    # publisher URL.
+    # Last-resort HTTP redirect. This is useful for older/simple Google links,
+    # but modern /rss/articles/ links often remain on news.google.com, so it is
+    # deliberately secondary to googlenewsdecoder.
     try:
         response = requests.get(
             url,
             headers=HEADERS,
-            timeout=REQUEST_TIMEOUT,
+            timeout=min(REQUEST_TIMEOUT, 12),
             allow_redirects=True,
         )
         final_url = response.url.split("#", 1)[0]
-        if final_url and not is_google_host(final_url) and urlparse(final_url).scheme in {"http", "https"}:
+        final_host = hostname_from_url(final_url)
+        if (final_url and not is_google_host(final_url)
+                and urlparse(final_url).scheme in {"http", "https"}):
+            print(f"🔓 Google Redirect aufgelöst: {final_host}")
             return final_url
+        print(
+            f"⚠️ Google Redirect blieb auf Google: HTTP={response.status_code} "
+            f"final={final_url[:180]}"
+        )
     except Exception as exc:
-        print(f"⚠️ Google redirect resolver error: {exc}")
+        print(f"⚠️ Google redirect resolver error: {type(exc).__name__}: {exc}")
 
-    print("⚠️ Google News URL konnte nicht auf die Originalquelle aufgelöst werden")
+    print(
+        "⚠️ Google News URL konnte nicht auf die Originalquelle aufgelöst werden "
+        f"| input={url[:180]}"
+    )
     return None
 
 
@@ -3437,9 +3491,15 @@ def main() -> None:
             # Resolve Google News once and eliminate exact-source duplicates
             # before enrichment/translation. This is the main protection against
             # translation 429s and repeated processing of the same article.
-            resolved_url = candidate.get("google_url", "") if candidate.get("direct_source") else decode_google_url(candidate.get("google_url", ""))
+            raw_candidate_url = candidate.get("google_url", "")
+            resolved_url = raw_candidate_url if candidate.get("direct_source") else decode_google_url(raw_candidate_url)
             if not resolved_url:
                 record_rejection("invalid_or_google_url")
+                if not candidate.get("direct_source"):
+                    print(
+                        f"⛔ Google-Kandidat verworfen: Original-URL nicht auflösbar | "
+                        f"Titel={candidate.get('title','')[:110]}"
+                    )
                 continue
             candidate["_resolved_article_url"] = resolved_url
             candidate_key = canonical_url(resolved_url)
