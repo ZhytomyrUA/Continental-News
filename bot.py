@@ -69,8 +69,8 @@ GERMANY_TZ = ZoneInfo("Europe/Berlin")
 SEARCH_LOOKBACK_HOURS = 336  # 14 days discovery window; freshness rules below decide publication eligibility
 NORMAL_NEWS_MAX_AGE_HOURS = 72
 IMPORTANT_NEWS_MAX_AGE_HOURS = 168
-FACTORY_NEWS_MAX_AGE_HOURS = 240
-CRITICAL_NEWS_MAX_AGE_HOURS = 336
+FACTORY_NEWS_MAX_AGE_HOURS = 720  # 30 days for factory/production stories
+CRITICAL_NEWS_MAX_AGE_HOURS = 720  # 30 days for major restructuring/relocation
 OFFICIAL_CONTENT_MAX_AGE_HOURS = 168
 STRATEGIC_TOPIC_LOOKBACK_HOURS = 24 * 90
 STORIES_LOOKBACK_HOURS = 336
@@ -93,6 +93,8 @@ PUBLISH_END_HOUR = 21
 PUBLISH_HOUR = 9
 FORCE_RUN = os.environ.get("FORCE_RUN", "").strip() == "1"
 MAX_POSTS_PER_RUN = 10
+FACTORY_CORE_PER_RUN = 5
+PRODUCT_TECH_CORE_PER_RUN = 3
 
 # v5.3 quality gates: block finance/SEO filler unless the article also
 # contains a concrete Continental event. This protects the channel from
@@ -790,6 +792,9 @@ def relevance_score(title: str, summary: str, article_url: str = "") -> int:
         "ig metall", "tarifvertrag", "tarifverhandlungen", "quartalszahlen",
         "jahreszahlen", "umsatz", "gewinn", "verlust", "vorstand",
         "aufsichtsrat", "neuer ceo", "neuer vorstand", "jobs", "arbeitsplätze",
+        "produktionskapazität", "produktionskapazitaet", "vollgummi", "industriereifen",
+        "sensor", "sensoren", "conticonnect", "uhp", "18 zoll", "24 zoll",
+        "reifendimensionen", "große reifen", "grosse reifen",
     ]
     if contains_any(text, high_value_terms):
         score += 32
@@ -856,6 +861,23 @@ def relevance_score(title: str, summary: str, article_url: str = "") -> int:
                 "konzeptreifen", "reifentest", "reifenproduktion",
             ))):
         score += 8
+
+    # v7.4 editorial calibration: factory/production topics are the core
+    # audience interest and must outrank generic tyre/news stories.
+    if contains_any(text, (
+        "korbach", "reifenwerk", "produktionskapazität", "produktionskapazitaet",
+        "produktionslinie", "vollgummi", "industriereifen", "produktionsverlagerung",
+        "produktion verlagert", "verlagerung der produktion", "werksschließung",
+        "werksschliessung", "windpark",
+    )):
+        score += 35
+    if contains_any(text, (
+        "sensor", "sensoren", "conticonnect", "intelligente reifen",
+        "reifensensor", "smart tire", "smart tyre",
+        "uhp", "18 zoll", "24 zoll", "große reifen", "grosse reifen",
+        "reifendimensionen",
+    )):
+        score += 25
 
     # v5.10.1: news-first calibration. Concrete factory/production stories
     # and real tyre/product launches must outrank generic company mentions.
@@ -984,6 +1006,31 @@ def build_queries() -> list[tuple[str, str, str, int]]:
         ('"Continental" Korbach Verlagerung', 1400),
         ('"Continental" Korbach Schließung OR Schliessung', 1400),
         ('"Continental" Korbach Investition', 1350),
+        ('"Continental" Korbach Produktionskapazität', 1500),
+        ('"Continental" Korbach Produktionskapazitaet', 1500),
+        ('"Continental" Korbach große Reifen', 1480),
+        ('"Continental" Korbach grosse Reifen', 1480),
+        ('"Continental" Korbach UHP Reifen', 1490),
+        ('"Continental" Korbach 18 Zoll Reifen', 1470),
+        ('"Continental" Korbach 24 Zoll Reifen', 1470),
+        ('"Continental" Korbach Sensoren Reifen', 1470),
+        ('"Continental" Korbach intelligente Reifen', 1470),
+        ('"Continental" Korbach ContiConnect', 1450),
+        ('"Continental" Korbach Vollgummireifen Verlagerung', 1520),
+        ('"Continental" Industriereifen Korbach Produktion', 1500),
+        ('"Continental" Reifenproduktion Kapazität', 1250),
+        ('"Continental" Reifenproduktion Kapazitaet', 1250),
+        ('"Continental" Produktion große Reifen', 1230),
+        ('"Continental" Produktion grosse Reifen', 1230),
+        ('"Continental" UHP Produktion', 1220),
+        ('"Continental" Reifen Sensoren Produktion', 1210),
+        ('"Continental" intelligente Reifen Sensoren', 1210),
+        ('"Continental" ContiConnect Sensoren Reifen', 1200),
+        ('"Continental" Reifen mit Sensoren', 1200),
+        ('"Continental" Verlagerung Produktion Asien', 1300),
+        ('"Continental" Vollgummireifen Verlagerung', 1300),
+        ('"Continental" Industriereifen Verlagerung', 1280),
+        ('"Continental" Windpark Korbach', 1400),
         ('"Continental Reifen" Korbach', 1350),
         ('"Reifenwerk Korbach" Continental', 1350),
         ('"Continental" Deutschland Werk Produktion', 1080),
@@ -1025,6 +1072,22 @@ def build_queries() -> list[tuple[str, str, str, int]]:
         ('"Continental" Reifen Neuheit', 1020),
         ('"Continental" Reifen Test', 980),
         ('"Continental" Reifen Innovation', 1010),
+        ('"Continental" intelligente Reifen', 1120),
+        ('"Continental" Reifensensoren', 1120),
+        ('"Continental" ContiConnect Sensor', 1110),
+        ('"Continental" Smart Tire Sensor', 1100),
+        ('"Continental" UHP Reifen 18 Zoll', 1110),
+        ('"Continental" Reifen 24 Zoll', 1090),
+        ('"Continental" große Reifendimensionen', 1090),
+        ('"Continental" grosse Reifendimensionen', 1090),
+        ('"Continental" Produktionskapazität Reifen', 1120),
+        ('"Continental" Produktionskapazitaet Reifen', 1120),
+        ('"Continental" Reifenwerk Produktion', 1100),
+        ('"Continental" Reifenwerk Kapazität', 1100),
+        ('"Continental" Reifenwerk Kapazitaet', 1100),
+        ('"Continental" Reifen Verlagerung Produktion', 1140),
+        ('"Continental" Reifen Produktion Ausbau', 1110),
+        ('"Continental" Reifen Produktion Investition', 1100),
         ('"Continental" Nutzfahrzeugreifen', 1010),
         ('"Continental" Lkw Reifen', 1000),
         ('"Continental" Pkw Reifen', 980),
@@ -1711,6 +1774,9 @@ def fetch_candidates(cutoff: datetime) -> list[dict[str, Any]]:
                 "continental", "korbach", "reifenwerk", "reifen", "betriebsrat",
                 "ig metall", "stellenabbau", "produktion", "verlagerung",
                 "schließung", "investition", "werk", "vorstand", "quartalszahlen",
+                "sensor", "conticonnect", "uhp", "18 zoll", "24 zoll",
+                "vollgummi", "industriereifen", "produktionskapazität",
+                "produktionskapazitaet", "windpark", "ausbau", "erweiterung",
             )):
                 continue
             relevant_count += 1
@@ -2652,8 +2718,25 @@ def log_publication_candidates(pending: list[dict[str, Any]], published: list[di
         )
 
 
+def editorial_bucket(item: dict[str, Any]) -> str:
+    text = normalize_text(f"{item.get('title','')} {item.get('summary','')} {item.get('article_text','')}")
+    if any(x in text for x in (
+        "korbach", "reifenwerk", "produktion", "produktionskapazität",
+        "produktionskapazitaet", "fertigung", "werksschließung", "werksschliessung",
+        "verlagerung", "vollgummi", "industriereifen", "windpark", "investition",
+    )):
+        return "factory"
+    if any(x in text for x in (
+        "sensor", "sensoren", "conticonnect", "intelligente reifen",
+        "reifensensor", "smart tire", "smart tyre", "uhp", "18 zoll", "24 zoll",
+        "große reifen", "grosse reifen", "reifendimensionen", "neuer reifen",
+        "reifenneuheit", "reifengeneration",
+    )):
+        return "product_tech"
+    return "other"
+
 def select_publication_batch(pending: list[dict[str, Any]], published: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Select up to 10 unique NEWS items. Vacancies are excluded completely."""
+    """Select up to 10 NEWS items with an explicit factory-first editorial mix."""
     news = [
         x for x in pending
         if not x.get("is_job")
@@ -2661,18 +2744,35 @@ def select_publication_batch(pending: list[dict[str, Any]], published: list[dict
         and not is_duplicate_event(x, published)
     ]
     news.sort(key=lambda x: (x.get("priority_score", 0), x.get("relevance_score", 0), x.get("published_at", "")), reverse=True)
+    factory = [x for x in news if editorial_bucket(x) == "factory"]
+    product = [x for x in news if editorial_bucket(x) == "product_tech"]
+    other = [x for x in news if editorial_bucket(x) == "other"]
     batch: list[dict[str, Any]] = []
     used_urls: set[str] = set()
-    for item in news:
-        key = canonical_url(item.get("article_url", ""))
-        if key and key in used_urls:
-            continue
-        batch.append(item)
-        if key:
-            used_urls.add(key)
-        if len(batch) >= MAX_POSTS_PER_RUN:
-            break
-    return batch
+
+    def add_from(items: list[dict[str, Any]], limit: int | None = None) -> None:
+        added = 0
+        for item in items:
+            key = canonical_url(item.get("article_url", ""))
+            if key and key in used_urls:
+                continue
+            batch.append(item)
+            if key:
+                used_urls.add(key)
+            added += 1
+            if len(batch) >= MAX_POSTS_PER_RUN or (limit is not None and added >= limit):
+                break
+
+    add_from(factory, FACTORY_CORE_PER_RUN)
+    if len(batch) < MAX_POSTS_PER_RUN:
+        add_from(product, PRODUCT_TECH_CORE_PER_RUN)
+    if len(batch) < MAX_POSTS_PER_RUN:
+        add_from(other)
+    # Fill remaining slots with strongest factory/product items if the
+    # editorial quotas did not use all 10 slots.
+    if len(batch) < MAX_POSTS_PER_RUN:
+        add_from([x for x in factory + product if x not in batch])
+    return batch[:MAX_POSTS_PER_RUN]
 
 def published_url_is_republishable(candidate: dict[str, Any], published_record: dict[str, Any]) -> bool:
     """Allow a materially newer revision of the same canonical URL.
