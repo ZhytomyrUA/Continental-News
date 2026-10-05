@@ -2706,14 +2706,14 @@ def main() -> None:
     print(f"💾 Стан GitHub: published={len(published)} | queue={len(pending)}")
 
     if now_de.hour != PUBLISH_HOUR and not FORCE_RUN:
-    print(
-        f"⏳ Nicht 09:00 Uhr in Deutschland "
-        f"(aktuell {now_de:%H:%M}). Dieser Lauf wird übersprungen."
-    )
-    return
+        print(
+            f"⏳ Nicht 09:00 Uhr in Deutschland "
+            f"(aktuell {now_de:%H:%M}). Dieser Lauf wird übersprungen."
+        )
+        return
 
-if FORCE_RUN:
-    print("🧪 FORCE_RUN=1 — manueller Testlauf aktiviert.")
+    if FORCE_RUN:
+        print("🧪 FORCE_RUN=1 — manueller Testlauf aktiviert.")
 
     raw = fetch_candidates(cutoff)
     discovered_news = len(raw)
