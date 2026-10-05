@@ -90,6 +90,7 @@ JOB_REACTIVATION_GAP_HOURS = 24 * 7
 PUBLISH_START_HOUR = 8
 PUBLISH_END_HOUR = 21
 PUBLISH_HOUR = 9
+FORCE_RUN = os.environ.get("FORCE_RUN", "").strip() == "1"
 MAX_POSTS_PER_RUN = 10
 
 # v5.3 quality gates: block finance/SEO filler unless the article also
