@@ -53,9 +53,10 @@ jobs:
 
       - name: Run Continental News Bot v6.0
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
-          TZ: Europe/Berlin
+  TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+  TELEGRAM_CHANNEL_ID: ${{ secrets.TELEGRAM_CHANNEL_ID }}
+  FORCE_RUN: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
+  TZ: Europe/Berlin
         shell: bash
         run: |
           set -euo pipefail
