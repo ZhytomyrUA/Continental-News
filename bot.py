@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Continental News Telegram Bot v6.0
+Continental News Telegram Bot v5.11.1
 
 Логіка:
 - запуск через GitHub Actions кожні 2 години;
@@ -47,9 +47,13 @@ warnings.filterwarnings("ignore", category=MarkupResemblesLocatorWarning)
 
 try:
     from googlenewsdecoder import gnewsdecoder
-except Exception as exc:
-    print(f"⚠️ googlenewsdecoder import failed: {type(exc).__name__}: {exc}")
+except Exception:
     gnewsdecoder = None
+
+try:
+    from deep_translator import GoogleTranslator
+except Exception:
+    GoogleTranslator = None
 
 
 # ============================================================
@@ -66,7 +70,15 @@ if not CHANNEL_ID:
 
 GERMANY_TZ = ZoneInfo("Europe/Berlin")
 
-SEARCH_LOOKBACK_HOURS = 336  # 14 days discovery window; freshness rules below decide publication eligibility
+# Normal mode is intentionally conservative. Bootstrap mode is activated by
+# BOOTSTRAP_MODE=1 and fills the historical archive from 01.08.2026 through
+# 30.09.2026 without weakening the normal daily rules permanently.
+BOOTSTRAP_MODE = os.environ.get("BOOTSTRAP_MODE", "0").strip() == "1"
+FORCE_RUN = os.environ.get("FORCE_RUN", "0").strip() == "1"
+BOOTSTRAP_START = datetime(2026, 8, 1, tzinfo=GERMANY_TZ)
+BOOTSTRAP_END = datetime(2026, 9, 30, 23, 59, 59, tzinfo=GERMANY_TZ)
+
+SEARCH_LOOKBACK_HOURS = 336  # normal discovery window; bootstrap changes this at runtime
 NORMAL_NEWS_MAX_AGE_HOURS = 72
 IMPORTANT_NEWS_MAX_AGE_HOURS = 168
 FACTORY_NEWS_MAX_AGE_HOURS = 240
@@ -75,12 +87,13 @@ OFFICIAL_CONTENT_MAX_AGE_HOURS = 168
 STRATEGIC_TOPIC_LOOKBACK_HOURS = 24 * 90
 STORIES_LOOKBACK_HOURS = 336
 PENDING_MAX_AGE_HOURS = 336
-PENDING_MIN_RELEVANCE = 60
+PENDING_MIN_RELEVANCE = 50
 MAX_PENDING_ITEMS = 12
 
 # v5.5 test diagnostics: count every news rejection reason so the
 # publication path can be audited without guessing.
 REJECTION_STATS: dict[str, int] = {}
+TRANSLATION_CACHE: dict[tuple[str, str, str], str] = {}
 
 def record_rejection(reason: str) -> None:
     REJECTION_STATS[reason] = REJECTION_STATS.get(reason, 0) + 1
@@ -90,9 +103,11 @@ JOB_LOOKBACK_HOURS = 24 * 30
 JOB_REACTIVATION_GAP_HOURS = 24 * 7
 PUBLISH_START_HOUR = 8
 PUBLISH_END_HOUR = 21
-PUBLISH_HOUR = 9
-FORCE_RUN = os.environ.get("FORCE_RUN", "").strip() == "1"
-MAX_POSTS_PER_RUN = 10
+MAX_POSTS_PER_RUN = 4
+MAX_JOBS_PER_RUN = 1
+BOOTSTRAP_MAX_PENDING_ITEMS = 180
+BOOTSTRAP_MAX_POSTS_PER_RUN = 30
+BOOTSTRAP_MAX_KORBACH_PER_RUN = 10
 
 # v5.3 quality gates: block finance/SEO filler unless the article also
 # contains a concrete Continental event. This protects the channel from
@@ -256,6 +271,7 @@ SOURCE_PAGE_DELAY = 0.20
 PUBLISHED_FILE = Path("continental_published.json")
 PENDING_FILE = Path("continental_pending.json")
 MESSAGES_FILE = Path("continental_messages.json")
+JOBS_SEEN_FILE = Path("continental_jobs_seen.json")
 
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -836,9 +852,12 @@ def relevance_score(title: str, summary: str, article_url: str = "") -> int:
         "audi q3", "volkswagen id. polo", "id. polo",
     ]
     if contains_any(text, product_terms):
-        score += 28
+        # Product/OE stories are a core Continental tyre-news category. The
+        # final public score is divided by two, so this boost must be large
+        # enough to move strong OE/product stories across the 60 queue gate.
+        score += 40
     if contains_any(text, ("launch", "launched", "released", "vorgestellt", "präsentiert", "praesentiert", "introduced", "expands portfolio")):
-        score += 12
+        score += 16
 
     specific_tire_terms = [
         "spezialreifen", "spezialreifen", "steinbruch", "gewinnungsindustrie",
@@ -879,12 +898,97 @@ def relevance_score(title: str, summary: str, article_url: str = "") -> int:
     )):
         score += 20
 
-    # v4.1: expose a stable 0–100 relevance scale while keeping the
-    # underlying weighted scoring model. The score is intentionally capped so
-    # logs, queue ranking and future thresholds remain easy to understand.
+    # v5.11 editorial calibration.
+    # The old model divided every weighted score by two, which caused strong
+    # product/OE stories to land at 57 and be rejected even though they were
+    # clearly publishable. Keep the underlying signals, but add a small,
+    # transparent editorial bonus after normalization instead of globally
+    # lowering quality.
     if score <= 0:
         return score
-    return min(100, round(score / 2))
+
+    normalized_score = round(score / 2)
+    editorial_bonus = 0
+
+    official_source = (
+        domain_matches(host, "continental.com")
+        or domain_matches(host, "continental-tires.com")
+        or domain_matches(host, "continental-reifen.de")
+    )
+    trusted_editorial_source = (
+        domain_matches(host, "reuters.com")
+        or domain_matches(host, "reifenpresse.de")
+        or domain_matches(host, "tyrepress.com")
+        or domain_matches(host, "automobilwoche.de")
+        or domain_matches(host, "hessenschau.de")
+        or domain_matches(host, "hna.de")
+        or domain_matches(host, "tagesschau.de")
+    )
+    product_or_oe = contains_any(text, product_terms)
+    concrete_product_action = contains_any(text, (
+        "launch", "launched", "released", "vorgestellt", "präsentiert",
+        "praesentiert", "introduced", "expands portfolio", "portfolioerweiterung",
+        "erstausrüstung", "erstausruestung", "oe approval", "oe-approval",
+        "original equipment", "freigabe für", "freigabe fuer", "approvals for",
+    ))
+    factory_or_workforce = contains_any(text, (
+        "produktion", "production", "fertigung", "manufacturing", "werk",
+        "factory", "plant", "stellenabbau", "entlassung", "verlagerung",
+        "schließung", "schliessung", "betriebsrat", "ig metall", "mitarbeiter",
+    ))
+
+    if official_source and product_or_oe:
+        editorial_bonus += 12
+    elif trusted_editorial_source and product_or_oe:
+        editorial_bonus += 10
+
+    if concrete_product_action and product_or_oe:
+        editorial_bonus += 4
+
+    if "korbach" in normalized and (factory_or_workforce or plain_continental):
+        editorial_bonus += 8
+    elif plant and factory_or_workforce:
+        editorial_bonus += 4
+
+    return min(100, normalized_score + editorial_bonus)
+
+
+def editorial_quality_tier(title: str, summary: str, article_url: str = "") -> str:
+    """Classify accepted material independently from the numeric score.
+
+    A = critical/local operational events; B = core Continental product/OE/
+    technology/factory news; C = useful industry/company news; D = weak.
+    The tier is an editorial aid, not a replacement for hard exclusions.
+    """
+    text = normalize_text(f"{title} {summary}")
+    host = hostname_from_url(article_url)
+    if is_stock_seo_filler(title, summary) or is_stock_market_analysis(title, summary):
+        return "D"
+    if "korbach" in text and contains_any(text, (
+        "stellenabbau", "verlagerung", "relocate", "relocation", "production transfer",
+        "produktion", "production", "werk", "factory", "plant", "mitarbeiter",
+        "employees", "betriebsrat", "ig metall", "schließung", "schliessung", "investition",
+    )):
+        return "A"
+    if contains_any(text, CRITICAL_EVENT_TERMS):
+        return "A"
+    if contains_any(text, (
+        "erstausrüstung", "erstausruestung", "oe approval", "oe-approval",
+        "original equipment", "freigabe für", "freigabe fuer", "approvals for",
+        "new tire", "new tyre", "new product", "reifenneuheit", "neuer reifen",
+        "reifentechnologie", "reifeninnovation", "contitread", "technologie",
+        "technology", "reifentest", "reifenentwicklung", "produktion", "manufacturing",
+    )):
+        return "B"
+    if domain_matches(host, "continental.com") or domain_matches(host, "continental-reifen.de"):
+        if re.search(r"\bcontinental\b", text):
+            return "B"
+    if re.search(r"\bcontinental\b", text) and contains_any(text, (
+        "partner", "partnership", "motorsport", "sustainability", "nachhaltigkeit",
+        "strategie", "vorstand", "ceo", "quartalszahlen", "umsatz", "gewinn",
+    )):
+        return "C"
+    return "D"
 
 
 def is_continental_relevant(title: str, summary: str, article_url: str = "") -> bool:
@@ -1111,11 +1215,8 @@ def decode_google_url(url: str) -> Optional[str]:
         return None
     try:
         result = gnewsdecoder(url, interval=GOOGLE_DECODE_DELAY)
-        if isinstance(result, dict):
-            ok = bool(result.get("status", result.get("success")))
-            decoded = result.get("decoded_url")
-            if ok and decoded:
-                return decoded
+        if isinstance(result, dict) and result.get("status") and result.get("decoded_url"):
+            return result["decoded_url"]
         if isinstance(result, str):
             return result
     except Exception as exc:
@@ -1476,6 +1577,78 @@ def _collect_job_links_from_html(html: str, base_url: str) -> list[str]:
     return links
 
 
+def fetch_direct_korbach_jobs() -> list[dict[str, Any]]:
+    results: list[dict[str, Any]] = []
+    seen: set[str] = set()
+
+    # 1) PRIMARY: the exact official jobs.continental.com Korbach filter URL.
+    # It is a JS SPA, so requests may receive only the application shell.
+    print(f"👥 Offizielles Job-Portal Korbach: {KORBACH_JOBS_URL}")
+    try:
+        r = requests.get(
+            KORBACH_JOBS_URL,
+            headers=HEADERS,
+            timeout=REQUEST_TIMEOUT,
+            allow_redirects=True,
+        )
+        r.raise_for_status()
+        portal_links = _collect_job_links_from_html(r.text, r.url)
+        print(f"   Job-Portal: {len(portal_links)} Stellenlinks direkt aus HTML gefunden")
+        for href in portal_links:
+            seen.add(href)
+    except Exception as exc:
+        print(f"⚠️ Job-Portal Korbach Fehler: {exc}")
+
+    # 2) AUTHORITATIVE FALLBACK: official Korbach location page.
+    # This page currently links to the same jobs.continental.com detail pages
+    # and is useful when the SPA returns only its JavaScript shell.
+    print(f"👥 Offizielle Korbach-Karriereseite (Fallback): {KORBACH_CAREERS_URL}")
+    try:
+        r2 = requests.get(
+            KORBACH_CAREERS_URL,
+            headers=HEADERS,
+            timeout=REQUEST_TIMEOUT,
+            allow_redirects=True,
+        )
+        r2.raise_for_status()
+        fallback_links = _collect_job_links_from_html(r2.text, r2.url)
+        print(f"   Korbach-Karriereseite: {len(fallback_links)} Stellenlinks gefunden")
+        for href in fallback_links:
+            seen.add(href)
+    except Exception as exc:
+        print(f"⚠️ Korbach-Karriereseite Fehler: {exc}")
+
+    for href in sorted(seen):
+        # Do not trust the URL title alone. The detail page is checked later
+        # by fetch_article(), where Korbach / Vergölst / application signals
+        # are validated. A direct official source gets trusted_job=True so a
+        # client-side application button is not required in raw HTML.
+        title = extract_job_key("", href)
+        results.append({
+            "title": title,
+            "summary": "Offizielle Stellenanzeige von Continental für den Standort Korbach",
+            "google_url": href,
+            "source_name": "Continental Jobs",
+            "published_at": datetime.now(timezone.utc).isoformat(),
+            "search_priority": 2000,
+            "found_at": datetime.now(timezone.utc).isoformat(),
+            "direct_source": True,
+            "is_job": True,
+            "trusted_job": True,
+        })
+
+    print(f"   Direkt gefundene offizielle Korbach-Stellen: {len(results)}")
+    return results
+
+
+def build_job_queries() -> list[str]:
+    # Only fallback when direct career-page discovery fails or is incomplete.
+    return [
+        'site:jobs.continental.com/de/detail-page/job-detail "Korbach" "REF"',
+        'site:jobs.continental.com/de/detail-page/job-detail "Standort Korbach"',
+    ]
+
+
 def candidate_age_hours(candidate: dict[str, Any], now_utc: Optional[datetime] = None) -> Optional[float]:
     """Return candidate age in hours from its discovery/publication timestamp.
 
@@ -1509,6 +1682,20 @@ def candidate_age_hours(candidate: dict[str, Any], now_utc: Optional[datetime] =
 
 
 def freshness_limit_hours(candidate: dict[str, Any]) -> int:
+    if BOOTSTRAP_MODE:
+        for raw in (candidate.get("published_at"), candidate.get("discovery_published_at"), candidate.get("found_at")):
+            if not raw:
+                continue
+            try:
+                dt = datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
+                if dt.tzinfo is None:
+                    dt = dt.replace(tzinfo=timezone.utc)
+                local_dt = dt.astimezone(GERMANY_TZ)
+                if BOOTSTRAP_START <= local_dt <= BOOTSTRAP_END:
+                    return 24 * 3650
+            except (TypeError, ValueError, OverflowError):
+                pass
+
     """Publication freshness by editorial topic.
 
     - Fast-moving market/ordinary company news: 72h.
@@ -1664,7 +1851,10 @@ def fetch_candidates(cutoff: datetime) -> list[dict[str, Any]]:
     for item in fetch_hna_korbach(cutoff):
         found[f"{normalize_text(item['title'])}|{canonical_url(item['google_url'])}"] = item
 
-    # D. Job discovery is intentionally disabled in v6.0.
+    # D. Official Korbach jobs, direct first
+    direct_jobs = fetch_direct_korbach_jobs()
+    for item in direct_jobs:
+        found[f"JOB|{extract_job_key(item['title'], item['google_url'])}"] = item
 
     # E. German Google News fallback only
     for query, lang, country, priority in build_queries():
@@ -1748,7 +1938,32 @@ def fetch_candidates(cutoff: datetime) -> list[dict[str, Any]]:
                 'strategic_topic': True,
             }
 
-    # F. Jobs search is intentionally disabled in v6.0.
+    # F. Jobs Google fallback only when direct page returned none.
+    if not direct_jobs:
+        for query in build_job_queries():
+            print(f"👥 Jobs Google-Fallback: {query}")
+            try:
+                feed = feedparser.parse(google_rss_url(query, "de", "DE"))
+            except Exception:
+                continue
+            for entry in feed.entries[:80]:
+                title = clean_text(getattr(entry, "title", ""))
+                link = getattr(entry, "link", "") or ""
+                if not title or not link or looks_like_bad_title(title):
+                    continue
+                key = extract_job_key(title, link)
+                if not key:
+                    continue
+                found[f"JOB|{key}"] = {
+                    "title": title,
+                    "summary": entry_description(entry),
+                    "google_url": link,
+                    "source_name": "Continental Jobs",
+                    "published_at": (parse_entry_datetime(entry) or datetime.now(timezone.utc)).isoformat(),
+                    "search_priority": 1600,
+                    "found_at": datetime.now(timezone.utc).isoformat(),
+                    "is_job": True,
+                }
 
     return deduplicate_raw_candidates(list(found.values()))
 
@@ -2250,6 +2465,258 @@ def merge_pending_best(pending: list[dict[str, Any]], item: dict[str, Any]) -> t
 # JOB FIRST-SEEN / REACTIVATION TRACKING
 # ============================================================
 
+def job_discovery_decision(candidate: dict[str, Any], jobs_seen: dict[str, Any], now_utc: datetime) -> tuple[bool, str]:
+    key = extract_job_key(candidate.get("title", ""), candidate.get("google_url", ""))
+    if not key:
+        return False, ""
+    rec = jobs_seen.get(key)
+    if not isinstance(rec, dict):
+        return True, key
+    try:
+        last_seen = datetime.fromisoformat(rec.get("last_seen", ""))
+        if last_seen.tzinfo is None:
+            last_seen = last_seen.replace(tzinfo=timezone.utc)
+    except Exception:
+        last_seen = now_utc
+    gap = now_utc - last_seen
+    if gap >= timedelta(hours=JOB_REACTIVATION_GAP_HOURS):
+        return True, key
+    rec["last_seen"] = now_utc.isoformat()
+    rec["active"] = True
+    jobs_seen[key] = rec
+    return False, key
+
+
+def mark_job_seen(item: dict[str, Any], jobs_seen: dict[str, Any], now_utc: datetime, key: str = "") -> None:
+    key = key or extract_job_key(item.get("title", ""), item.get("article_url", ""))
+    if not key:
+        return
+    old = jobs_seen.get(key) if isinstance(jobs_seen.get(key), dict) else {}
+    jobs_seen[key] = {
+        "title": item.get("title", ""),
+        "url": item.get("article_url", ""),
+        "first_seen": old.get("first_seen") or now_utc.isoformat(),
+        "last_seen": now_utc.isoformat(),
+        "active": True,
+    }
+
+
+# ============================================================
+# TRANSLATION
+# ============================================================
+
+def probably_german(text: str) -> bool:
+    sample = (text or "")[:700].lower()
+    german_words = [
+        " der ", " die ", " das ", " und ", " ist ", " mit ",
+        " für ", " auf ", " von ", " zu ", " wird ", " werden ",
+        "unternehmen", "mitarbeiter", "werk", "reifen",
+    ]
+    return sum(sample.count(w) for w in german_words) >= 2
+
+
+def translation_result_is_error(text: str) -> bool:
+    """Reject provider error pages/messages so they can never become headlines."""
+    normalized = normalize_text(text)
+    if not normalized:
+        return True
+    error_patterns = (
+        r"\berror\s*500\b", r"\berror\s*429\b", r"\berror\s*404\b",
+        r"\bserver error\b", r"\bthat.?s an error\b",
+        r"\bthere was an error\b", r"\bplease try again later\b",
+        r"\bthat.?s all we know\b", r"\bservice unavailable\b",
+        r"\btoo many requests\b", r"\binternal server error\b",
+    )
+    return any(re.search(pattern, normalized, flags=re.IGNORECASE) for pattern in error_patterns)
+
+
+def _translate_http(text: str, target: str, source: str = "auto") -> str:
+    """Translate with lightweight HTTP fallback and a secondary provider.
+
+    Google GTX can temporarily answer with HTTP 429. We therefore cache every
+    successful translation and fall back to MyMemory before giving up.
+    """
+    text = clean_text(text)
+    if not text:
+        return ""
+    cache_key = (source, target, text[:3500])
+    if cache_key in TRANSLATION_CACHE:
+        return TRANSLATION_CACHE[cache_key]
+
+    # Google GTX first. A short retry helps with transient 429/5xx responses,
+    # but an error payload is never accepted as translated content.
+    for attempt in range(2):
+        try:
+            r = requests.get(
+                "https://translate.googleapis.com/translate_a/single",
+                params={"client": "gtx", "sl": source, "tl": target, "dt": "t", "q": text[:3500]},
+                headers=HEADERS, timeout=12,
+            )
+            if r.status_code == 429:
+                print(f"⚠️ Google-Übersetzung {target.upper()} 429; Versuch {attempt + 1}/2")
+                if attempt == 0:
+                    time.sleep(1.2)
+                    continue
+                break
+            r.raise_for_status()
+            data = r.json()
+            parts = data[0] if isinstance(data, list) and data else []
+            translated = clean_text("".join(
+                str(part[0]) for part in parts
+                if isinstance(part, list) and part and isinstance(part[0], str)
+            ))
+            if translated and not translation_result_is_error(translated):
+                TRANSLATION_CACHE[cache_key] = translated
+                return translated
+        except Exception as exc:
+            print(f"⚠️ Google-Übersetzung {target.upper()} fehlgeschlagen: {exc}")
+            if attempt == 0:
+                time.sleep(0.6)
+
+    # Secondary public translation service.
+    try:
+        langpair_source = "auto" if source == "auto" else source
+        r = requests.get(
+            "https://api.mymemory.translated.net/get",
+            params={"q": text[:4500], "langpair": f"{langpair_source}|{target}"},
+            headers=HEADERS, timeout=15,
+        )
+        r.raise_for_status()
+        data = r.json()
+        translated = clean_text(((data.get("responseData") or {}).get("translatedText")) or "")
+        if (translated
+                and translated.lower() not in {"source language is same as target language", "please select two different languages"}
+                and not translation_result_is_error(translated)):
+            TRANSLATION_CACHE[cache_key] = translated
+            return translated
+    except Exception as exc:
+        print(f"⚠️ MyMemory-Übersetzung {target.upper()} fehlgeschlagen: {exc}")
+
+    return ""
+
+
+def _translate(text: str, target: str, source: str = "auto", max_chars: int = 3500) -> str:
+    """Use installed translator first, then cached HTTP fallbacks."""
+    text = clean_text(text)
+    if not text:
+        return ""
+    key_text = text[:max_chars]
+    cache_key = (source, target, key_text)
+    if cache_key in TRANSLATION_CACHE:
+        return TRANSLATION_CACHE[cache_key]
+    if GoogleTranslator is not None:
+        try:
+            translated = clean_text(
+                GoogleTranslator(source=source, target=target).translate(key_text)
+            )
+            if translated and not translation_result_is_error(translated):
+                TRANSLATION_CACHE[cache_key] = translated
+                return translated
+            if translated and translation_result_is_error(translated):
+                print(f"⚠️ deep-translator {source}->{target} returned a provider-error payload; not cached")
+        except Exception as exc:
+            print(f"⚠️ deep-translator {source}->{target} fehlgeschlagen: {exc}")
+    return _translate_http(key_text, target, source)
+
+
+def translate_to_german(text: str) -> str:
+    text = clean_text(text)
+    if not text or probably_german(text):
+        return text
+    translated = _translate(text, "de", "auto", 3500)
+    if translated and not translation_result_is_error(translated):
+        return translated
+    # Safe last resort: keep the original source headline. Never expose a
+    # provider error as the German title.
+    return text
+
+
+PROTECTED_HEADLINE_TERMS = [
+    "Continental", "Korbach", "Lousado", "Puchov", "Otrokovice",
+    "Timisoara", "Sarreguemines", "Rayong", "Hefei", "Modipuram",
+    "Camaçari", "San Luis Potosi", "Mount Vernon", "Sumter",
+]
+
+
+def _headline_translation_quality(original: str, translated: str, target: str) -> bool:
+    """Conservative quality gate: language must be real and key entities/numbers preserved."""
+    if not translated or normalize_text(translated) == normalize_text(original):
+        return False
+
+    lower = translated.lower()
+    if target == "uk":
+        cyr = sum(1 for ch in translated if "а" <= ch.lower() <= "я" or ch.lower() in "іїєґ")
+        ukrainian_chars = sum(1 for ch in translated.lower() if ch in "іїєґ")
+        ukrainian_words = (
+            " і ", " й ", " та ", " це ", " для ", " на ", " у ", " в ",
+            " який ", " яка ", " яке ", " які ", " буде ", " були ",
+            " виробництв", " працівник", " компан", " завод", " шина",
+            " Continental", " скороч", " перенес", " інвест", " представ",
+            " новий ", " нова ", " нове ", " нові "
+        )
+        if cyr < 6 or (ukrainian_chars == 0 and not any(w in f" {lower} " for w in ukrainian_words)):
+            return False
+    elif target == "tr":
+        turkish_chars = sum(1 for ch in lower if ch in "çğıöşü")
+        turkish_words = (
+            " ve ", " için ", " olan ", " bir ", " ile ", " üretim",
+            " çalışan", " bölge", " şirket", " yönetim", " lastik",
+            " taşı", " etkilen", " fabrika", " yatırım", " personel",
+            " üret", " iş "
+        )
+        if turkish_chars == 0 and not any(w in f" {lower} " for w in turkish_words):
+            return False
+
+    # Every numeric token from the German headline should survive translation.
+    original_numbers = re.findall(r"\d+(?:[.,]\d+)?", original)
+    for number in original_numbers:
+        normalized = number.replace(",", ".")
+        if normalized not in translated.replace(",", "."):
+            return False
+
+    # Important proper nouns should not silently disappear.
+    for term in PROTECTED_HEADLINE_TERMS:
+        if re.search(rf"\b{re.escape(term)}\b", original, flags=re.IGNORECASE):
+            if term.lower() not in lower:
+                # Ukrainian translation may legitimately alter the term only
+                # for Korbach-like local names; Continental itself must remain.
+                if term.lower() == "continental" or target == "tr":
+                    return False
+
+    return True
+
+
+def translate_headline(text: str, target: str) -> str:
+    """Translate a headline with one retry and a strict quality gate."""
+    text = clean_text(text)
+    if not text:
+        return ""
+
+    for attempt, source in enumerate(("auto", "de"), start=1):
+        translated = _translate(text, target, source, 1000)
+        if not translated:
+            continue
+        if target == "uk":
+            translated = translated.replace("Кровопускание на заводе", "Сокращение персонала на заводе")
+            translated = translated.replace("Кровопускание персонала", "Сокращение персонала")
+            translated = translated.replace("Кровопускание", "Сокращение персонала")
+            translated = re.sub(
+                r"^Continental:\s*прогноз прибыли на 2026 год увеличивается$",
+                "Continental: прогноз прибыли на 2026 год повышен",
+                translated,
+                flags=re.IGNORECASE,
+            )
+        if target == "tr":
+            translated = translated.replace("2026 artışları için kar tahmini", "2026 yılı için kâr tahmini")
+            translated = translated.replace("personel kanaması", "personel kaybı")
+        if _headline_translation_quality(text, translated, target):
+            return translated
+        if attempt == 1:
+            print(f"⚠️ Übersetzung {target.upper()} Qualitätsprüfung nicht bestanden; zweiter Versuch")
+
+    return ""
+
+
 # ============================================================
 # TELEGRAM
 # ============================================================
@@ -2282,9 +2749,11 @@ def format_categories(item: dict[str, Any]) -> str:
 
 
 def build_post_text(item: dict[str, Any], for_photo: bool = False) -> str:
-    title = clean_text(item.get("title") or item.get("title_de") or "")
-    summary = clean_text(item.get("summary") or item.get("summary_de") or "")
-    source = item.get("source_name") or hostname_from_url(item.get("article_url", "")) or "Quelle"
+    title = item.get("title_de") or item["title"]
+    title_uk = item.get("title_uk") or ""
+    title_tr = item.get("title_tr") or ""
+    summary = item.get("summary_de") or ""
+    source = item.get("source_name") or hostname_from_url(item["article_url"]) or "Quelle"
 
     def esc(value: Any) -> str:
         return html.escape(str(value or ""), quote=False)
@@ -2292,9 +2761,22 @@ def build_post_text(item: dict[str, Any], for_photo: bool = False) -> str:
     if len(summary) > 500:
         summary = summary[:497].rstrip(" .,!?:;—-") + "…"
 
-    parts = [f"<b>{esc(title)}</b>"]
+    # German headline is intentionally bold and separated from translations by
+    # a blank line. UK uses a neutral symbol rather than a Ukrainian flag.
+    parts = [
+        esc(SECTIONS[item["primary_category"]]["title"]),
+        "",
+        f"<b>🇩🇪 {esc(title)}</b>",
+    ]
+
+    if title_uk and title_uk != title:
+        parts += ["", f"↪ uk {esc(title_uk)}"]
+    if title_tr and title_tr != title:
+        parts.append(f"🇹🇷 {esc(title_tr)}")
+
     if summary:
         parts += ["", esc(summary)]
+
     parts += [
         "",
         f"📍 {esc(format_location(item))}",
@@ -2304,34 +2786,73 @@ def build_post_text(item: dict[str, Any], for_photo: bool = False) -> str:
     ]
 
     text = "\n".join(parts)
+
+    if for_photo and len(text) > 1024:
+        text = "\n".join([
+            esc(SECTIONS[item["primary_category"]]["title"]),
+            "",
+            f"<b>🇩🇪 {esc(title[:420])}</b>",
+            "",
+            f"↪ uk {esc(title_uk[:420])}" if title_uk and title_uk != title else "",
+            f"🇹🇷 {esc(title_tr[:420])}" if title_tr and title_tr != title else "",
+            "",
+            f"📍 {esc(format_location(item))}",
+            f"📰 Quelle: {esc(source)}",
+            f"🔗 {esc(item['article_url'])}",
+        ])
+
     return text[:1024] if for_photo else text[:4096]
 
 def send_item(item: dict[str, Any]) -> Optional[int]:
-    """Publish one news item to the single Telegram channel, with no topics or translations."""
+    """Publish one item without letting a stale translation block a valid article.
+
+    v5.10.7 fix: v5.10.6 checked ``title_de`` before refetching the source.
+    If a temporary translation/provider error had been stored there, the item
+    was rejected immediately even though the real source headline was valid.
+    We now refresh the source first, repair the German headline, and validate
+    the final title only immediately before sending to Telegram.
+    """
     final_url, article_text, images, original_title, original_dt = fetch_article(
         item["article_url"],
-        is_job=False,
-        trusted_job=False,
+        is_job=bool(item.get("is_job")),
+        trusted_job=bool(item.get("trusted_job")),
     )
+
+    if original_title and not looks_like_bad_title(original_title):
+        source_title = clean_headline_source_suffix(original_title)
+        item["title"] = source_title
+        translated_de = translate_to_german(source_title)
+        item["title_de"] = translated_de if translated_de and not translation_result_is_error(translated_de) else source_title
+        item["title_uk"] = translate_headline(item["title_de"], "uk")
+        item["title_tr"] = translate_headline(item["title_de"], "tr")
+    else:
+        # Keep the queued headline when the source cannot be fetched. Never
+        # allow a provider error string to become the publishable title.
+        title_de = item.get("title_de") or item.get("title") or ""
+        if translation_result_is_error(title_de) or looks_like_bad_title(title_de):
+            fallback = item.get("title") or ""
+            if fallback and not translation_result_is_error(fallback) and not looks_like_bad_title(fallback):
+                item["title_de"] = fallback
+            else:
+                print("⛔ Veröffentlichung blockiert: fehlerhafter Titel")
+                return None
 
     if final_url:
         item["article_url"] = final_url
-    if original_title and not looks_like_bad_title(original_title):
-        item["title"] = clean_headline_source_suffix(original_title)
-    if article_text:
-        item["article_text"] = article_text
-        if not clean_text(item.get("summary", "")):
-            item["summary"] = clean_text(article_text[:3000])
-    if original_dt is not None:
-        item["published_at"] = original_dt.isoformat()
 
-    final_title = clean_text(item.get("title", ""))
-    if not final_title or looks_like_bad_title(final_title):
+    # Final safety check after source refresh/translation repair.
+    final_title = item.get("title_de") or item.get("title") or ""
+    if translation_result_is_error(final_title) or looks_like_bad_title(final_title):
         print("⛔ Veröffentlichung blockiert: fehlerhafter Titel")
         return None
 
     photo = download_real_image(images)
+
     data: dict[str, Any] = {"chat_id": CHANNEL_ID}
+
+    topic_id = get_topic_id(item["primary_category"])
+    if topic_id is not None:
+        data["message_thread_id"] = topic_id
 
     if photo:
         result = telegram_api(
@@ -2340,7 +2861,9 @@ def send_item(item: dict[str, Any]) -> Optional[int]:
             files={"photo": ("continental_news.jpg", photo, "image/jpeg")},
         )
         if result.get("ok"):
-            return result["result"]["message_id"]
+            message_id = result["result"]["message_id"]
+            print(f"📨 Telegram sendPhoto erfolgreich | message_id={message_id}")
+            return message_id
 
     result = telegram_api(
         "sendMessage",
@@ -2353,10 +2876,13 @@ def send_item(item: dict[str, Any]) -> Optional[int]:
     )
 
     if result.get("ok"):
-        return result["result"]["message_id"]
+        message_id = result["result"]["message_id"]
+        print(f"📨 Telegram sendMessage erfolgreich | message_id={message_id}")
+        return message_id
 
     print(f"❌ Telegram error: {result}")
     return None
+
 
 # ============================================================
 # MAIN PROCESS
@@ -2537,23 +3063,46 @@ def enrich_candidate(candidate: dict[str, Any]) -> Optional[dict[str, Any]]:
         candidate["source_name"] = hostname_from_url(candidate["article_url"])
 
     candidate = classify_item(candidate)
+    candidate["editorial_tier"] = editorial_quality_tier(
+        candidate.get("title", ""),
+        f'{candidate.get("summary", "")} {article_text}',
+        candidate.get("article_url", ""),
+    )
 
     source_summary = article_text or candidate.get("summary", "")
-    # v6.0: no translation. Publish the original/source headline and German
-    # source summary/body as-is.
-    candidate["summary_de"] = clean_text(source_summary[:700]) if source_summary else ""
+    candidate["title_de"] = translate_to_german(candidate["title"])
+    candidate["title_uk"] = translate_headline(candidate["title_de"], "uk")
+    candidate["title_tr"] = translate_headline(candidate["title_de"], "tr")
+    candidate["summary_de"] = translate_to_german(source_summary[:700]) if source_summary else ""
 
+    # v5.10.6: translation failure must never destroy a good news item.
+    # We keep retrying providers, but if one language is temporarily unavailable
+    # the original headline remains publishable and the next scheduled run can
+    # enrich/retranslate it again. Provider error strings are already blocked by
+    # translate_result_is_error().
+    if not candidate.get("is_job") and not candidate.get("title_de"):
+        candidate["title_de"] = candidate.get("title", "")
+    if not candidate.get("title_uk"):
+        print(f"🟠 UK translation temporarily unavailable; original headline retained: {candidate.get('title','')[:110]}")
+    if not candidate.get("title_tr"):
+        print(f"🟠 TR translation temporarily unavailable; original headline retained: {candidate.get('title','')[:110]}")
 
     if not candidate.get("is_job"):
         print(
-            f"🟢 NEWS AKZEPTIERT | {candidate.get('title','')[:120]} | "
+            f"🟢 NEWS BEWERTET | {candidate.get('title','')[:120]} | "
             f"Quelle={candidate.get('source_name','')} | "
             f"Original={candidate.get('published_at','')} | "
             f"Alter={candidate.get('age_hours','?')}h/{candidate.get('freshness_limit_hours','?')}h | "
             f"Rel={candidate.get('relevance_score',0)} | "
             f"Pri={candidate.get('priority_score',0)} | "
+            f"Tier={candidate.get('editorial_tier','-')} | "
             f"Event={','.join(item_event_families(candidate)) or '-'} | "
             f"Werk={candidate.get('plant',{}).get('city','-') if isinstance(candidate.get('plant'),dict) else '-'}"
+        )
+        print(
+            f"🌐 Übersetzung | DE: {candidate.get('title_de','')[:120]} | "
+            f"UK: uk {candidate.get('title_uk','')[:120]} | "
+            f"TR: {candidate.get('title_tr','')[:120]}"
         )
 
     return candidate
@@ -2583,9 +3132,7 @@ def prune_pending(pending: list[dict[str, Any]], now_utc: datetime) -> list[dict
         except Exception:
             found_at = now_utc
 
-        if item.get("is_job"):
-            continue
-        max_age = PENDING_MAX_AGE_HOURS
+        max_age = JOB_PENDING_MAX_AGE_HOURS if item.get("is_job") else PENDING_MAX_AGE_HOURS
         if found_at < now_utc - timedelta(hours=max_age):
             continue
 
@@ -2610,14 +3157,39 @@ def prune_pending(pending: list[dict[str, Any]], now_utc: datetime) -> list[dict
 
 
 def trim_pending(pending: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Cap queue with an absolute editorial priority for NEWS over JOBS.
+
+    Keep up to MAX_PENDING_ITEMS-1 news items first. Jobs are only retained
+    in the remaining slot so a vacancy can never displace useful news from
+    the persistent queue.
+    """
     news = [x for x in pending if not x.get("is_job")]
-    news.sort(key=lambda x: (x.get("priority_score", 0), x.get("relevance_score", 0), x.get("published_at", "")), reverse=True)
-    return news[:MAX_PENDING_ITEMS]
+    jobs = [x for x in pending if x.get("is_job")]
+
+    news.sort(
+        key=lambda x: (x.get("priority_score", 0), x.get("relevance_score", 0), x.get("published_at", "")),
+        reverse=True,
+    )
+    jobs.sort(
+        key=lambda x: (x.get("priority_score", 0), x.get("published_at", "")),
+        reverse=True,
+    )
+
+    # Reserve one optional slot for a job only after keeping the strongest news.
+    kept_news = news[:MAX_PENDING_ITEMS]
+    if len(kept_news) >= MAX_PENDING_ITEMS:
+        return kept_news[:MAX_PENDING_ITEMS]
+
+    remaining_slots = MAX_PENDING_ITEMS - len(kept_news)
+    kept_jobs = jobs[:min(1, remaining_slots)]
+    return kept_news + kept_jobs
+
 
 def log_publication_candidates(pending: list[dict[str, Any]], published: list[dict[str, Any]]) -> None:
     """Detailed v5.6 publication audit."""
     news = [x for x in pending if not x.get("is_job")]
-    print(f"📊 Publikationsprüfung: News={len(news)}")
+    jobs = [x for x in pending if x.get("is_job")]
+    print(f"📊 Publikationsprüfung: News={len(news)} | Jobs={len(jobs)}")
     if REJECTION_STATS:
         print("🧪 News-/Kandidaten-Ausschlussgründe:")
         for reason, count in sorted(REJECTION_STATS.items(), key=lambda kv: (-kv[1], kv[0])):
@@ -2631,29 +3203,87 @@ def log_publication_candidates(pending: list[dict[str, Any]], published: list[di
             f"Frische {freshness_label(item)} | Event {','.join(item_event_families(item)) or '-'} | "
             f"Dup {'JA' if duplicate else 'NEIN'} | {item.get('title','')[:120]}"
         )
+    if jobs:
+        print("👥 JOBS IN DER QUEUE:")
+    for idx, item in enumerate(jobs[:12], 1):
+        duplicate = is_duplicate_event(item, published)
+        print(
+            f"   #{idx} JOB | Pri {item.get('priority_score', 0)} | Rel {item.get('relevance_score', 0)} | "
+            f"Frische {freshness_label(item)} | Event {','.join(item_event_families(item)) or '-'} | "
+            f"Dup {'JA' if duplicate else 'NEIN'} | {item.get('title','')[:120]}"
+        )
 
 
 def select_publication_batch(pending: list[dict[str, Any]], published: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Select up to 10 unique NEWS items. Vacancies are excluded completely."""
+    """Select the publication batch.
+
+    Bootstrap mode publishes the archive chronologically from oldest to newest,
+    with a maximum of 10 Korbach items in one run. Normal mode keeps the
+    existing quality-first daily selection.
+    """
     news = [
         x for x in pending
         if not x.get("is_job")
         and int(x.get("relevance_score", 0) or 0) >= PENDING_MIN_RELEVANCE
         and not is_duplicate_event(x, published)
     ]
+    jobs = [x for x in pending if x.get("is_job") and not is_duplicate_event(x, published)]
+
+    if BOOTSTRAP_MODE:
+        def dt_key(item: dict[str, Any]) -> str:
+            return str(item.get("published_at") or item.get("discovery_published_at") or "9999-12-31T23:59:59+00:00")
+
+        def is_korbach(item: dict[str, Any]) -> bool:
+            text = normalize_text(
+                f"{item.get('title','')} {item.get('summary','')} {item.get('article_text','')} "
+                f"{item.get('plant','')} {item.get('source_name','')}"
+            )
+            return "korbach" in text or "reifenwerk korbach" in text
+
+        news.sort(key=dt_key)
+        batch: list[dict[str, Any]] = []
+        korbach_count = 0
+
+        for item in news:
+            if is_korbach(item):
+                if korbach_count >= BOOTSTRAP_MAX_KORBACH_PER_RUN:
+                    continue
+                korbach_count += 1
+            batch.append(item)
+            if len(batch) >= BOOTSTRAP_MAX_POSTS_PER_RUN:
+                break
+
+        # Jobs are deliberately excluded from the historical archive batch.
+        print(f"🗄️ Bootstrap-Auswahl: {len(batch)} News | Korbach={korbach_count} | chronologisch alt→neu")
+        return batch
+
     news.sort(key=lambda x: (x.get("priority_score", 0), x.get("relevance_score", 0), x.get("published_at", "")), reverse=True)
+    jobs.sort(key=lambda x: (x.get("priority_score", 0), x.get("published_at", "")), reverse=True)
     batch: list[dict[str, Any]] = []
-    used_urls: set[str] = set()
+    used_events: set[tuple[str, ...]] = set()
+    leftovers: list[dict[str, Any]] = []
     for item in news:
-        key = canonical_url(item.get("article_url", ""))
-        if key and key in used_urls:
+        families = tuple(sorted(item_event_families(item)))
+        city = item_plant_city(item).lower()
+        sig = families + ((f"plant:{city}",) if families and city else ())
+        if sig and sig in used_events:
+            leftovers.append(item)
             continue
         batch.append(item)
-        if key:
-            used_urls.add(key)
-        if len(batch) >= MAX_POSTS_PER_RUN:
+        if sig:
+            used_events.add(sig)
+        if len(batch) == MAX_POSTS_PER_RUN:
             break
-    return batch
+    if len(batch) < MAX_POSTS_PER_RUN:
+        for item in leftovers + news:
+            if item not in batch:
+                batch.append(item)
+            if len(batch) == MAX_POSTS_PER_RUN:
+                break
+    if jobs and len(batch) < MAX_POSTS_PER_RUN:
+        batch.append(jobs[0])
+    return batch[:MAX_POSTS_PER_RUN]
+
 
 def published_url_is_republishable(candidate: dict[str, Any], published_record: dict[str, Any]) -> bool:
     """Allow a materially newer revision of the same canonical URL.
@@ -2681,24 +3311,44 @@ def published_url_is_republishable(candidate: dict[str, Any], published_record: 
 
 
 def main() -> None:
+    global BOOTSTRAP_MODE, FORCE_RUN
+    global SEARCH_LOOKBACK_HOURS, PENDING_MAX_AGE_HOURS, MAX_PENDING_ITEMS
+    global MAX_POSTS_PER_RUN, PENDING_MIN_RELEVANCE
+
     now_de = datetime.now(GERMANY_TZ)
     now_utc = datetime.now(timezone.utc)
-    cutoff = now_utc - timedelta(hours=SEARCH_LOOKBACK_HOURS)
+
+    # Bootstrap is deliberately explicit. It is only active when the GitHub
+    # workflow passes BOOTSTRAP_MODE=1 (normally on manual workflow_dispatch).
+    if BOOTSTRAP_MODE:
+        archive_start_utc = BOOTSTRAP_START.astimezone(timezone.utc)
+        SEARCH_LOOKBACK_HOURS = max(1, int((now_utc - archive_start_utc).total_seconds() / 3600) + 24)
+        PENDING_MAX_AGE_HOURS = 24 * 3650
+        MAX_PENDING_ITEMS = BOOTSTRAP_MAX_PENDING_ITEMS
+        MAX_POSTS_PER_RUN = BOOTSTRAP_MAX_POSTS_PER_RUN
+        # Archive mode should retain useful stories that would normally fail
+        # the daily freshness/relevance threshold. Keep a reasonable floor.
+        PENDING_MIN_RELEVANCE = 35
+        cutoff = archive_start_utc
+    else:
+        cutoff = now_utc - timedelta(hours=SEARCH_LOOKBACK_HOURS)
 
     print("=" * 78)
-    print("🟢 CONTINENTAL NEWS BOT v6.0")
+    print("🟢 CONTINENTAL NEWS BOT v6.1 — ARCHIVE + DAILY")
     print("=" * 78)
     print(f"🇩🇪 Zeit in Deutschland: {now_de:%Y-%m-%d %H:%M:%S}")
     print(f"🔎 Discovery: letzte {SEARCH_LOOKBACK_HOURS} Stunden | Veröffentlichung: 72h normal / 7 Tage Produkt-Technologie / 10 Tage Werk-Investition / 14 Tage kritisch | Reifen-Stories: {STORIES_LOOKBACK_HOURS} Stunden")
     print("🛞 Direkt: Continental Reifen Stories + Unermüdlich-Blog + Sitemap-Fallback (7 Tage)")
     print("📰 Direkt-RSS: tagesschau + hessenschau")
-    print("🚫 Jobs/Vakanzen: Suche und Veröffentlichung vollständig deaktiviert")
+    print("👥 Jobs: offizielle Korbach-Karriereseite, First-Seen-Tracking")
     print("🔎 Google News: breiter deutscher Fallback + Originalartikel-Prüfung")
     print(f"🧠 Relevanz: 0–100 | Mindestwert: {PENDING_MIN_RELEVANCE} | Queue-Limit: {MAX_PENDING_ITEMS}")
-    print("⏱️ Frische: 72h normal → 7 Tage Produkt/Technologie → 10 Tage Werk/Investition → 14 Tage kritisch")
-    print("📢 Täglicher Such- und Veröffentlichungszeitpunkt: 09:00 Europe/Berlin")
-    print(f"📌 Maximal pro Tag: {MAX_POSTS_PER_RUN} News")
-    print("⭐ Prioritäten: Continental News → Werke/Produktion → Reifen/Technologie → Unternehmen/Management → Mitarbeiterleben")
+    print("⏱️ Frische: 72h normal → 7 Tage Produkt/Technologie → 10 Tage Werk/Investition → 14 Tage kritisch | Jobs ohne Alterslimit")
+    print(f"📢 Veröffentlichung: {PUBLISH_START_HOUR:02d}:00–{PUBLISH_END_HOUR:02d}:00")
+    print(f"📌 Maximal pro Lauf: {MAX_POSTS_PER_RUN}")
+    if BOOTSTRAP_MODE:
+        print(f"🗄️ ARCHIV: {BOOTSTRAP_START:%d.%m.%Y}–{BOOTSTRAP_END:%d.%m.%Y} | max. {BOOTSTRAP_MAX_POSTS_PER_RUN} pro Lauf | max. {BOOTSTRAP_MAX_KORBACH_PER_RUN} Korbach")
+    print("⭐ Prioritäten: News zuerst → Korbach → Continental-Werke → Reifen → Mitarbeiter & Jobs → Management")
     print("🧹 Queue: schwache/alte News werden automatisch entfernt; Status wird nach jeder erfolgreichen Veröffentlichung gespeichert")
     print("=" * 78)
 
@@ -2707,39 +3357,51 @@ def main() -> None:
     seen_run_urls: set[str] = set()
     pending = prune_pending(load_json(PENDING_FILE, []), now_utc)
     messages = load_json(MESSAGES_FILE, [])
-    print(f"💾 Стан GitHub: published={len(published)} | queue={len(pending)}")
+    jobs_seen = load_json(JOBS_SEEN_FILE, {})
+    print(f"💾 Стан GitHub: published={len(published)} | queue={len(pending)} | jobs_seen={len(jobs_seen) if isinstance(jobs_seen, dict) else 0}")
+    if not isinstance(jobs_seen, dict):
+        jobs_seen = {}
 
-    if now_de.hour != PUBLISH_HOUR and not FORCE_RUN:
-        print(
-            f"⏳ Nicht 09:00 Uhr in Deutschland "
-            f"(aktuell {now_de:%H:%M}). Dieser Lauf wird übersprungen."
-        )
-        return
-
-    if FORCE_RUN:
-        print("🧪 FORCE_RUN=1 — manueller Testlauf aktiviert.")
+    # v4 migration: seed first-seen state from jobs already published by v2,
+    # so an upgrade does not re-post the same active vacancies.
+    for old in published:
+        if not old.get("is_job"):
+            continue
+        key = extract_job_key(old.get("title", ""), old.get("article_url", ""))
+        if key and key not in jobs_seen:
+            jobs_seen[key] = {
+                "title": old.get("title", ""),
+                "url": old.get("article_url", ""),
+                "first_seen": old.get("sent_at") or old.get("published_at") or now_utc.isoformat(),
+                "last_seen": old.get("sent_at") or now_utc.isoformat(),
+                "active": True,
+            }
 
     raw = fetch_candidates(cutoff)
-    discovered_news = len(raw)
-    discovered_jobs = 0  # Jobs are intentionally disabled in v6.0.
-    print(f"🔎 Gefunden: {len(raw)} | 📰 News: {discovered_news}")
+    discovered_news = sum(1 for x in raw if not x.get("is_job"))
+    discovered_jobs = sum(1 for x in raw if x.get("is_job"))
+    print(f"🔎 Gefunden gesamt: {len(raw)} | 📰 News: {discovered_news} | 👥 Jobs: {discovered_jobs}")
 
     queued_news_added = 0
+    queued_jobs_added = 0
     accepted_news = 0
+    accepted_jobs = 0
 
     for candidate in raw:
         try:
-            if candidate.get("is_job"):
-                record_rejection("jobs_disabled")
-                continue
-
             # v5.6: do NOT apply freshness before opening the original article.
             # Discovery metadata often lacks the event terms needed to classify
             # a 7/14-day important story. The authoritative freshness decision
             # happens after article text has been fetched in enrich_candidate().
 
+            job_key = ""
+            if candidate.get("is_job"):
+                publish_job, job_key = job_discovery_decision(candidate, jobs_seen, now_utc)
+                if not publish_job:
+                    continue
+
             # Resolve Google News once and eliminate exact-source duplicates
-            # before enrichment. This is the main protection against
+            # before enrichment/translation. This is the main protection against
             # translation 429s and repeated processing of the same article.
             resolved_url = candidate.get("google_url", "") if candidate.get("direct_source") else decode_google_url(candidate.get("google_url", ""))
             if not resolved_url:
@@ -2767,6 +3429,20 @@ def main() -> None:
             if not item:
                 continue
 
+            if BOOTSTRAP_MODE:
+                raw_date = item.get("published_at") or item.get("discovery_published_at")
+                try:
+                    article_dt = datetime.fromisoformat(str(raw_date).replace("Z", "+00:00"))
+                    if article_dt.tzinfo is None:
+                        article_dt = article_dt.replace(tzinfo=timezone.utc)
+                    article_local = article_dt.astimezone(GERMANY_TZ)
+                    if not (BOOTSTRAP_START <= article_local <= BOOTSTRAP_END):
+                        record_rejection("outside_bootstrap_archive_window")
+                        continue
+                except (TypeError, ValueError, OverflowError):
+                    record_rejection("missing_or_invalid_bootstrap_date")
+                    continue
+
             # v5.9.1: hard relevance gate BEFORE queue insertion.
             if not item.get("is_job") and int(item.get("relevance_score", 0) or 0) < PENDING_MIN_RELEVANCE:
                 record_rejection("below_queue_relevance_gate")
@@ -2777,11 +3453,16 @@ def main() -> None:
                 record_rejection("duplicate_against_published")
                 dup_reason = duplicate_decision(item, published)[1]
                 print(f"⏭️ Bereits veröffentlicht/technischer Duplikat-Check: {item.get('title','')[:120]} | Grund={dup_reason}")
+                if item.get("is_job"):
+                    mark_job_seen(item, jobs_seen, now_utc, job_key)
                 continue
 
             pending, added, replaced = merge_pending_best(pending, item)
             if added:
-                queued_news_added += 1
+                if item.get("is_job"):
+                    queued_jobs_added += 1
+                else:
+                    queued_news_added += 1
             if not added:
                 record_rejection("duplicate_against_pending")
                 print(
@@ -2789,15 +3470,22 @@ def main() -> None:
                     f"Quelle={item.get('source_name','')} | "
                     f"Event={','.join(item_event_families(item)) or '-'}"
                 )
+                if item.get("is_job"):
+                    mark_job_seen(item, jobs_seen, now_utc, job_key)
                 continue
             if replaced:
                 print(f"🔁 Queue-Quelle verbessert: {item.get('title','')[:120]}")
 
-            accepted_news += 1
+            if item.get("is_job"):
+                accepted_jobs += 1
+                mark_job_seen(item, jobs_seen, now_utc, job_key)
+            else:
+                accepted_news += 1
 
             action = "Quelle ersetzt" if replaced else "In Warteschlange"
             print(
-                f"📥 {action}: {item['title'][:120]} | Relevanz {item.get('relevance_score', 0)}"
+                f"📥 {action}: {SECTIONS[item['primary_category']]['title']} | "
+                f"{item['title'][:90]} | Relevanz {item.get('relevance_score', 0)}"
             )
 
         except Exception as exc:
@@ -2816,43 +3504,60 @@ def main() -> None:
     if news_count < 2:
         print(f"ℹ️ Coverage-Hinweis: nur {news_count} hochwertige News in der Queue; kein künstlicher Füller")
     save_json(PENDING_FILE, pending)
+    save_json(JOBS_SEEN_FILE, jobs_seen)
 
     queue_news_before_publish = sum(1 for x in pending if not x.get("is_job"))
+    queue_jobs_before_publish = sum(1 for x in pending if x.get("is_job"))
     print(
         f"📦 Lauf-Zusammenfassung: gefunden={len(raw)} (News={discovered_news}, Jobs={discovered_jobs}) | "
-        f"akzeptiert={accepted_news} (News={accepted_news}) | "
-        f"neu/ersetzt in Queue={queued_news_added} (News={queued_news_added}) | "
-        f"Queue vor Publikation={len(pending)} (News={queue_news_before_publish})"
+        f"akzeptiert={accepted_news + accepted_jobs} (News={accepted_news}, Jobs={accepted_jobs}) | "
+        f"neu/ersetzt in Queue={queued_news_added + queued_jobs_added} (News={queued_news_added}, Jobs={queued_jobs_added}) | "
+        f"Queue vor Publikation={len(pending)} (News={queue_news_before_publish}, Jobs={queue_jobs_before_publish})"
     )
 
+    if not publication_allowed(now_de) and not (BOOTSTRAP_MODE or FORCE_RUN):
+        print(f"🌙 Nachtmodus. In Warteschlange: {len(pending)}. Keine Veröffentlichung.")
+        return
+    if BOOTSTRAP_MODE:
+        print("🗄️ BOOTSTRAP: historische Archivbefüllung aktiv — Veröffentlichung unabhängig von der Uhrzeit")
+    elif FORCE_RUN:
+        print("⚡ FORCE_RUN: Veröffentlichung außerhalb des normalen Zeitfensters erlaubt")
 
-    pending.sort(
-        key=lambda x: (
-            x.get("priority_score", 0),
-            x.get("published_at", ""),
-        ),
-        reverse=True,
-    )
+    if BOOTSTRAP_MODE:
+        pending.sort(key=lambda x: str(x.get("published_at") or x.get("discovery_published_at") or "9999-12-31T23:59:59+00:00"))
+    else:
+        pending.sort(
+            key=lambda x: (
+                x.get("priority_score", 0),
+                x.get("published_at", ""),
+            ),
+            reverse=True,
+        )
 
     log_publication_candidates(pending, published)
     eligible_news_count = sum(1 for x in pending if not x.get("is_job") and not is_duplicate_event(x, published))
-    print(f"🎯 Veröffentlichungsfähig: News={eligible_news_count}")
+    eligible_jobs_count = sum(1 for x in pending if x.get("is_job") and not is_duplicate_event(x, published))
+    print(f"🎯 Veröffentlichungsfähig: News={eligible_news_count} | Jobs={eligible_jobs_count}")
     batch = select_publication_batch(pending, published)
     selected_keys = {canonical_url(x.get("article_url", "")) for x in batch}
-    print(f"📤 Auswahl für heute: {len(batch)} News | Maximum {MAX_POSTS_PER_RUN}")
+    print(f"📤 Auswahl für diesen Lauf: {len(batch)} Beiträge | News zuerst, max. {MAX_JOBS_PER_RUN} Job")
     for idx, selected in enumerate(batch, 1):
         print(
-            f"   📌 Auswahl #{idx}: NEWS | "
+            f"   📌 Auswahl #{idx}: {'JOB' if selected.get('is_job') else 'NEWS'} | "
             f"{selected.get('title','')[:120]} | "
             f"Rel={selected.get('relevance_score',0)} | Pri={selected.get('priority_score',0)}"
         )
 
     remaining = []
     published_now = 0
+    jobs_published_now = 0
 
     for item in pending:
         item_key = canonical_url(item.get("article_url", ""))
         if item_key not in selected_keys:
+            remaining.append(item)
+            continue
+        if item.get("is_job") and jobs_published_now >= MAX_JOBS_PER_RUN:
             remaining.append(item)
             continue
         is_dup, dup_reason, dup_score = duplicate_decision(item, published)
@@ -2877,6 +3582,9 @@ def main() -> None:
         record = {
             "article_url": item["article_url"],
             "title": item["title"],
+            "title_de": item.get("title_de", ""),
+            "title_uk": item.get("title_uk", ""),
+            "title_tr": item.get("title_tr", ""),
             "source_name": item.get("source_name", ""),
             "primary_category": item["primary_category"],
             "categories": item["categories"],
@@ -2888,6 +3596,7 @@ def main() -> None:
             "published_at": item.get("published_at", ""),
             "sent_at": datetime.now(timezone.utc).isoformat(),
             "message_id": message_id,
+            "is_job": bool(item.get("is_job")),
         }
 
         published.append(record)
@@ -2900,6 +3609,8 @@ def main() -> None:
         })
 
         published_now += 1
+        if item.get("is_job"):
+            jobs_published_now += 1
 
         save_json(PUBLISHED_FILE, published)
         save_json(MESSAGES_FILE, messages)
@@ -2919,10 +3630,12 @@ def main() -> None:
     save_json(PUBLISHED_FILE, published)
     save_json(PENDING_FILE, remaining)
     save_json(MESSAGES_FILE, messages)
+    save_json(JOBS_SEEN_FILE, jobs_seen)
 
     print("=" * 78)
     print("✅ FERTIG")
     print(f"📢 Jetzt veröffentlicht: {published_now}")
+    print(f"👥 Davon Jobs: {jobs_published_now}")
     print(f"📚 Archiv: {len(published)}")
     print(f"📥 Noch in Warteschlange: {len(remaining)}")
     print("🗄️ Alte Telegram-Nachrichten werden NICHT gelöscht.")
