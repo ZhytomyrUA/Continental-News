@@ -3,23 +3,19 @@
 Continental News Telegram Bot v5.11.1
 
 Логіка:
-- запуск через GitHub Actions кожні 2 години;
-- стан Queue/архіву зберігається у JSON-файлах репозиторію та комітується після кожного запуску;
-- пошук новин працює цілодобово;
-- з 21:00 до 08:00 за Німеччиною новини лише накопичуються;
-- з 08:00 до 21:00 накопичені й нові матеріали публікуються;
+- запуск через GitHub Actions один раз на день о 09:00 Europe/Berlin;
+- пошук новин запускається тільки під час цього щоденного запуску, а не цілодобово;
+- Queue/архів зберігається у JSON-файлах репозиторію та комітується після кожного запуску;
+- о 09:00 знайдені нові та накопичені матеріали одразу публікуються;
+- часовий дозвіл публікації: 08:00–21:00 Europe/Berlin;
 - Telegram-архів не очищається;
 - прямі офіційні джерела та RSS мають пріоритет; Google News лише резервний агрегатор;
-- публікується реальний URL джерела;
-- фото береться тільки з реального сайту;
+- у Telegram публікується реальний URL оригінального джерела, а не news.google.com;
+- фото береться тільки з реального сайту оригінального матеріалу;
 - дублікати URL, схожі заголовки та одні й ті самі події з різних джерел не публікуються;
 - v5.3 блокує біржовий/SEO-філер без конкретної корпоративної події;
 - Korbach має найвищий пріоритет;
-- 4 aktive розділи:
-  🏭 Continental-Werke
-  🛞 Reifen
-  👥 Mitarbeiter & Jobs
-  📊 Management & Unternehmen
+- Telegram Topics не використовуються: усі новини публікуються в одну спільну гілку.
 """
 
 from __future__ import annotations
@@ -78,7 +74,7 @@ FORCE_RUN = os.environ.get("FORCE_RUN", "0").strip() == "1"
 BOOTSTRAP_START = datetime(2026, 8, 1, tzinfo=GERMANY_TZ)
 BOOTSTRAP_END = datetime(2026, 9, 30, 23, 59, 59, tzinfo=GERMANY_TZ)
 
-SEARCH_LOOKBACK_HOURS = 336  # normal discovery window; bootstrap changes this at runtime
+SEARCH_LOOKBACK_HOURS = 72  # daily discovery window; bootstrap changes this at runtime
 NORMAL_NEWS_MAX_AGE_HOURS = 72
 IMPORTANT_NEWS_MAX_AGE_HOURS = 168
 FACTORY_NEWS_MAX_AGE_HOURS = 240
@@ -103,8 +99,8 @@ JOB_LOOKBACK_HOURS = 24 * 30
 JOB_REACTIVATION_GAP_HOURS = 24 * 7
 PUBLISH_START_HOUR = 8
 PUBLISH_END_HOUR = 21
-MAX_POSTS_PER_RUN = 4
-MAX_JOBS_PER_RUN = 1
+MAX_POSTS_PER_RUN = 10
+MAX_JOBS_PER_RUN = 2
 BOOTSTRAP_MAX_PENDING_ITEMS = 180
 BOOTSTRAP_MAX_POSTS_PER_RUN = 30
 BOOTSTRAP_MAX_KORBACH_PER_RUN = 10
@@ -407,13 +403,10 @@ TOPIC_IDS = {
 
 
 def get_topic_id(section_key: str) -> Optional[int]:
-    raw = os.environ.get(SECTIONS[section_key]["topic_env"], "").strip()
-    if raw:
-        try:
-            return int(raw)
-        except ValueError:
-            pass
-    return TOPIC_IDS.get(section_key)
+    # Telegram Topics are intentionally disabled. All posts go to one common
+    # channel thread / main chat, regardless of their internal editorial
+    # category. Categories remain internal for ranking and duplicate detection.
+    return None
 
 
 # ============================================================
@@ -1210,17 +1203,37 @@ def decode_google_url(url: str) -> Optional[str]:
         return None
     if "news.google.com/rss/articles/" not in url:
         return url
-    if gnewsdecoder is None:
-        print("⚠️ googlenewsdecoder не встановлений")
-        return None
+    if gnewsdecoder is not None:
+        try:
+            result = gnewsdecoder(url, interval=GOOGLE_DECODE_DELAY)
+            if isinstance(result, dict) and result.get("status") and result.get("decoded_url"):
+                decoded = str(result["decoded_url"]).strip()
+                if decoded and not is_google_host(decoded):
+                    return decoded
+            if isinstance(result, str):
+                decoded = result.strip()
+                if decoded and not is_google_host(decoded):
+                    return decoded
+        except Exception as exc:
+            print(f"⚠️ googlenewsdecoder error: {exc}")
+
+    # Last-resort resolver. Google News remains a discovery layer only; the
+    # Telegram post is accepted only when the redirect resolves to the real
+    # publisher URL.
     try:
-        result = gnewsdecoder(url, interval=GOOGLE_DECODE_DELAY)
-        if isinstance(result, dict) and result.get("status") and result.get("decoded_url"):
-            return result["decoded_url"]
-        if isinstance(result, str):
-            return result
+        response = requests.get(
+            url,
+            headers=HEADERS,
+            timeout=REQUEST_TIMEOUT,
+            allow_redirects=True,
+        )
+        final_url = response.url.split("#", 1)[0]
+        if final_url and not is_google_host(final_url) and urlparse(final_url).scheme in {"http", "https"}:
+            return final_url
     except Exception as exc:
-        print(f"⚠️ decode error: {exc}")
+        print(f"⚠️ Google redirect resolver error: {exc}")
+
+    print("⚠️ Google News URL konnte nicht auf die Originalquelle aufgelöst werden")
     return None
 
 
@@ -2764,7 +2777,7 @@ def build_post_text(item: dict[str, Any], for_photo: bool = False) -> str:
     # German headline is intentionally bold and separated from translations by
     # a blank line. UK uses a neutral symbol rather than a Ukrainian flag.
     parts = [
-        esc(SECTIONS[item["primary_category"]]["title"]),
+        "📰 <b>Continental News</b>",
         "",
         f"<b>🇩🇪 {esc(title)}</b>",
     ]
@@ -2780,7 +2793,6 @@ def build_post_text(item: dict[str, Any], for_photo: bool = False) -> str:
     parts += [
         "",
         f"📍 {esc(format_location(item))}",
-        f"🏷️ {esc(format_categories(item))}",
         f"📰 Quelle: {esc(source)}",
         f"🔗 {esc(item['article_url'])}",
     ]
@@ -2789,7 +2801,7 @@ def build_post_text(item: dict[str, Any], for_photo: bool = False) -> str:
 
     if for_photo and len(text) > 1024:
         text = "\n".join([
-            esc(SECTIONS[item["primary_category"]]["title"]),
+            "📰 <b>Continental News</b>",
             "",
             f"<b>🇩🇪 {esc(title[:420])}</b>",
             "",
@@ -3257,7 +3269,22 @@ def select_publication_batch(pending: list[dict[str, Any]], published: list[dict
         print(f"🗄️ Bootstrap-Auswahl: {len(batch)} News | Korbach={korbach_count} | chronologisch alt→neu")
         return batch
 
-    news.sort(key=lambda x: (x.get("priority_score", 0), x.get("relevance_score", 0), x.get("published_at", "")), reverse=True)
+    def korbach_priority(item: dict[str, Any]) -> int:
+        text = normalize_text(
+            f"{item.get('title','')} {item.get('summary','')} {item.get('article_text','')} "
+            f"{item.get('plant','')} {item.get('source_name','')}"
+        )
+        return 1 if "korbach" in text or "reifenwerk korbach" in text else 0
+
+    news.sort(
+        key=lambda x: (
+            korbach_priority(x),
+            x.get("priority_score", 0),
+            x.get("relevance_score", 0),
+            x.get("published_at", ""),
+        ),
+        reverse=True,
+    )
     jobs.sort(key=lambda x: (x.get("priority_score", 0), x.get("published_at", "")), reverse=True)
     batch: list[dict[str, Any]] = []
     used_events: set[tuple[str, ...]] = set()
@@ -3318,6 +3345,12 @@ def main() -> None:
     now_de = datetime.now(GERMANY_TZ)
     now_utc = datetime.now(timezone.utc)
 
+    # Scheduled GitHub Actions runs are intended for 09:00 Europe/Berlin.
+    # A manual run may still be forced with FORCE_RUN=1.
+    if not BOOTSTRAP_MODE and not FORCE_RUN and now_de.hour != 9:
+        print(f"⏭️ Kein geplanter 09:00-Lauf: lokale Zeit {now_de:%H:%M}.")
+        return
+
     # Bootstrap is deliberately explicit. It is only active when the GitHub
     # workflow passes BOOTSTRAP_MODE=1 (normally on manual workflow_dispatch).
     if BOOTSTRAP_MODE:
@@ -3337,7 +3370,7 @@ def main() -> None:
     print("🟢 CONTINENTAL NEWS BOT v6.1 — ARCHIVE + DAILY")
     print("=" * 78)
     print(f"🇩🇪 Zeit in Deutschland: {now_de:%Y-%m-%d %H:%M:%S}")
-    print(f"🔎 Discovery: letzte {SEARCH_LOOKBACK_HOURS} Stunden | Veröffentlichung: 72h normal / 7 Tage Produkt-Technologie / 10 Tage Werk-Investition / 14 Tage kritisch | Reifen-Stories: {STORIES_LOOKBACK_HOURS} Stunden")
+    print(f"🔎 Discovery: täglich um 09:00 | Fenster letzte {SEARCH_LOOKBACK_HOURS} Stunden | Veröffentlichung: 72h normal / 7 Tage Produkt-Technologie / 10 Tage Werk-Investition / 14 Tage kritisch")
     print("🛞 Direkt: Continental Reifen Stories + Unermüdlich-Blog + Sitemap-Fallback (7 Tage)")
     print("📰 Direkt-RSS: tagesschau + hessenschau")
     print("👥 Jobs: offizielle Korbach-Karriereseite, First-Seen-Tracking")
@@ -3348,7 +3381,8 @@ def main() -> None:
     print(f"📌 Maximal pro Lauf: {MAX_POSTS_PER_RUN}")
     if BOOTSTRAP_MODE:
         print(f"🗄️ ARCHIV: {BOOTSTRAP_START:%d.%m.%Y}–{BOOTSTRAP_END:%d.%m.%Y} | max. {BOOTSTRAP_MAX_POSTS_PER_RUN} pro Lauf | max. {BOOTSTRAP_MAX_KORBACH_PER_RUN} Korbach")
-    print("⭐ Prioritäten: News zuerst → Korbach → Continental-Werke → Reifen → Mitarbeiter & Jobs → Management")
+    print("⭐ Prioritäten: Korbach zuerst → Continental-Werke → Reifen → Management → Mitarbeiter & Jobs")
+    print("🧵 Telegram: alle Nachrichten в одну спільну гілку")
     print("🧹 Queue: schwache/alte News werden automatisch entfernt; Status wird nach jeder erfolgreichen Veröffentlichung gespeichert")
     print("=" * 78)
 
