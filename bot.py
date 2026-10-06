@@ -91,7 +91,9 @@ JOB_REACTIVATION_GAP_HOURS = 24 * 7
 PUBLISH_START_HOUR = 8
 PUBLISH_END_HOUR = 21
 PUBLISH_HOUR = 9
+SCHEDULE_FALLBACK_HOUR = 10  # GitHub Actions cron can be delayed; allow the next local hour once.
 FORCE_RUN = os.environ.get("FORCE_RUN", "").strip() == "1"
+SCHEDULED_RUN = os.environ.get("GITHUB_EVENT_NAME", "").strip() == "schedule"
 MAX_POSTS_PER_RUN = 10
 FACTORY_CORE_PER_RUN = 5
 PRODUCT_TECH_CORE_PER_RUN = 3
@@ -2832,12 +2834,25 @@ def main() -> None:
     messages = load_json(MESSAGES_FILE, [])
     print(f"💾 Стан GitHub: published={len(published)} | queue={len(pending)}")
 
-    if now_de.hour != PUBLISH_HOUR and not FORCE_RUN:
-        print(
-            f"⏳ Nicht 09:00 Uhr in Deutschland "
-            f"(aktuell {now_de:%H:%M}). Dieser Lauf wird übersprungen."
-        )
-        return
+    if SCHEDULED_RUN and not FORCE_RUN:
+        # GitHub Actions scheduled workflows are not guaranteed to start at the
+        # exact cron minute. The primary run is 09:00 Europe/Berlin; 10:00 is a
+        # one-time fallback if GitHub delayed the scheduled job. A persisted
+        # daily marker prevents the second cron from running the same day.
+        run_state = load_json(RUN_STATE_FILE, {})
+        scheduled_date = now_de.date().isoformat()
+        last_scheduled_date = str(run_state.get("last_scheduled_date", ""))
+        if last_scheduled_date == scheduled_date:
+            print(f"⏭️ Automatischer Lauf für {scheduled_date} wurde bereits ausgeführt.")
+            return
+        if now_de.hour not in (PUBLISH_HOUR, SCHEDULE_FALLBACK_HOUR):
+            print(
+                f"⏳ Kein geplanter Lauf: erwartet 09:00 Europe/Berlin "
+                f"(Fallback 10:00 bei GitHub-Verzögerung), aktuell {now_de:%H:%M}."
+            )
+            return
+        if now_de.hour == SCHEDULE_FALLBACK_HOUR:
+            print("⚠️ GitHub-Schedule-Fallback: 09:00-Lauf wurde offenbar verzögert; 10:00-Fallback wird ausgeführt.")
 
     if FORCE_RUN:
         print("🧪 FORCE_RUN=1 — manueller Testlauf aktiviert.")
@@ -3049,6 +3064,16 @@ def main() -> None:
     print(f"📚 Archiv: {len(published)}")
     print(f"📥 Noch in Warteschlange: {len(remaining)}")
     print("🗄️ Alte Telegram-Nachrichten werden NICHT gelöscht.")
+
+    # Mark a successful scheduled run only after the full publication cycle.
+    # Manual FORCE_RUN executions never set this marker, so they do not affect
+    # the next automatic 09:00 run.
+    if SCHEDULED_RUN and not FORCE_RUN:
+        save_json(RUN_STATE_FILE, {
+            "last_scheduled_date": now_de.date().isoformat(),
+            "last_scheduled_at": datetime.now(timezone.utc).isoformat(),
+        })
+        print(f"🕘 Automatischer Lauf gespeichert: {now_de.date().isoformat()}")
     print("=" * 78)
 
 
