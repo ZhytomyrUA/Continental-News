@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Continental News Telegram Bot v6.0
+Continental News Telegram Bot v7.3
 
 Логіка:
 - запуск через GitHub Actions кожні 2 години;
@@ -2704,7 +2704,7 @@ def main() -> None:
     cutoff = now_utc - timedelta(hours=SEARCH_LOOKBACK_HOURS)
 
     print("=" * 78)
-    print("🟢 CONTINENTAL NEWS BOT v6.0")
+    print("🟢 CONTINENTAL NEWS BOT v7.3")
     print("=" * 78)
     print(f"🇩🇪 Zeit in Deutschland: {now_de:%Y-%m-%d %H:%M:%S}")
     print(f"🔎 Discovery: letzte {SEARCH_LOOKBACK_HOURS} Stunden | Veröffentlichung: 72h normal / 14 Tage Produkt-Technologie / 21 Tage Werk-Investition / 30 Tage kritisch/Korbach | Reifen-Stories: {STORIES_LOOKBACK_HOURS} Stunden")
@@ -2727,9 +2727,13 @@ def main() -> None:
     messages = load_json(MESSAGES_FILE, [])
     print(f"💾 Стан GitHub: published={len(published)} | queue={len(pending)}")
 
-    if now_de.hour != PUBLISH_HOUR:
+    if now_de.hour != PUBLISH_HOUR and not FORCE_RUN and not BOOTSTRAP_MODE:
         print(f"⏳ Nicht 09:00 Uhr in Deutschland (aktuell {now_de:%H:%M}). Dieser Lauf wird übersprungen.")
         return
+    if FORCE_RUN:
+        print("⚡ FORCE_RUN=1: Zeitprüfung für manuellen Lauf übersprungen.")
+    elif BOOTSTRAP_MODE:
+        print("🚀 BOOTSTRAP_MODE=1: Zeitprüfung übersprungen.")
 
     raw = fetch_candidates(cutoff)
     discovered_news = len(raw)
