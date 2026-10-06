@@ -1,7 +1,9 @@
-name: Continental News Bot v7.1
+name: Continental News Bot v7.5
 
 on:
   schedule:
+    # 07:00 UTC and 08:00 UTC cover 09:00 Europe/Berlin in both DST modes.
+    # bot.py accepts 09:00 and a one-time 10:00 fallback because GitHub may delay cron jobs.
     - cron: "0 7 * * *"
     - cron: "0 8 * * *"
   workflow_dispatch:
@@ -94,7 +96,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add continental_pending.json continental_published.json continental_messages.json continental_jobs_seen.json 2>/dev/null || true
+          git add continental_pending.json continental_published.json continental_messages.json continental_jobs_seen.json continental_run_state.json 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "No state changes to commit."
             exit 0
