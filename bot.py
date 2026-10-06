@@ -2838,7 +2838,7 @@ def main() -> None:
 
     queue_news_before_publish = sum(1 for x in pending if not x.get("is_job"))
     print(
-        f"📦 Lauf-Zusammenfassung: gefunden={len(raw)} (News={discovered_news}, Jobs={discovered_jobs}) | "
+        f"📦 Lauf-Zusammenfassung: gefunden={len(raw)} (News={discovered_news}, Jobs=0) | "
         f"akzeptiert={accepted_news} (News={accepted_news}) | "
         f"neu/ersetzt in Queue={queued_news_added} (News={queued_news_added}) | "
         f"Queue vor Publikation={len(pending)} (News={queue_news_before_publish})"
