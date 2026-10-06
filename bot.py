@@ -2313,8 +2313,35 @@ def format_categories(item: dict[str, Any]) -> str:
     return " • ".join(SECTIONS[k]["title"] for k in item.get("categories", []) if k in SECTIONS)
 
 
+_TITLE_TRANSLATION_CACHE: dict[str, str] = {}
+
+def translate_title_to_ukrainian(title: str) -> str:
+    """Translate only the headline to Ukrainian; keep the original headline unchanged."""
+    title = clean_text(title)
+    if not title:
+        return ""
+    if title in _TITLE_TRANSLATION_CACHE:
+        return _TITLE_TRANSLATION_CACHE[title]
+    try:
+        response = requests.get(
+            "https://translate.googleapis.com/translate_a/single",
+            params={"client": "gtx", "sl": "auto", "tl": "uk", "dt": "t", "q": title},
+            timeout=10,
+            headers={"User-Agent": "Mozilla/5.0"},
+        )
+        response.raise_for_status()
+        data = response.json()
+        translated = "".join(part[0] for part in data[0] if part and part[0]).strip()
+        if translated:
+            _TITLE_TRANSLATION_CACHE[title] = translated
+            return translated
+    except Exception as exc:
+        print(f"⚠️ Übersetzung des Titels fehlgeschlagen: {exc}")
+    return ""
+
 def build_post_text(item: dict[str, Any], for_photo: bool = False) -> str:
     title = clean_text(item.get("title") or item.get("title_de") or "")
+    title_uk = clean_text(item.get("title_uk") or translate_title_to_ukrainian(title))
     summary = clean_text(item.get("summary") or item.get("summary_de") or "")
     source = item.get("source_name") or hostname_from_url(item.get("article_url", "")) or "Quelle"
 
@@ -2324,7 +2351,9 @@ def build_post_text(item: dict[str, Any], for_photo: bool = False) -> str:
     if len(summary) > 500:
         summary = summary[:497].rstrip(" .,!?:;—-") + "…"
 
-    parts = [f"<b>{esc(title)}</b>"]
+    parts = [f"<b>📰 {esc(title)}</b>"]
+    if title_uk and normalize_text(title_uk) != normalize_text(title):
+        parts += [f"🇺🇦 <b>{esc(title_uk)}</b>"]
     if summary:
         parts += ["", esc(summary)]
     parts += [
@@ -2339,7 +2368,7 @@ def build_post_text(item: dict[str, Any], for_photo: bool = False) -> str:
     return text[:1024] if for_photo else text[:4096]
 
 def send_item(item: dict[str, Any]) -> Optional[int]:
-    """Publish one news item to the single Telegram channel, with no topics or translations."""
+    """Publish one news item to the single Telegram channel, with original and Ukrainian headlines."""
     final_url, article_text, images, original_title, original_dt = fetch_article(
         item["article_url"],
         is_job=False,
@@ -2350,6 +2379,8 @@ def send_item(item: dict[str, Any]) -> Optional[int]:
         item["article_url"] = final_url
     if original_title and not looks_like_bad_title(original_title):
         item["title"] = clean_headline_source_suffix(original_title)
+    # Keep the publisher's original headline and add only a Ukrainian headline translation.
+    item["title_uk"] = translate_title_to_ukrainian(item.get("title", ""))
     if article_text:
         item["article_text"] = article_text
         if not clean_text(item.get("summary", "")):
