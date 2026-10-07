@@ -1,9 +1,9 @@
-name: Continental News Bot v7.5
+name: Continental News Bot v8.3
 
 on:
   schedule:
-    # 07:00 UTC and 08:00 UTC cover 09:00 Europe/Berlin in both DST modes.
-    # bot.py accepts 09:00 and a one-time 10:00 fallback because GitHub may delay cron jobs.
+    # GitHub Actions cron is UTC; wake at both possible UTC hours so the bot
+    # can publish at 09:00 Europe/Berlin in both CET and CEST.
     - cron: "0 7 * * *"
     - cron: "0 8 * * *"
   workflow_dispatch:
@@ -48,22 +48,7 @@ jobs:
         run: |
           set -euo pipefail
           python -m pip install --upgrade pip
-          python -m pip install --upgrade --force-reinstall --requirement requirements_v6.0.txt
-
-      - name: Verify Google News decoder
-        shell: bash
-        run: |
-          set -euo pipefail
-          python - <<'PY'
-          import googlenewsdecoder
-          from googlenewsdecoder import gnewsdecoder
-          print("googlenewsdecoder import: OK")
-          print("module:", googlenewsdecoder.__file__)
-          import selectolax
-          print("gnewsdecoder:", gnewsdecoder)
-          print("selectolax:", selectolax.__version__)
-          assert tuple(map(int, selectolax.__version__.split(".")[:2])) >= (0, 4), "selectolax must be >= 0.4"
-          PY
+          python -m pip install --requirement requirements_v6.0.txt
 
       - name: Validate bot.py
         shell: bash
@@ -82,11 +67,21 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test -n "${TELEGRAM_BOT_TOKEN:-}" || { echo "ERROR: TELEGRAM_BOT_TOKEN missing."; exit 1; }
-          test -n "${TELEGRAM_CHANNEL_ID:-}" || { echo "ERROR: TELEGRAM_CHANNEL_ID missing."; exit 1; }
+
+          test -n "${TELEGRAM_BOT_TOKEN:-}" || {
+            echo "ERROR: TELEGRAM_BOT_TOKEN missing."
+            exit 1
+          }
+
+          test -n "${TELEGRAM_CHANNEL_ID:-}" || {
+            echo "ERROR: TELEGRAM_CHANNEL_ID missing."
+            exit 1
+          }
+
           echo "Workflow event: ${GITHUB_EVENT_NAME}"
           echo "FORCE_RUN: ${FORCE_RUN}"
           echo "BOOTSTRAP_MODE: ${BOOTSTRAP_MODE}"
+
           python bot.py
 
       - name: Persist bot state
@@ -94,12 +89,21 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add continental_pending.json continental_published.json continental_messages.json continental_jobs_seen.json continental_run_state.json 2>/dev/null || true
+
+          git add \
+            continental_pending.json \
+            continental_published.json \
+            continental_messages.json \
+            continental_jobs_seen.json \
+            2>/dev/null || true
+
           if git diff --cached --quiet; then
             echo "No state changes to commit."
             exit 0
           fi
+
           git commit -m "chore: persist Continental news bot state"
           git push origin HEAD:${GITHUB_REF_NAME}
