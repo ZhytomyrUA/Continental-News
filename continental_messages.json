@@ -103,5 +103,47 @@
     "title": "Continental Sells mycar Tyre & Auto to Tuhu",
     "primary_category": "tires",
     "sent_at": "2026-10-07T13:43:55.825257+00:00"
+  },
+  {
+    "message_id": 54,
+    "article_url": "https://www.brakeandfrontend.com/continental-tires-brian-beierwaltes-on-driving-brand-promise/",
+    "title": "Continental Tire’s Brian Beierwaltes on Driving Brand Promise",
+    "primary_category": "tires",
+    "sent_at": "2026-10-07T14:46:34.065484+00:00"
+  },
+  {
+    "message_id": 55,
+    "article_url": "https://www.tractionnews.com/continental-hsr-5-ep-hdr-5-ep-regional-tires/",
+    "title": "Continental Launches HSR 5 EP, HDR 5 EP Regional Truck Tires | Traction News",
+    "primary_category": "tires",
+    "sent_at": "2026-10-07T14:46:37.047286+00:00"
+  },
+  {
+    "message_id": 56,
+    "article_url": "https://www.elektroauto-news.net/news/continental-40-prozent-recycling",
+    "title": "Continental entwickelt Reifen mit über 40 % Recyclinganteil",
+    "primary_category": "tires",
+    "sent_at": "2026-10-07T14:46:40.214410+00:00"
+  },
+  {
+    "message_id": 57,
+    "article_url": "https://www.truckinginfo.com/news/continental-introduces-new-regional-truck-tires",
+    "title": "Continental Introduces New Regional Truck Tires",
+    "primary_category": "tires",
+    "sent_at": "2026-10-07T14:46:42.043382+00:00"
+  },
+  {
+    "message_id": 58,
+    "article_url": "https://reifenpresse.de/2026/09/28/sommerreifen-rainexpert-6-der-conti-marke-uniroyal-im-markt-aufgetaucht/",
+    "title": "Sommerreifen „RainExpert 6“ der Conti-Marke Uniroyal im Markt aufgetaucht",
+    "primary_category": "tires",
+    "sent_at": "2026-10-07T14:46:46.491176+00:00"
+  },
+  {
+    "message_id": 59,
+    "article_url": "https://www.it-boltwise.de/continental-steigt-vor-quartalszahlen-ubs-sieht-spielraum-fuer-hoehere-jahresziele.html",
+    "title": "Continental steigt vor Quartalszahlen: UBS sieht Spielraum für höhere Jahresziele",
+    "primary_category": "tires",
+    "sent_at": "2026-10-07T14:46:50.067951+00:00"
   }
 ]

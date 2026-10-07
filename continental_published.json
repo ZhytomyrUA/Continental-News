@@ -295,5 +295,152 @@
       "title_tokens:auto mycar sells tuhu tyre",
       "url:https://continental.com/en/press/press-releases/my-car"
     ]
+  },
+  {
+    "article_url": "https://www.brakeandfrontend.com/continental-tires-brian-beierwaltes-on-driving-brand-promise/",
+    "title": "Continental Tire’s Brian Beierwaltes on Driving Brand Promise",
+    "source_name": "Brake & Front End",
+    "primary_category": "tires",
+    "categories": [
+      "plants",
+      "tires",
+      "company"
+    ],
+    "plant": null,
+    "event_families": [
+      "investment"
+    ],
+    "event_key": "",
+    "summary": "Continental Tire’s Brian Beierwaltes on Driving Brand Promise Brake & Front End Beierwaltes explains how his “Does this sell tires?” mindset keeps marketing focused on programs and investments that help dealers drive sales and grow their business.",
+    "summary_de": "",
+    "article_text": "Beierwaltes explains how his “Does this sell tires?” mindset keeps marketing focused on programs and investments that help dealers drive sales and grow their business.",
+    "published_at": "2026-10-01T12:00:00+00:00",
+    "sent_at": "2026-10-07T14:46:34.065484+00:00",
+    "message_id": 54,
+    "dedup_keys": [
+      "title:continental tire's brian beierwaltes on driving brand promise",
+      "title_tokens:beierwaltes brand brian driving promise tire",
+      "url:https://brakeandfrontend.com/continental-tires-brian-beierwaltes-on-driving-brand-promise"
+    ]
+  },
+  {
+    "article_url": "https://www.tractionnews.com/continental-hsr-5-ep-hdr-5-ep-regional-tires/",
+    "title": "Continental Launches HSR 5 EP, HDR 5 EP Regional Truck Tires | Traction News",
+    "source_name": "Traction News",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "product:hsr-5-ep",
+    "summary": "Continental Launches Conti HSR 5 EP and HDR 5 EP Generation 5 Regional Truck Tires Traction News Continental’s Conti HSR 5 EP steer and HDR 5 EP drive regional tires offer estimated 22% and 19% mileage gains. Available October 2026; more sizes in 2027.",
+    "summary_de": "",
+    "article_text": "Continental’s Conti HSR 5 EP steer and HDR 5 EP drive regional tires offer estimated 22% and 19% mileage gains. Available October 2026; more sizes in 2027.",
+    "published_at": "2026-10-02T02:30:47.228000+00:00",
+    "sent_at": "2026-10-07T14:46:37.047286+00:00",
+    "message_id": 55,
+    "dedup_keys": [
+      "event:product:hsr-5-ep",
+      "title:continental launches hsr 5 ep hdr 5 ep regional truck tires traction news",
+      "title_tokens:launches news regional tires traction truck",
+      "url:https://tractionnews.com/continental-hsr-5-ep-hdr-5-ep-regional-tires"
+    ]
+  },
+  {
+    "article_url": "https://www.elektroauto-news.net/news/continental-40-prozent-recycling",
+    "title": "Continental entwickelt Reifen mit über 40 % Recyclinganteil",
+    "source_name": "Elektroauto-News.net",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental entwickelt Konzeptreifen mit über 40 Prozent Recyclinganteil Elektroauto-News.net Continental hat einen E-Auto-Reifen mit gut 40 Prozent Recyclinganteil vorgestellt – und verweist auf die regulatorischen Grenzen der Kreislaufwirtschaft.",
+    "summary_de": "",
+    "article_text": "Continental hat einen E-Auto-Reifen mit gut 40 Prozent Recyclinganteil vorgestellt – und verweist auf die regulatorischen Grenzen der Kreislaufwirtschaft.",
+    "published_at": "2026-09-30T05:09:32+00:00",
+    "sent_at": "2026-10-07T14:46:40.214410+00:00",
+    "message_id": 56,
+    "dedup_keys": [
+      "title:continental entwickelt reifen mit über 40 recyclinganteil",
+      "title_tokens:entwickelt recyclinganteil reifen über",
+      "url:https://elektroauto-news.net/news/continental-40-prozent-recycling"
+    ]
+  },
+  {
+    "article_url": "https://www.truckinginfo.com/news/continental-introduces-new-regional-truck-tires",
+    "title": "Continental Introduces New Regional Truck Tires",
+    "source_name": "Heavy Duty Trucking",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental Introduces New Regional Truck Tires Heavy Duty Trucking Continental says its new Generation 5 steer and drive tires for regional operations offer longer tread life, with estimated mileage gains of 22% and 19%, respectively.",
+    "summary_de": "",
+    "article_text": "Continental says its new Generation 5 steer and drive tires for regional operations offer longer tread life, with estimated mileage gains of 22% and 19%, respectively.",
+    "published_at": "2026-10-02T13:00:20.746000+00:00",
+    "sent_at": "2026-10-07T14:46:42.043382+00:00",
+    "message_id": 57,
+    "dedup_keys": [
+      "title:continental introduces new regional truck tires",
+      "title_tokens:introduces regional tires truck",
+      "url:https://truckinginfo.com/news/continental-introduces-new-regional-truck-tires"
+    ]
+  },
+  {
+    "article_url": "https://reifenpresse.de/2026/09/28/sommerreifen-rainexpert-6-der-conti-marke-uniroyal-im-markt-aufgetaucht/",
+    "title": "Sommerreifen „RainExpert 6“ der Conti-Marke Uniroyal im Markt aufgetaucht",
+    "source_name": "Reifenpresse.de",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "product:rainexpert-6",
+    "summary": "Sommerreifen „RainExpert 6“ der Conti-Marke Uniroyal im Markt aufgetaucht Reifenpresse.de Die zu Continental zählende Marke Uniroyal bringt ganz offensichtlich eine neue Generation seiner „RainExpert“-Sommerreifenfamilie an den Start: Auf den 2022",
+    "summary_de": "",
+    "article_text": "Die zu Continental zählende Marke Uniroyal bringt ganz offensichtlich eine neue Generation seiner „RainExpert“-Sommerreifenfamilie an den Start: Auf den 2022",
+    "published_at": "2026-09-28T10:31:09+00:00",
+    "sent_at": "2026-10-07T14:46:46.491176+00:00",
+    "message_id": 58,
+    "dedup_keys": [
+      "event:product:rainexpert-6",
+      "title:sommerreifen rainexpert 6 der conti-marke uniroyal im markt aufgetaucht",
+      "title_tokens:aufgetaucht conti marke markt rainexpert sommerreifen uniroyal",
+      "url:https://reifenpresse.de/2026/09/28/sommerreifen-rainexpert-6-der-conti-marke-uniroyal-im-markt-aufgetaucht"
+    ]
+  },
+  {
+    "article_url": "https://www.it-boltwise.de/continental-steigt-vor-quartalszahlen-ubs-sieht-spielraum-fuer-hoehere-jahresziele.html",
+    "title": "Continental steigt vor Quartalszahlen: UBS sieht Spielraum für höhere Jahresziele",
+    "source_name": "it boltwise",
+    "primary_category": "tires",
+    "categories": [
+      "tires",
+      "company"
+    ],
+    "plant": null,
+    "event_families": [
+      "results"
+    ],
+    "event_key": "",
+    "summary": "Continental steigt vor Quartalszahlen: UBS sieht Spielraum für höhere Jahresziele it boltwise Continental gewinnt vor Quartalszahlen: Nach Pre-Close-Call und stabiler Reifenmarge sieht UBS bei Ebit und Jahreszielen Spielraum. Kurzfristig stützt das trotz schwachem DAX.",
+    "summary_de": "",
+    "article_text": "Continental gewinnt vor Quartalszahlen: Nach Pre-Close-Call und stabiler Reifenmarge sieht UBS bei Ebit und Jahreszielen Spielraum. Kurzfristig stützt das trotz schwachem DAX.",
+    "published_at": "2026-10-01T09:30:19+00:00",
+    "sent_at": "2026-10-07T14:46:50.067951+00:00",
+    "message_id": 59,
+    "dedup_keys": [
+      "title:continental steigt vor quartalszahlen ubs sieht spielraum für höhere jahresziele",
+      "title_tokens:höhere jahresziele quartalszahlen sieht spielraum steigt",
+      "url:https://it-boltwise.de/continental-steigt-vor-quartalszahlen-ubs-sieht-spielraum-fuer-hoehere-jahresziele.html"
+    ]
   }
 ]
