@@ -442,5 +442,77 @@
       "title_tokens:höhere jahresziele quartalszahlen sieht spielraum steigt",
       "url:https://it-boltwise.de/continental-steigt-vor-quartalszahlen-ubs-sieht-spielraum-fuer-hoehere-jahresziele.html"
     ]
+  },
+  {
+    "article_url": "https://biz.heraldcorp.com/article/10887065",
+    "title": "Continental Tire unveils 2026 F/W collaboration collection with Dynafit",
+    "source_name": "헤럴드경제",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental Tire unveils 2026 F/W collaboration collection with Dynafit 헤럴드경제 Continental Tire announced Tuesday it has launched a 2026 F/W collaboration collection with global sports brand Dynafit, with a pop-up store showcasing and sell",
+    "summary_de": "",
+    "article_text": "Continental Tire announced Tuesday it has launched a 2026 F/W collaboration collection with global sports brand Dynafit, with a pop-up store showcasing and sell",
+    "published_at": "2026-09-29T00:21:25+00:00",
+    "sent_at": "2026-10-07T15:54:26.006716+00:00",
+    "message_id": 60,
+    "dedup_keys": [
+      "title:continental tire unveils 2026 f w collaboration collection with dynafit",
+      "title_tokens:2026 collaboration collection dynafit tire unveils with",
+      "url:https://biz.heraldcorp.com/article/10887065"
+    ]
+  },
+  {
+    "article_url": "https://www.24auto.de/news/zerreissprobe-fuer-reifen-reifenentwicklung-zr-94518587.html",
+    "title": "Zerreißprobe für Reifen – Reifenentwicklung",
+    "source_name": "24auto.de",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Zerreißprobe für Reifen – Reifenentwicklung 24auto.de Schwere E-Autos, immer mehr Leistung und hÃ¶here Drehmomente fordern die Reifenindustrie. Continental reagiert â und baut sein Hochleistungsreifensegment massiv aus.",
+    "summary_de": "",
+    "article_text": "Schwere E-Autos, immer mehr Leistung und höhere Drehmomente fordern die Reifenindustrie. Continental reagiert – und baut sein Hochleistungsreifensegment massiv aus.",
+    "published_at": "2026-09-30T13:59:47+00:00",
+    "sent_at": "2026-10-07T15:54:30.294534+00:00",
+    "message_id": 61,
+    "dedup_keys": [
+      "title:zerreißprobe für reifen reifenentwicklung",
+      "title_tokens:reifen reifenentwicklung zerreißprobe",
+      "url:https://24auto.de/news/zerreissprobe-fuer-reifen-reifenentwicklung-zr-94518587.html"
+    ]
+  },
+  {
+    "article_url": "https://www.it-boltwise.de/avd-reifentest-2026-continental-allseason-contact-2-ueberzeugt-kingboss-faellt-durch.html",
+    "title": "AvD-Reifentest 2026: Continental AllSeason Contact 2 überzeugt, Kingboss fällt durch",
+    "source_name": "it boltwise",
+    "primary_category": "tires",
+    "categories": [
+      "tires",
+      "company"
+    ],
+    "plant": null,
+    "event_families": [
+      "results"
+    ],
+    "event_key": "",
+    "summary": "AvD-Reifentest 2026: Continental AllSeason Contact 2 überzeugt, Kingboss fällt durch it boltwise AvD prüft 12 Ganzjahresreifen verdeckt im freien Handel. Continental AllSeason Contact 2 gewinnt mit 4,49 Punkten, Kingboss AS365 fällt mit 3,45 Punkten durch.",
+    "summary_de": "",
+    "article_text": "AvD prüft 12 Ganzjahresreifen verdeckt im freien Handel. Continental AllSeason Contact 2 gewinnt mit 4,49 Punkten, Kingboss AS365 fällt mit 3,45 Punkten durch.",
+    "published_at": "2026-09-25T04:22:59+00:00",
+    "sent_at": "2026-10-07T15:54:33.800373+00:00",
+    "message_id": 62,
+    "dedup_keys": [
+      "title:avd-reifentest 2026 continental allseason contact 2 überzeugt kingboss fällt durch",
+      "title_tokens:2026 allseason contact durch fällt kingboss reifentest überzeugt",
+      "url:https://it-boltwise.de/avd-reifentest-2026-continental-allseason-contact-2-ueberzeugt-kingboss-faellt-durch.html"
+    ]
   }
 ]
