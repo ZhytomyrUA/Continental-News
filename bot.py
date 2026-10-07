@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Continental News Telegram Bot v8.1 — Production-First
+Continental News Telegram Bot v8.3 — Korbach Strategic + Production-First
 
 Логіка:
 - запуск через GitHub Actions кожні 2 години;
@@ -70,6 +70,7 @@ NORMAL_NEWS_MAX_AGE_HOURS = 48
 IMPORTANT_NEWS_MAX_AGE_HOURS = 24 * 14
 FACTORY_NEWS_MAX_AGE_HOURS = 24 * 7
 CRITICAL_NEWS_MAX_AGE_HOURS = 24 * 7
+KORBACH_STRATEGIC_MAX_AGE_HOURS = 24 * 60
 OFFICIAL_CONTENT_MAX_AGE_HOURS = 24 * 14
 STRATEGIC_TOPIC_LOOKBACK_HOURS = 24 * 90
 STORIES_LOOKBACK_HOURS = 336
@@ -77,10 +78,12 @@ PENDING_MAX_AGE_HOURS = 24 * 7
 PENDING_MIN_RELEVANCE = 45
 PRODUCTION_MIN_RELEVANCE = 35
 KORBACH_PRODUCTION_MIN_RELEVANCE = 30
+KORBACH_STRATEGIC_MIN_RELEVANCE = 30
 TIRE_TECH_MIN_RELEVANCE = 40
 MAX_PENDING_ITEMS = 20
 MAX_PRODUCTION_ITEMS_PER_RUN = 6
 MAX_KORBACH_ITEMS_PER_RUN = 2
+MAX_KORBACH_STRATEGIC_ITEMS_PER_RUN = 2
 MAX_TIRE_TECH_ITEMS_PER_RUN = 3
 MAX_COMPANY_ITEMS_PER_RUN = 2
 
@@ -828,7 +831,7 @@ def relevance_score(title: str, summary: str, article_url: str = "") -> int:
         if useful_path and (plain_continental or context_signal or contains_any(text, TIRE_TERMS)):
             score += 30
 
-    # v8.1 relevance calibration:
+    # v8.2 relevance calibration:
     # Useful Continental tyre/product stories can legitimately score in the
     # mid-40s/50s. The queue gate is now 45, while hard junk/stock filters
     # remain active. Strong factory/product/technology signals receive boosts.
@@ -873,7 +876,10 @@ def relevance_score(title: str, summary: str, article_url: str = "") -> int:
         score += 20
     if contains_any(text, (
         "produktion", "production", "fertigung", "manufacturing",
-        "produktionslinie", "production line", "kapazität", "capacity",
+        "produktionslinie", "production line", "produktionsanlage",
+        "production facility", "manufacturing plant", "manufacturing site",
+        "factory", "plant", "tire plant", "tyre plant",
+        "kapazität", "kapazitaet", "capacity", "capacity expansion",
         "investition", "investment", "ausbau", "expansion",
     )):
         score += 15
@@ -911,8 +917,10 @@ def is_continental_relevant(title: str, summary: str, article_url: str = "") -> 
         "produktion", "produktionslinie", "produktionsanlage",
         "produktionskapazität", "produktionskapazitaet", "fertigung",
         "fertigungslinie", "manufacturing", "production line",
-        "production facility", "capacity", "kapazität", "kapazitaet",
-        "investition", "investitionen", "investment", "ausbau",
+        "production facility", "manufacturing plant", "manufacturing site",
+        "tire plant", "tyre plant", "factory", "plant investment",
+        "capacity", "kapazität", "kapazitaet", "kapazitätsausbau",
+        "capacity expansion", "investition", "investitionen", "investment", "ausbau",
         "erweiterung", "expansion", "modernisierung", "verlagerung",
         "produktionsverlagerung", "production relocation", "großreifen",
         "grossreifen", "large tires", "large tyres", "hochlauf",
@@ -925,6 +933,10 @@ def is_continental_relevant(title: str, summary: str, article_url: str = "") -> 
         "tire launch", "tyre launch", "smart tire", "smart tyre",
         "conticonnect", "concept tire", "concept tyre", "recycling",
         "recycled materials", "recyclinganteil", "oem tire", "oem tyre",
+        "truck tire", "truck tires", "truck tyre", "truck tyres",
+        "regional truck tire", "regional truck tires", "regional truck tyre",
+        "regional truck tyres", "lkw-reifen", "lkw reifen", "introduces new",
+        "introduces", "launches", "launched", "introduced",
     ]
     korbach_signal = "korbach" in text
     production_signal = contains_any(text, strong_production_terms)
@@ -1054,6 +1066,15 @@ def build_queries() -> list[tuple[str, str, str, int]]:
         ('"Continental" Reifen Produktion Werk Investition', 1080),
         ('"Continental" Reifen neue Technologie', 980),
         ('"Continental" Werk Schließung OR Verlagerung', 1100),
+        ('"Continental" Werk Produktion Fertigung', 1180),
+        ('"Continental" Reifenwerk Produktion Fertigung', 1320),
+        ('"Continental" Reifenwerk Kapazität', 1280),
+        ('"Continental" Reifenwerk Investition', 1280),
+        ('"Continental" Produktionslinie Reifen', 1260),
+        ('"Continental" Produktionskapazität Reifen', 1260),
+        ('"Continental" Großreifen Produktion', 1240),
+        ('"Continental" Reifen Produktion Sensor', 1160),
+        ('"Continental" Reifenwerk Ausbau', 1240),
     ]
     for query, priority in primary:
         queries.append((query, "de", "DE", priority))
@@ -1142,7 +1163,15 @@ def build_queries() -> list[tuple[str, str, str, int]]:
         ("Continental tire technology", 1010),
         ("Continental tire new product", 1030),
         ("Continental tire test", 980),
-        ("Continental factory production", 1030),
+        ("Continental factory production", 1160),
+        ("Continental tire factory production", 1180),
+        ("Continental tire plant production", 1180),
+        ("Continental manufacturing plant tires", 1160),
+        ("Continental tire production capacity", 1160),
+        ("Continental tire plant investment", 1140),
+        ("Continental large tire production", 1120),
+        ("Continental truck tire production", 1100),
+        ("Continental smart tire production", 1080),
         ("Continental plant investment", 1010),
         ("Continental workers jobs restructuring", 1080),
         ("Continental tire relocation", 1120),
@@ -1585,14 +1614,18 @@ def freshness_limit_hours(candidate: dict[str, Any]) -> int:
     - Normal company news: 48h.
     - Product/tyre/technology: 14d.
     - Factory/production/investment: 7d.
-    - Korbach/critical restructuring/relocation/closure: 7d.
+    - strategic Korbach restructuring/relocation/closure/investment: 60d; ordinary Korbach production: 7d.
     """
     text = normalize_text(
         f"{candidate.get('title', '')} {candidate.get('summary', '')} {candidate.get('article_text', '')}"
     )
 
-    # Korbach is the primary factory for this channel, but freshness remains
-    # deliberately tight: the channel should not resurrect old plant stories.
+    # Korbach is the primary factory for this channel. Strategic plant events
+    # (closure, relocation, job impact, restructuring, major investment) remain
+    # publishable for 60 days so an important event is not lost after 7 days.
+    if "korbach" in text and contains_any(text, KORBACH_STRATEGIC_TERMS):
+        return KORBACH_STRATEGIC_MAX_AGE_HOURS
+
     if "korbach" in text and contains_any(text, [
         "reifenwerk", "werk", "produktion", "produktions", "fertigung",
         "factory", "plant", "manufacturing", "investition", "ausbau",
@@ -1637,7 +1670,7 @@ def freshness_limit_hours(candidate: dict[str, Any]) -> int:
     return NORMAL_NEWS_MAX_AGE_HOURS
 
 def candidate_fresh_enough(candidate: dict[str, Any], now_utc: Optional[datetime] = None) -> bool:
-    """Apply the 48h / 7d / 14d freshness tiers to discovered news."""
+    """Apply the editorial freshness tiers: 48h normal, 7d factory, 14d tyre-tech, 60d strategic Korbach."""
     if candidate.get("is_job"):
         return True
     now_utc = now_utc or datetime.now(timezone.utc)
@@ -1659,7 +1692,11 @@ def freshness_label(candidate: dict[str, Any]) -> str:
         return '48h'
     if limit <= CRITICAL_NEWS_MAX_AGE_HOURS:
         return '7 Tage'
-    return '14 Tage'
+    if limit <= IMPORTANT_NEWS_MAX_AGE_HOURS:
+        return '14 Tage'
+    if limit <= KORBACH_STRATEGIC_MAX_AGE_HOURS:
+        return '60 Tage'
+    return f'{limit // 24} Tage'
 
 
 def raw_candidate_key(item: dict[str, Any]) -> str:
@@ -2608,6 +2645,16 @@ def send_item(item: dict[str, Any]) -> Optional[int]:
 # MAIN PROCESS
 # ============================================================
 
+KORBACH_STRATEGIC_TERMS = [
+    "schließung", "schliessung", "closure", "closed", "closing",
+    "verlagerung", "produktionsverlagerung", "relocation", "shift production",
+    "restrukturierung", "restructuring", "umbau", "transformation",
+    "abbau", "stellenabbau", "jobs affected", "arbeitsplätze", "arbeitsplaetze",
+    "140 jobs", "entlassungen", "layoffs", "redundancy",
+    "contitech", "strategisch", "strategic", "investition", "investitionen",
+    "investment", "windpark", "kapazität", "kapazitaet", "capacity",
+]
+
 PRODUCTION_TERMS = [
     "produktion", "produktions", "fertigung", "manufacturing", "production",
     "produktionslinie", "production line", "produktionsanlage", "production facility",
@@ -2621,7 +2668,11 @@ KORBACH_TERMS = ["korbach", "reifenwerk korbach", "reifenwerk", "korbacher"]
 TIRE_TECH_TERMS = [
     "neuer reifen", "neue reifen", "reifengeneration", "reifenneuheit", "reifenentwicklung",
     "reifentechnologie", "reifeninnovation", "new tire", "new tyre", "new tire line",
-    "tire launch", "tyre launch", "sensor", "smart tire", "smart tyre", "conticonnect",
+    "tire launch", "tyre launch", "truck tire", "truck tires", "truck tyre",
+    "truck tyres", "regional truck tire", "regional truck tires",
+    "regional truck tyre", "regional truck tyres", "lkw-reifen", "lkw reifen",
+    "introduces new", "introduces", "launches", "launched", "introduced",
+    "sensor", "smart tire", "smart tyre", "conticonnect",
     "recycling", "recycled", "recycelt", "concept tire", "concept tyre", "oem",
 ]
 
@@ -2631,6 +2682,8 @@ def item_editorial_class(item: dict[str, Any]) -> str:
     # KORBACH_TERMS list also contained “reifenwerk”, which incorrectly turned
     # every Continental tyre plant article into a Korbach story.
     korbach_explicit = "korbach" in text
+    if korbach_explicit and contains_any(text, KORBACH_STRATEGIC_TERMS):
+        return "korbach_strategic"
     if korbach_explicit and contains_any(text, PRODUCTION_TERMS):
         return "korbach_production"
     if contains_any(text, PRODUCTION_TERMS):
@@ -2641,8 +2694,8 @@ def item_editorial_class(item: dict[str, Any]) -> str:
 
 def production_relevance_floor(item: dict[str, Any]) -> int:
     cls = item_editorial_class(item)
-    if cls == "korbach_production":
-        return KORBACH_PRODUCTION_MIN_RELEVANCE
+    if cls in {"korbach_strategic", "korbach_production"}:
+        return KORBACH_STRATEGIC_MIN_RELEVANCE if cls == "korbach_strategic" else KORBACH_PRODUCTION_MIN_RELEVANCE
     if cls == "production":
         return PRODUCTION_MIN_RELEVANCE
     if cls == "tire_technology":
@@ -2844,6 +2897,15 @@ def enrich_candidate(candidate: dict[str, Any]) -> Optional[dict[str, Any]]:
 
     candidate = classify_item(candidate)
 
+    # v8.2 audit: make category-based acceptance visible in the workflow log.
+    if candidate.get("editorial_class") in {"korbach_strategic", "korbach_production", "production", "tire_technology"}:
+        print(
+            f"   🏭 Editorial-Klasse={candidate.get('editorial_class')} | "
+            f"Floor={production_relevance_floor(candidate)} | "
+            f"Rel={candidate.get('relevance_score', 0)} | "
+            f"Pri={candidate.get('priority_score', 0)}"
+        )
+
     # Translate ONLY the headline. The article description remains untouched
     # and is published in its original language.
     candidate["title_uk"] = translate_headline_uk(candidate.get("title", ""))
@@ -2924,7 +2986,7 @@ def trim_pending(pending: list[dict[str, Any]]) -> list[dict[str, Any]]:
     for x in news:
         x["editorial_class"] = x.get("editorial_class") or item_editorial_class(x)
     news.sort(key=lambda x: (
-        {"korbach_production": 4, "production": 3, "tire_technology": 2, "company": 1}.get(x.get("editorial_class"), 1),
+        {"korbach_strategic": 5, "korbach_production": 4, "production": 3, "tire_technology": 2, "company": 1}.get(x.get("editorial_class"), 1),
         x.get("priority_score", 0), x.get("relevance_score", 0), x.get("published_at", "")
     ), reverse=True)
     return news[:MAX_PENDING_ITEMS]
@@ -2952,7 +3014,7 @@ def select_publication_batch(pending: list[dict[str, Any]], published: list[dict
     """v8.1 production-first editorial selection.
 
     Rules:
-      - up to 2 Korbach production stories;
+      - up to 2 strategic Korbach stories + up to 2 fresh Korbach production stories;
       - up to 3 other factory/production stories;
       - up to 3 tyre/technology stories;
       - up to 2 company/management stories;
@@ -2975,7 +3037,7 @@ def select_publication_batch(pending: list[dict[str, Any]], published: list[dict
 
     def rank(x: dict[str, Any]) -> tuple[int, int, int, str]:
         cls = x.get("editorial_class") or item_editorial_class(x)
-        bucket = {"korbach_production": 4, "production": 3, "tire_technology": 2, "company": 1}.get(cls, 1)
+        bucket = {"korbach_strategic": 5, "korbach_production": 4, "production": 3, "tire_technology": 2, "company": 1}.get(cls, 1)
         return (bucket, int(x.get("priority_score", 0) or 0), int(x.get("relevance_score", 0) or 0), x.get("published_at", ""))
 
     news.sort(key=rank, reverse=True)
@@ -2999,6 +3061,9 @@ def select_publication_batch(pending: list[dict[str, Any]], published: list[dict
             limit -= 1
 
     # Hard category ceilings. These are ceilings, not artificial minimums.
+    # Strategic Korbach stories get the highest priority and are still protected
+    # by canonical URL/event duplicate checks, so the 60-day window cannot spam.
+    add_candidates({"korbach_strategic"}, MAX_KORBACH_STRATEGIC_ITEMS_PER_RUN)
     add_candidates({"korbach_production"}, MAX_KORBACH_ITEMS_PER_RUN)
     add_candidates({"production"}, max(0, MAX_PRODUCTION_ITEMS_PER_RUN - len([x for x in selected if x.get("editorial_class") == "korbach_production"])))
     add_candidates({"tire_technology"}, MAX_TIRE_TECH_ITEMS_PER_RUN)
@@ -3039,7 +3104,7 @@ def main() -> None:
     cutoff = now_utc - timedelta(hours=SEARCH_LOOKBACK_HOURS)
 
     print("=" * 78)
-    print("🟢 CONTINENTAL NEWS BOT v8.1 — PRODUCTION-FIRST")
+    print("🟢 CONTINENTAL NEWS BOT v8.2 — PRODUCTION-FIRST")
     print("=" * 78)
     print(f"🇩🇪 Zeit in Deutschland: {now_de:%Y-%m-%d %H:%M:%S}")
     print(f"🔎 Discovery: letzte {SEARCH_LOOKBACK_HOURS} Stunden | Veröffentlichung: 48h normal / 14 Tage Produkt-Technologie / 7 Tage Werk-Investition / 7 Tage kritisch/Korbach | Reifen-Stories: {STORIES_LOOKBACK_HOURS} Stunden")
