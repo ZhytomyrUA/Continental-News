@@ -271,5 +271,29 @@
     "published_at": "2026-09-28T11:21:00+00:00",
     "sent_at": "2026-10-05T17:50:56.471898+00:00",
     "message_id": 17
+  },
+  {
+    "article_url": "https://www.continental.com/en/press/press-releases/my-car/",
+    "title": "Continental Sells mycar Tyre & Auto to Tuhu",
+    "source_name": "Continental",
+    "primary_category": "tires",
+    "categories": [
+      "tires",
+      "company"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental has announced the sale of its subsidiary mycar Tyre & Auto, one of the largest tyre, automotive service and repair chains in Australia, to Tuhu, a leading Chinese automotive service platform. The transaction is based on an enterprise value of 403 million Australian dollars (approx. 250 million euros). The transaction marks another step in Continental’s strategic focus on its core business to develop and manufacture tyres. Continental sells one of Australia’s largest tyre, automotive service and repair chains to Chinese automotive service platform Tuhu, subject to regulatory approvals",
+    "summary_de": "",
+    "article_text": "Continental sells one of Australia’s largest tyre, automotive service and repair chains to Chinese automotive service platform Tuhu, subject to regulatory approvals",
+    "published_at": "2026-09-24T00:00:00+00:00",
+    "sent_at": "2026-10-07T13:43:55.825257+00:00",
+    "message_id": 51,
+    "dedup_keys": [
+      "title:continental sells mycar tyre auto to tuhu",
+      "title_tokens:auto mycar sells tuhu tyre",
+      "url:https://continental.com/en/press/press-releases/my-car"
+    ]
   }
 ]
