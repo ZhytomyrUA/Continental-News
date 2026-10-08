@@ -514,5 +514,74 @@
       "title_tokens:2026 allseason contact durch fällt kingboss reifentest überzeugt",
       "url:https://it-boltwise.de/avd-reifentest-2026-continental-allseason-contact-2-ueberzeugt-kingboss-faellt-durch.html"
     ]
+  },
+  {
+    "article_url": "https://www.topgear.com.ph/news/industry-news/continental-crosscontact-at2-launch-ph-a6938-20261008?ref=home_feed_1",
+    "title": "Continental PH has launched its all-terrain CrossContact A/T2 tires",
+    "source_name": "Top Gear Philippines",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental PH has launched its all-terrain CrossContact A/T2 tires Top Gear Philippines Continental Tire Philippines has launched the all-new Continental CrossContact A/T2, an aggressive all-terrain tire with TractionPlus+ Technology.",
+    "summary_de": "",
+    "article_text": "Continental Tire Philippines has launched the all-new Continental CrossContact A/T2, an aggressive all-terrain tire with TractionPlus+ Technology.",
+    "published_at": "2026-10-08T05:44:00+00:00",
+    "sent_at": "2026-10-08T07:25:50.640190+00:00",
+    "message_id": 63,
+    "dedup_keys": [
+      "title:continental ph has launched its all-terrain crosscontact a t2 tires",
+      "title_tokens:crosscontact launched terrain tires",
+      "url:https://topgear.com.ph/news/industry-news/continental-crosscontact-at2-launch-ph-a6938-20261008"
+    ]
+  },
+  {
+    "article_url": "https://www.carguide.ph/2026/10/continental-tire-ph-launches.html?m=0",
+    "title": "Continental Tire PH Launches CrossContact A/T2",
+    "source_name": "CarGuide.PH",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental Tire PH Launches CrossContact A/T2 CarGuide.PH Post a Comment Feel free to comment or share your views. Comments that are derogatory and/or spam will not be tolerated. We reserve the right to moderate and/or remove comments. Feel free to comment or share your views. Comments that are derogatory and/or spam will not be tolerated. We reserve the right to moderate and/or remove comments. View in Desktop | View in Mobile Tips? Send them to carguideph [at] gmail.com Copyright © 2011-2025 CarGuide Internet Services. All Rights Reserved | Privacy Policy",
+    "summary_de": "",
+    "article_text": "Post a Comment Feel free to comment or share your views. Comments that are derogatory and/or spam will not be tolerated. We reserve the right to moderate and/or remove comments. Feel free to comment or share your views. Comments that are derogatory and/or spam will not be tolerated. We reserve the right to moderate and/or remove comments. View in Desktop | View in Mobile Tips? Send them to carguideph [at] gmail.com Copyright © 2011-2025 CarGuide Internet Services. All Rights Reserved | Privacy Policy",
+    "published_at": "2026-10-08T02:07:16+00:00",
+    "sent_at": "2026-10-08T07:25:52.203025+00:00",
+    "message_id": 64,
+    "dedup_keys": [
+      "title:continental tire ph launches crosscontact a t2",
+      "title_tokens:crosscontact launches tire",
+      "url:https://carguide.ph/2026/10/continental-tire-ph-launches.html"
+    ]
+  },
+  {
+    "article_url": "https://www.moderntiredealer.com/commercial-business/news/55410410/continental-rolls-out-new-regional-tires",
+    "title": "Continental Rolls Out New Regional Tires",
+    "source_name": "Modern Tire Dealer",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental Rolls Out New Regional Tires Modern Tire Dealer Continental Tire the Americas LLC has introduced two new, fuel efficient regional medium truck tires.",
+    "summary_de": "",
+    "article_text": "Continental Tire the Americas LLC has introduced two new, fuel efficient regional medium truck tires.",
+    "published_at": "2026-10-07T00:00:00+00:00",
+    "sent_at": "2026-10-08T07:25:54.484369+00:00",
+    "message_id": 65,
+    "dedup_keys": [
+      "title:continental rolls out new regional tires",
+      "title_tokens:regional rolls tires",
+      "url:https://moderntiredealer.com/commercial-business/news/55410410/continental-rolls-out-new-regional-tires"
+    ]
   }
 ]
