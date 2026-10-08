@@ -1,20 +1,12 @@
-name: Continental News Bot
+name: Continental News Bot v8.4.3
 
 on:
+  # GitHub Actions uses UTC. Two daily triggers cover both CET and CEST;
+  # bot.py itself is the final gate and publishes only at 09:00 Europe/Berlin.
   schedule:
-    # Europe/Berlin is UTC+2 in summer and UTC+1 in winter. Run at both
-    # UTC hours; bot.py itself accepts only local hour 09:00, so exactly one
-    # of these runs publishes and the other exits cleanly. GitHub may also
-    # start scheduled workflows a few minutes late.
     - cron: "0 7 * * *"
     - cron: "0 8 * * *"
   workflow_dispatch:
-    inputs:
-      force_run:
-        description: "Run immediately, bypassing the 09:00 time gate"
-        required: false
-        default: false
-        type: boolean
 
 permissions:
   contents: write
@@ -37,12 +29,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Continental News Bot v8.4.3 Editorial Engine
+      - name: Run Continental News Bot v8.4.3
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL_ID: "-1004303733076"
           TZ: "Europe/Berlin"
-          FORCE_RUN: ${{ inputs.force_run || '0' }}
+          FORCE_RUN: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
         run: |
           python bot.py
 
@@ -51,7 +43,9 @@ jobs:
           git config user.name "continental-news-bot"
           git config user.email "continental-news-bot@users.noreply.github.com"
           for f in continental_published.json continental_pending.json continental_messages.json continental_jobs_seen.json; do
-            if [ -f "$f" ]; then git add "$f"; fi
+            if [ -f "$f" ]; then
+              git add "$f"
+            fi
           done
           if git diff --cached --quiet; then
             echo "No history changes to commit."
