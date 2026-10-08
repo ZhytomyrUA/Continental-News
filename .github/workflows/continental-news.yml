@@ -1,11 +1,13 @@
 name: Continental News Bot v8.4.3
 
 on:
-  # GitHub Actions uses UTC. Two daily triggers cover both CET and CEST;
-  # bot.py itself is the final gate and publishes only at 09:00 Europe/Berlin.
+  # GitHub Actions uses UTC. We trigger at both possible UTC hours for CET/CEST.
+  # bot.py is the final gate, so only 09:00 and 18:00 Europe/Berlin perform a search/publication.
   schedule:
     - cron: "0 7 * * *"
     - cron: "0 8 * * *"
+    - cron: "0 16 * * *"
+    - cron: "0 17 * * *"
   workflow_dispatch:
 
 permissions:
