@@ -607,5 +607,28 @@
       "title_tokens:defects european flags german journal rise rubber tire truck",
       "url:https://european-rubber-journal.com/article/2099777/continental-flags-rise-in-german-truck-tire-defects"
     ]
+  },
+  {
+    "article_url": "https://www.autoservicepraxis.de/nachrichten/autobranche/continental-manager-goudswaard-jeder-reifen-ist-ein-kompromiss-3914385",
+    "title": "Continental-Manager Goudswaard: Jeder Reifen ist ein Kompromiss",
+    "source_name": "autoservicepraxis.de",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental-Manager Goudswaard: \"Jeder Reifen ist ein Kompromiss\" autoservicepraxis.de Reifenentwicklung zwischen E-Mobilität und Allwetter-Boom: Continentals Entwicklungschef Edwin Goudswaard erklärt, warum Luft im Reifen auch künftig alternativlos bleibt.",
+    "summary_de": "",
+    "article_text": "Reifenentwicklung zwischen E-Mobilität und Allwetter-Boom: Continentals Entwicklungschef Edwin Goudswaard erklärt, warum Luft im Reifen auch künftig alternativlos bleibt.",
+    "published_at": "2026-10-08T08:30:00+00:00",
+    "sent_at": "2026-10-08T16:25:56.788271+00:00",
+    "message_id": 67,
+    "dedup_keys": [
+      "title:continental-manager goudswaard jeder reifen ist ein kompromiss",
+      "title_tokens:goudswaard jeder kompromiss manager reifen",
+      "url:https://autoservicepraxis.de/nachrichten/autobranche/continental-manager-goudswaard-jeder-reifen-ist-ein-kompromiss-3914385"
+    ]
   }
 ]
