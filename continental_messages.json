@@ -201,5 +201,19 @@
     "title": "Continental-Manager Goudswaard: Jeder Reifen ist ein Kompromiss",
     "primary_category": "tires",
     "sent_at": "2026-10-08T16:25:56.788271+00:00"
+  },
+  {
+    "message_id": 68,
+    "article_url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/arca-continental-legt-q3-termin-fest-arca-continental-aktie-legt-6-08-prozent-zu/70277298",
+    "title": "Arca Continental legt Q3-Termin fest: Arca-Continental-Aktie legt 6,08 Prozent zu",
+    "primary_category": "company",
+    "sent_at": "2026-10-09T12:54:47.426068+00:00"
+  },
+  {
+    "message_id": 69,
+    "article_url": "https://www.deraktionaer.de/artikel/aktien/aumovio-continental-und-schaeffler-darum-fallen-die-zulieferer-aktien-20412845.html",
+    "title": "Aumovio, Continental und Schaeffler: Darum fallen die Zulieferer-Aktien",
+    "primary_category": "company",
+    "sent_at": "2026-10-09T12:54:51.915009+00:00"
   }
 ]

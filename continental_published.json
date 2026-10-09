@@ -630,5 +630,55 @@
       "title_tokens:goudswaard jeder kompromiss manager reifen",
       "url:https://autoservicepraxis.de/nachrichten/autobranche/continental-manager-goudswaard-jeder-reifen-ist-ein-kompromiss-3914385"
     ]
+  },
+  {
+    "article_url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/arca-continental-legt-q3-termin-fest-arca-continental-aktie-legt-6-08-prozent-zu/70277298",
+    "title": "Arca Continental legt Q3-Termin fest: Arca-Continental-Aktie legt 6,08 Prozent zu",
+    "source_name": "AD HOC NEWS",
+    "primary_category": "company",
+    "categories": [
+      "company"
+    ],
+    "plant": null,
+    "event_families": [
+      "results"
+    ],
+    "event_key": "",
+    "summary": "Arca Continental legt Q3-Termin fest: Arca-Continental-Aktie legt 6,08 Prozent zu AD HOC NEWS Der Umsatz im zweiten Quartal 2026 lag bei 63,49 Milliarden MXN. Die Arca-Continental-Aktie kostet 9",
+    "summary_de": "",
+    "article_text": "Der Umsatz im zweiten Quartal 2026 lag bei 63,49 Milliarden MXN. Die Arca-Continental-Aktie kostet 9",
+    "published_at": "2026-10-09T11:25:57+00:00",
+    "sent_at": "2026-10-09T12:54:47.426068+00:00",
+    "message_id": 68,
+    "dedup_keys": [
+      "title:arca continental legt q3-termin fest arca-continental-aktie legt 6 08 prozent zu",
+      "title_tokens:aktie arca fest legt prozent termin",
+      "url:https://ad-hoc-news.de/boerse/news/corporate-news/arca-continental-legt-q3-termin-fest-arca-continental-aktie-legt-6-08-prozent-zu/70277298"
+    ]
+  },
+  {
+    "article_url": "https://www.deraktionaer.de/artikel/aktien/aumovio-continental-und-schaeffler-darum-fallen-die-zulieferer-aktien-20412845.html",
+    "title": "Aumovio, Continental und Schaeffler: Darum fallen die Zulieferer-Aktien",
+    "source_name": "Der Aktionär",
+    "primary_category": "company",
+    "categories": [
+      "company"
+    ],
+    "plant": null,
+    "event_families": [
+      "results"
+    ],
+    "event_key": "",
+    "summary": "Aumovio, Continental und Schaeffler: Darum fallen die Zulieferer-Aktien Der Aktionär Autozulieferer leiden unter OPmobilitys Gewinnwarnung, die die Branche belastet. Continental, Aumovio und Schaeffler zeigen starke Kursverluste.",
+    "summary_de": "",
+    "article_text": "Autozulieferer leiden unter OPmobilitys Gewinnwarnung, die die Branche belastet. Continental, Aumovio und Schaeffler zeigen starke Kursverluste.",
+    "published_at": "2026-10-08T13:53:00+00:00",
+    "sent_at": "2026-10-09T12:54:51.915009+00:00",
+    "message_id": 69,
+    "dedup_keys": [
+      "title:aumovio continental und schaeffler darum fallen die zulieferer-aktien",
+      "title_tokens:aktien aumovio darum fallen schaeffler zulieferer",
+      "url:https://deraktionaer.de/artikel/aktien/aumovio-continental-und-schaeffler-darum-fallen-die-zulieferer-aktien-20412845.html"
+    ]
   }
 ]
