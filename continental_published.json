@@ -680,5 +680,53 @@
       "title_tokens:aktien aumovio darum fallen schaeffler zulieferer",
       "url:https://deraktionaer.de/artikel/aktien/aumovio-continental-und-schaeffler-darum-fallen-die-zulieferer-aktien-20412845.html"
     ]
+  },
+  {
+    "article_url": "https://agirlsguidetocars.com/continental-terraincontact-h-t-tire-review",
+    "title": "Hello Continental TerrainContact H/T Tire Review: Bye, All Terrain Tires - A Girls Guide to Cars",
+    "source_name": "A Girls Guide to Cars",
+    "primary_category": "tires",
+    "categories": [
+      "plants",
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental TerrainContact H/T Tire Review: Bye, All-Terrains A Girls Guide to Cars My sister swapped her Subaru's factory all terrain tires for Continental TerrainContact H/T tires. Here's what makes them the smarter, quieter choice.",
+    "summary_de": "",
+    "article_text": "My sister swapped her Subaru's factory all terrain tires for Continental TerrainContact H/T tires. Here's what makes them the smarter, quieter choice.",
+    "published_at": "2026-10-09T10:00:00+00:00",
+    "sent_at": "2026-10-09T13:58:10.043046+00:00",
+    "message_id": 70,
+    "dedup_keys": [
+      "title:hello continental terraincontact h t tire review bye all terrain tires - a girls guide to cars",
+      "title_tokens:cars girls guide hello review terrain terraincontact tire tires",
+      "url:https://agirlsguidetocars.com/continental-terraincontact-h-t-tire-review"
+    ]
+  },
+  {
+    "article_url": "https://www.mcnews.com.au/continental-contimotion-evo-australia/",
+    "title": "Continental’s new ContiMotion EVO has landed in Australia. Aimed at naked bikes, roadsters and modern classics, the new 17-inch radial combines MultiGrip, ZeroDegree and EasyHandling technology.",
+    "source_name": "MCNews",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "product:contimotion-evo",
+    "summary": "Continental ContiMotion EVO arrives in Australia MCNews Not every road tyre needs to pretend it belongs on a racetrack. Continental’s new ContiMotion EVO is pitched at real-world sporty riding, balancing steering response, wet grip, stability and mileage. It’s now available in Australia from $189.95.",
+    "summary_de": "",
+    "article_text": "Not every road tyre needs to pretend it belongs on a racetrack. Continental’s new ContiMotion EVO is pitched at real-world sporty riding, balancing steering response, wet grip, stability and mileage. It’s now available in Australia from $189.95.",
+    "published_at": "2026-10-06T22:44:45+00:00",
+    "sent_at": "2026-10-09T13:58:12.082880+00:00",
+    "message_id": 71,
+    "dedup_keys": [
+      "event:product:contimotion-evo",
+      "title:continental's new contimotion evo has landed in australia aimed at naked bikes roadsters and modern classics the new 17-inch radial combines multigrip zerodegree and easyhandling technology",
+      "title_tokens:aimed australia bikes classics combines contimotion easyhandling inch landed modern multigrip naked radial roadsters technology zerodegree",
+      "url:https://mcnews.com.au/continental-contimotion-evo-australia"
+    ]
   }
 ]
