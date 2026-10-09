@@ -1,4 +1,4 @@
-name: Continental News Bot v8.4.5
+name: Continental News Bot v8.4.6
 
 on:
   # Run at 09:00 and 18:00 Europe/Berlin across CET/CEST.
@@ -31,7 +31,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Continental News Bot v8.4.5
+      - name: Run Continental News Bot v8.4.6
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL_ID: "-1004303733076"
