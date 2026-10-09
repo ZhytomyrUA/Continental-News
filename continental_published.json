@@ -728,5 +728,28 @@
       "title_tokens:aimed australia bikes classics combines contimotion easyhandling inch landed modern multigrip naked radial roadsters technology zerodegree",
       "url:https://mcnews.com.au/continental-contimotion-evo-australia"
     ]
+  },
+  {
+    "article_url": "https://www.fleetequipmentmag.com/continental-generation-5-regional-tires/",
+    "title": "Continental Launches Generation 5 Regional Tires",
+    "source_name": "Fleet Equipment Magazine",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental Adds Generation 5 Regional Tires for Fuel Efficiency Fleet Equipment Magazine Continental’s Generation 5 regional tires add new steer and drive designs with estimated mileage gains, fuel efficiency and casing durability.",
+    "summary_de": "",
+    "article_text": "Continental’s Generation 5 regional tires add new steer and drive designs with estimated mileage gains, fuel efficiency and casing durability.",
+    "published_at": "2026-10-09T14:48:29+00:00",
+    "sent_at": "2026-10-09T16:23:14.298814+00:00",
+    "message_id": 72,
+    "dedup_keys": [
+      "title:continental launches generation 5 regional tires",
+      "title_tokens:generation launches regional tires",
+      "url:https://fleetequipmentmag.com/continental-generation-5-regional-tires"
+    ]
   }
 ]
