@@ -1,6 +1,0 @@
-feedparser==6.0.14
-requests==2.32.5
-beautifulsoup4==4.14.3
-Pillow==12.3.0
-googlenewsdecoder==0.2.1
-selectolax==0.4.12
