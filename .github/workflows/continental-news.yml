@@ -1,4 +1,4 @@
-name: Continental News Bot v8.4.7 — Schedule & Discovery Fix
+name: Continental News Bot v8.4.8 — Fresh Search Fix
 
 on:
   # Four UTC triggers cover both CET and CEST. The local-time guard below
@@ -55,7 +55,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Continental News Bot v8.4.7
+      - name: Run Continental News Bot v8.4.8
         if: steps.schedule.outputs.run == 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
