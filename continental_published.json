@@ -751,5 +751,74 @@
       "title_tokens:generation launches regional tires",
       "url:https://fleetequipmentmag.com/continental-generation-5-regional-tires"
     ]
+  },
+  {
+    "article_url": "https://reifenpresse.de/2026/09/30/reifenmarke-general-begeht-ihr-111-jaehriges/",
+    "title": "Reifenmarke General begeht ihr 111-Jähriges",
+    "source_name": "Reifenpresse.de",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Reifenmarke General begeht ihr 111-Jähriges Reifenpresse.de Am 29. September 1915 gründeten William O’Neil und Winfred Fouse in Akron im US-Bundesstaat Ohio die General Tire and Rubber Company, die seit 1987 zum Continental-Konzern gehört. Folglich kann die vor allem für ihre SUV-, Geländewagen- und Pick-up-Bereifungen wie etwa den „Grabber AT³ᴾˡᵘˢ“ bekannte Marke General Tire dieser Tage ihr 111-Jähriges begehen.",
+    "summary_de": "",
+    "article_text": "Am 29. September 1915 gründeten William O’Neil und Winfred Fouse in Akron im US-Bundesstaat Ohio die General Tire and Rubber Company, die seit 1987 zum Continental-Konzern gehört. Folglich kann die vor allem für ihre SUV-, Geländewagen- und Pick-up-Bereifungen wie etwa den „Grabber AT³ᴾˡᵘˢ“ bekannte Marke General Tire dieser Tage ihr 111-Jähriges begehen.",
+    "published_at": "2026-09-30T08:58:12+00:00",
+    "sent_at": "2026-10-10T15:23:59.159168+00:00",
+    "message_id": 73,
+    "dedup_keys": [
+      "title:reifenmarke general begeht ihr 111-jähriges",
+      "title_tokens:begeht general jähriges reifenmarke",
+      "url:https://reifenpresse.de/2026/09/30/reifenmarke-general-begeht-ihr-111-jaehriges"
+    ]
+  },
+  {
+    "article_url": "https://reifenpresse.de/2026/09/29/sportcontact-7-force-erstausruestung-auch-beim-panamera-g3-ii/",
+    "title": "„SportContact 7 Force“ Erstausrüstung auch beim Panamera G3 II",
+    "source_name": "Reifenpresse.de",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "„SportContact 7 Force“ Erstausrüstung auch beim Panamera G3 II Reifenpresse.de Seine Premiere gab Continentals „SportContact 7 Force“ unlängst als Erstausrüstung bei dem Bodo von Tuner Brabus. Mit Blick auf seinen Panamera G3 II hat",
+    "summary_de": "",
+    "article_text": "Seine Premiere gab Continentals „SportContact 7 Force“ unlängst als Erstausrüstung bei dem Bodo von Tuner Brabus. Mit Blick auf seinen Panamera G3 II hat",
+    "published_at": "2026-09-29T11:33:51+00:00",
+    "sent_at": "2026-10-10T15:24:02.715154+00:00",
+    "message_id": 74,
+    "dedup_keys": [
+      "title:sportcontact 7 force erstausrüstung auch beim panamera g3 ii",
+      "title_tokens:auch beim erstausrüstung force panamera sportcontact",
+      "url:https://reifenpresse.de/2026/09/29/sportcontact-7-force-erstausruestung-auch-beim-panamera-g3-ii"
+    ]
+  },
+  {
+    "article_url": "https://news.ssbcrack.com/2026-continental-tyres-afl-trade-period-kicks-off-with-insights-from-all-18-clubs/",
+    "title": "2026 Continental Tyres AFL Trade Period Kicks Off with Insights from All 18 Clubs - SSBCrack News",
+    "source_name": "SSBCrack",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "2026 Continental Tyres AFL Trade Period Kicks Off with Insights from All 18 Clubs SSBCrack The highly anticipated 2026 Continental Tyres AFL Trade Period is now officially in full swing, capturing the attention of fans, analysts, and club",
+    "summary_de": "",
+    "article_text": "The highly anticipated 2026 Continental Tyres AFL Trade Period is now officially in full swing, capturing the attention of fans, analysts, and club",
+    "published_at": "2026-10-05T02:57:53+00:00",
+    "sent_at": "2026-10-10T15:24:04.281330+00:00",
+    "message_id": 75,
+    "dedup_keys": [
+      "title:2026 continental tyres afl trade period kicks off with insights from all 18 clubs - ssbcrack news",
+      "title_tokens:2026 clubs from insights kicks news period ssbcrack trade tyres with",
+      "url:https://news.ssbcrack.com/2026-continental-tyres-afl-trade-period-kicks-off-with-insights-from-all-18-clubs"
+    ]
   }
 ]
