@@ -820,5 +820,74 @@
       "title_tokens:2026 clubs from insights kicks news period ssbcrack trade tyres with",
       "url:https://news.ssbcrack.com/2026-continental-tyres-afl-trade-period-kicks-off-with-insights-from-all-18-clubs"
     ]
+  },
+  {
+    "article_url": "https://www.whufc.com/en/news/tag/continental-tyres-league-cup?page=2&type=news",
+    "title": "continental tyres league cup - West Ham United FC",
+    "source_name": "West Ham United",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental tyres league cup West Ham United",
+    "summary_de": "",
+    "article_text": "Continental tyres league cup West Ham United",
+    "published_at": "2026-10-02T03:44:15+00:00",
+    "sent_at": "2026-10-10T16:25:54.811230+00:00",
+    "message_id": 76,
+    "dedup_keys": [
+      "title:continental tyres league cup - west ham united fc",
+      "title_tokens:league tyres united west",
+      "url:https://hufc.com/en/news/tag/continental-tyres-league-cup"
+    ]
+  },
+  {
+    "article_url": "https://www.mk.co.kr/en/business/12165813",
+    "title": "\"Buy Four Tires and Get DYNAFIT Apparel\"—Continental AG Holds Event on Naver Store - MK",
+    "source_name": "매일경제",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "\"Buy Four Tires and Get DYNAFIT Apparel\"—Continental AG Holds Event on Naver Store 매일경제 Continental Tire Korea announced on October 1 that it will offer benefits based on review submissions and purchase quantities to customers who buy products from its official Naver Store throughout Oct..",
+    "summary_de": "",
+    "article_text": "Continental Tire Korea announced on October 1 that it will offer benefits based on review submissions and purchase quantities to customers who buy products from its official Naver Store throughout Oct..",
+    "published_at": "2026-10-01T02:03:57+00:00",
+    "sent_at": "2026-10-10T16:25:58.683771+00:00",
+    "message_id": 77,
+    "dedup_keys": [
+      "title:buy four tires and get dynafit apparel continental ag holds event on naver store - mk",
+      "title_tokens:apparel dynafit event four holds naver store tires",
+      "url:https://mk.co.kr/en/business/12165813"
+    ]
+  },
+  {
+    "article_url": "https://www.advertiser.ie/galway/article/152806/young-drivers-urged-to-make-regular-tyre-checks",
+    "title": "Young drivers urged to make regular tyre checks",
+    "source_name": "Galway Advertiser",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Young drivers urged to make regular tyre checks Galway Advertiser To coincide with Ireland’s Tyre Safety Day, Continental Tyres has partnered with content creator Michael Deady to encourage motorists, particularly younger drivers, to develop the simple habit of regularly checking their tyres.",
+    "summary_de": "",
+    "article_text": "To coincide with Ireland’s Tyre Safety Day, Continental Tyres has partnered with content creator Michael Deady to encourage motorists, particularly younger drivers, to develop the simple habit of regularly checking their tyres.",
+    "published_at": "2026-10-08T18:22:30+00:00",
+    "sent_at": "2026-10-10T16:26:05.911631+00:00",
+    "message_id": 78,
+    "dedup_keys": [
+      "title:young drivers urged to make regular tyre checks",
+      "title_tokens:checks drivers make regular tyre urged young",
+      "url:https://advertiser.ie/galway/article/152806/young-drivers-urged-to-make-regular-tyre-checks"
+    ]
   }
 ]
