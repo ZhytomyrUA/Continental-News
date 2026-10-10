@@ -1,8 +1,8 @@
-name: Continental News Bot v8.4.6
+name: Continental News Bot v8.4.7 — Schedule & Discovery Fix
 
 on:
-  # Run at 09:00 and 18:00 Europe/Berlin across CET/CEST.
-  # The bot checks local time and skips the UTC trigger that is not the matching hour.
+  # Four UTC triggers cover both CET and CEST. The local-time guard below
+  # ensures that only the matching Europe/Berlin hour performs any work.
   schedule:
     - cron: "0 7 * * *"
     - cron: "0 8 * * *"
@@ -17,21 +17,46 @@ jobs:
   continental-news:
     runs-on: ubuntu-latest
     steps:
+      - name: Check local schedule before doing any work
+        id: schedule
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            echo "Manual run: continue regardless of local hour."
+            exit 0
+          fi
+          LOCAL_HOUR="$(TZ=Europe/Berlin date +%H)"
+          echo "Europe/Berlin hour: $LOCAL_HOUR"
+          if [[ "$LOCAL_HOUR" == "09" || "$LOCAL_HOUR" == "18" ]]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            echo "Scheduled publication hour: continue."
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "Not a publication hour: skip checkout, dependency installation and bot search."
+          fi
+
       - name: Checkout repository
+        if: steps.schedule.outputs.run == 'true'
         uses: actions/checkout@v4
 
       - name: Set up Python
+        if: steps.schedule.outputs.run == 'true'
         uses: actions/setup-python@v5
         with:
           python-version: "3.13"
           cache: "pip"
 
       - name: Install dependencies
+        if: steps.schedule.outputs.run == 'true'
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Continental News Bot v8.4.6
+      - name: Run Continental News Bot v8.4.7
+        if: steps.schedule.outputs.run == 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL_ID: "-1004303733076"
@@ -40,6 +65,7 @@ jobs:
         run: python bot.py
 
       - name: Save bot history
+        if: steps.schedule.outputs.run == 'true'
         run: |
           git config user.name "continental-news-bot"
           git config user.email "continental-news-bot@users.noreply.github.com"
