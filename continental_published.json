@@ -1083,5 +1083,28 @@
       "title_tokens:leitung linke vergölst übernimmt",
       "url:https://reifenpresse.de/2026/10/12/linke-uebernimmt-it-leitung-bei-vergoelst"
     ]
+  },
+  {
+    "article_url": "https://www.moderntiredealer.com/suppliers/news/55408769/continental-tire-expands-porsche-oe-portfolio",
+    "title": "Continental Expands Porsche OE Portfolio",
+    "source_name": "Modern Tire Dealer",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental Expands Porsche OE Portfolio Modern Tire Dealer Continental Tire will supply its SportContact 7 and the new SportContact 7 Force as original equipment for the Porsche Panamera G3 II.",
+    "summary_de": "",
+    "article_text": "Continental Tire will supply its SportContact 7 and the new SportContact 7 Force as original equipment for the Porsche Panamera G3 II.",
+    "published_at": "2026-09-30T00:00:00+00:00",
+    "sent_at": "2026-10-13T07:23:43.939945+00:00",
+    "message_id": 87,
+    "dedup_keys": [
+      "title:continental expands porsche oe portfolio",
+      "title_tokens:expands porsche portfolio",
+      "url:https://moderntiredealer.com/suppliers/news/55408769/continental-tire-expands-porsche-oe-portfolio"
+    ]
   }
 ]
