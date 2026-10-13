@@ -1106,5 +1106,54 @@
       "title_tokens:expands porsche portfolio",
       "url:https://moderntiredealer.com/suppliers/news/55408769/continental-tire-expands-porsche-oe-portfolio"
     ]
+  },
+  {
+    "article_url": "https://www.indexbox.io/blog/continental-refining-keeps-soybean-plant-idled-after-july-fire-pursues-biodiesel-expansion/",
+    "title": "Continental Refining Soybean Plant Idled After Fire, Biodiesel Expansion Doubles Capacity - News and Statistics - IndexBox",
+    "source_name": "IndexBox",
+    "primary_category": "company",
+    "categories": [
+      "plants"
+    ],
+    "plant": null,
+    "event_families": [
+      "investment"
+    ],
+    "event_key": "",
+    "summary": "Continental Refining Soybean Plant Idled After Fire, Biodiesel Expansion Doubles Capacity - News and Statistics IndexBox Continental Refining is keeping its fire-damaged Somerset soybean plant idled while weighing repair options, seeking a grain elevator partner, and pushing ahead with a biodiesel expansion that will double capacity by November 15 and add a Norfolk Southern rail spur.",
+    "summary_de": "",
+    "article_text": "Continental Refining is keeping its fire-damaged Somerset soybean plant idled while weighing repair options, seeking a grain elevator partner, and pushing ahead with a biodiesel expansion that will double capacity by November 15 and add a Norfolk Southern rail spur.",
+    "published_at": "2026-10-13T13:21:00+00:00",
+    "sent_at": "2026-10-13T16:32:36.983017+00:00",
+    "message_id": 88,
+    "dedup_keys": [
+      "title:continental refining soybean plant idled after fire biodiesel expansion doubles capacity - news and statistics - indexbox",
+      "title_tokens:after biodiesel capacity doubles expansion fire idled indexbox news plant refining soybean statistics",
+      "url:https://indexbox.io/blog/continental-refining-keeps-soybean-plant-idled-after-july-fire-pursues-biodiesel-expansion"
+    ]
+  },
+  {
+    "article_url": "https://www.ntg24.de/Continental-Reifenmargen-und-Milliarden-fuer-Aktionaere-13102026-CT-Aktien",
+    "title": "Continental erfindet sich als Reifenhersteller neu",
+    "source_name": "NTG24",
+    "primary_category": "tires",
+    "categories": [
+      "tires",
+      "company"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental erfindet sich als Reifenhersteller neu NTG24 Der Verkauf von ContiTech verspricht hohe Kapitalrückflüsse, während steigende Reifenmargen die operative Neuausrichtung stützen",
+    "summary_de": "",
+    "article_text": "Der Verkauf von ContiTech verspricht hohe Kapitalrückflüsse, während steigende Reifenmargen die operative Neuausrichtung stützen",
+    "published_at": "2026-10-13T11:38:15+00:00",
+    "sent_at": "2026-10-13T16:32:40.494676+00:00",
+    "message_id": 89,
+    "dedup_keys": [
+      "title:continental erfindet sich als reifenhersteller neu",
+      "title_tokens:erfindet reifenhersteller sich",
+      "url:https://ntg24.de/Continental-Reifenmargen-und-Milliarden-fuer-Aktionaere-13102026-CT-Aktien"
+    ]
   }
 ]

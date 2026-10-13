@@ -341,5 +341,19 @@
     "title": "Continental Expands Porsche OE Portfolio",
     "primary_category": "tires",
     "sent_at": "2026-10-13T07:23:43.939945+00:00"
+  },
+  {
+    "message_id": 88,
+    "article_url": "https://www.indexbox.io/blog/continental-refining-keeps-soybean-plant-idled-after-july-fire-pursues-biodiesel-expansion/",
+    "title": "Continental Refining Soybean Plant Idled After Fire, Biodiesel Expansion Doubles Capacity - News and Statistics - IndexBox",
+    "primary_category": "company",
+    "sent_at": "2026-10-13T16:32:36.983017+00:00"
+  },
+  {
+    "message_id": 89,
+    "article_url": "https://www.ntg24.de/Continental-Reifenmargen-und-Milliarden-fuer-Aktionaere-13102026-CT-Aktien",
+    "title": "Continental erfindet sich als Reifenhersteller neu",
+    "primary_category": "tires",
+    "sent_at": "2026-10-13T16:32:40.494676+00:00"
   }
 ]
