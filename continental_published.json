@@ -1155,5 +1155,56 @@
       "title_tokens:erfindet reifenhersteller sich",
       "url:https://ntg24.de/Continental-Reifenmargen-und-Milliarden-fuer-Aktionaere-13102026-CT-Aktien"
     ]
+  },
+  {
+    "article_url": "https://www.chemanalyst.com/NewsAndDeals/NewsDetails/continental-refining-to-double-biodiesel-capacity-despite-44978",
+    "title": "Continental Refining to Double Biodiesel Capacity Despite Soybean Plant Shutdown",
+    "source_name": "ChemAnalyst",
+    "primary_category": "company",
+    "categories": [
+      "plants"
+    ],
+    "plant": null,
+    "event_families": [
+      "closure_stop",
+      "investment"
+    ],
+    "event_key": "",
+    "summary": "Continental Refining to Double Biodiesel Capacity Despite Soybean Plant Shutdown ChemAnalyst Continental Refining Company (CRC) is pressing ahead with a major biodiesel expansion even as its soybean processing facility remains shut following a fire in July.",
+    "summary_de": "",
+    "article_text": "Continental Refining Company (CRC) is pressing ahead with a major biodiesel expansion even as its soybean processing facility remains shut following a fire in July.",
+    "published_at": "2026-10-14T06:05:52+00:00",
+    "sent_at": "2026-10-14T07:46:00.554729+00:00",
+    "message_id": 90,
+    "dedup_keys": [
+      "title:continental refining to double biodiesel capacity despite soybean plant shutdown",
+      "title_tokens:biodiesel capacity despite double plant refining shutdown soybean",
+      "url:https://chemanalyst.com/NewsAndDeals/NewsDetails/continental-refining-to-double-biodiesel-capacity-despite-44978"
+    ]
+  },
+  {
+    "article_url": "https://www.feedstuffs.com/agribusiness-news/continental-refining-undertakes-major-biodiesel-expansion",
+    "title": "Continental Refining undertakes major biodiesel expansion",
+    "source_name": "Feedstuffs",
+    "primary_category": "company",
+    "categories": [
+      "plants"
+    ],
+    "plant": null,
+    "event_families": [
+      "investment"
+    ],
+    "event_key": "",
+    "summary": "Continental Refining undertakes major biodiesel expansion Feedstuffs Soybean processing plant remains idled while CRC evaluates feasibility of repairing and restarting operations after July fire at its Kentucky complex.",
+    "summary_de": "",
+    "article_text": "Soybean processing plant remains idled while CRC evaluates feasibility of repairing and restarting operations after July fire at its Kentucky complex.",
+    "published_at": "2026-10-13T15:55:05+00:00",
+    "sent_at": "2026-10-14T07:46:02.751228+00:00",
+    "message_id": 91,
+    "dedup_keys": [
+      "title:continental refining undertakes major biodiesel expansion",
+      "title_tokens:biodiesel expansion major refining undertakes",
+      "url:https://feedstuffs.com/agribusiness-news/continental-refining-undertakes-major-biodiesel-expansion"
+    ]
   }
 ]
