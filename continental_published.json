@@ -1352,5 +1352,102 @@
       "title_tokens:commercial engineer launches operators scheme transport vehicle warranty",
       "url:https://transportengineer.org.uk/content/news/continental-launches-warranty-scheme-for-commercial-vehicle-operators"
     ]
+  },
+  {
+    "article_url": "https://www.continental.com/en/press/press-releases/volkswagen-concept-tire-world-record/",
+    "title": "Volkswagen Concept Vehicle Mission Efficiency Sets World Record on Continental Tires",
+    "source_name": "Continental",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental made a decisive contribution to the world record set by Volkswagen’s Mission Efficiency concept vehicle with a specially developed concept tire. During the record-breaking drive, the world’s most efficient near-production electric vehicle consumed just 7.51 kilowatt-hours of electricity per 100 kilometers including charging losses, or 6.89 kWh per 100 km excluding charging losses. The record was officially certified by RID – Rekord-Institut für Deutschland on August 24, 2026,… Rolling resistance around 25 percent below threshold for EU tire label’s highest class A rating",
+    "summary_de": "",
+    "article_text": "Rolling resistance around 25 percent below threshold for EU tire label’s highest class A rating",
+    "published_at": "2026-10-13T00:00:00+00:00",
+    "sent_at": "2026-10-15T07:40:49.784153+00:00",
+    "message_id": 98,
+    "dedup_keys": [
+      "title:volkswagen concept vehicle mission efficiency sets world record on continental tires",
+      "title_tokens:concept efficiency mission record sets tires vehicle volkswagen world",
+      "url:https://continental.com/en/press/press-releases/volkswagen-concept-tire-world-record"
+    ]
+  },
+  {
+    "article_url": "https://www.continental.com/de/presse/pressemitteilungen/volkswagen-konzeptreifen-weltrekord/",
+    "title": "Volkswagen Konzeptfahrzeug Mission Efficiency fährt auf Continental-Reifen zum Weltrekord",
+    "source_name": "Continental AG",
+    "primary_category": "people",
+    "categories": [
+      "plants",
+      "tires",
+      "people"
+    ],
+    "plant": null,
+    "event_families": [
+      "investment"
+    ],
+    "event_key": "",
+    "summary": "Volkswagen Konzeptfahrzeug Mission Efficiency fährt auf Continental-Reifen zum Weltrekord Continental AG In unserem Presseportal finden Sie aktuelle Pressemitteilungen, Bilder, Videos, Informationen zu Messen und Events sowie unsere Studien und Publikationen. Finden Sie heraus, was unsere Mitarbeitenden antreibt und was genau Continental zu einem großartigen Arbeitgeber macht. Hier finden Sie alle relevanten Informationen und Neuigkeiten zu einem Investment in Continental Überblick Kontakt Über uns Services Hier finden Sie Informationen zum Thema Nachhaltigkeit bei Continental Auf dieser Seite finden Sie Informationen zu unseren Produkten und Lösungen. Continental entwickelt und produziert als ein führender Reifenhersteller und Industriespezialist nachhaltige, sichere und komfortable Lösungen unter anderem für Automobilhersteller sowie Industrie- und Endkunden weltweit.",
+    "summary_de": "",
+    "article_text": "In unserem Presseportal finden Sie aktuelle Pressemitteilungen, Bilder, Videos, Informationen zu Messen und Events sowie unsere Studien und Publikationen. Finden Sie heraus, was unsere Mitarbeitenden antreibt und was genau Continental zu einem großartigen Arbeitgeber macht. Hier finden Sie alle relevanten Informationen und Neuigkeiten zu einem Investment in Continental Überblick Kontakt Über uns Services Hier finden Sie Informationen zum Thema Nachhaltigkeit bei Continental Auf dieser Seite finden Sie Informationen zu unseren Produkten und Lösungen. Continental entwickelt und produziert als ein führender Reifenhersteller und Industriespezialist nachhaltige, sichere und komfortable Lösungen unter anderem für Automobilhersteller sowie Industrie- und Endkunden weltweit.",
+    "published_at": "2026-10-15T00:00:00+00:00",
+    "sent_at": "2026-10-15T07:40:52.119941+00:00",
+    "message_id": 99,
+    "dedup_keys": [
+      "title:volkswagen konzeptfahrzeug mission efficiency fährt auf continental-reifen zum weltrekord",
+      "title_tokens:efficiency fährt konzeptfahrzeug mission reifen volkswagen weltrekord",
+      "url:https://continental.com/de/presse/pressemitteilungen/volkswagen-konzeptreifen-weltrekord"
+    ]
+  },
+  {
+    "article_url": "https://www.sydneyswans.com.au/news/2151860/keane-wraps-up-continental-tyres-afl-trade-period",
+    "title": "Keane wraps up Continental Tyres AFL Trade Period",
+    "source_name": "sydneyswans.com.au",
+    "primary_category": "tires",
+    "categories": [
+      "tires",
+      "company"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Keane wraps up Continental Tyres AFL Trade Period sydneyswans.com.au Sydney Swans Head of List Strategy Chris Keane joins Continental Tyres AFL Trade Radio on Deadline Day to speak on Nick Blakey and getting into the upcoming draft’s top end",
+    "summary_de": "",
+    "article_text": "Sydney Swans Head of List Strategy Chris Keane joins Continental Tyres AFL Trade Radio on Deadline Day to speak on Nick Blakey and getting into the upcoming draft’s top end",
+    "published_at": "2026-10-14T21:59:00+00:00",
+    "sent_at": "2026-10-15T07:40:54.475223+00:00",
+    "message_id": 100,
+    "dedup_keys": [
+      "title:keane wraps up continental tyres afl trade period",
+      "title_tokens:keane period trade tyres wraps",
+      "url:https://sydneyswans.com.au/news/2151860/keane-wraps-up-continental-tyres-afl-trade-period"
+    ]
+  },
+  {
+    "article_url": "https://www.continental.com/en/press/press-releases/20261014-continental-ibu-join-forces/",
+    "title": "Continental and the International Biathlon Union Join Forces for a New Winter Sport Partnership",
+    "source_name": "Continental",
+    "primary_category": "company",
+    "categories": [
+      "company"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental is becoming a global partner of the International Biathlon Union (IBU). Beginning with the 2026/27 season, the partnership will span the IBU World Cup, the IBU World Championships and the Loop One Festival through 2029/30. Continental is becoming a global partner of the International Biathlon Union (IBU). Beginning with the 2026/27 season, the partnership will span the IBU World Cup, the IBU World Championships and the Loop One Festival through 2029/30.",
+    "summary_de": "",
+    "article_text": "Continental is becoming a global partner of the International Biathlon Union (IBU). Beginning with the 2026/27 season, the partnership will span the IBU World Cup, the IBU World Championships and the Loop One Festival through 2029/30.",
+    "published_at": "2026-10-15T00:00:00+00:00",
+    "sent_at": "2026-10-15T07:40:58.287825+00:00",
+    "message_id": 101,
+    "dedup_keys": [
+      "title:continental and the international biathlon union join forces for a new winter sport partnership",
+      "title_tokens:biathlon forces international join partnership sport union winter",
+      "url:https://continental.com/en/press/press-releases/20261014-continental-ibu-join-forces"
+    ]
   }
 ]

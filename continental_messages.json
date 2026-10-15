@@ -411,5 +411,33 @@
     "title": "Continental launches warranty scheme for commercial vehicle operators - Transport Engineer",
     "primary_category": "tires",
     "sent_at": "2026-10-14T16:47:10.056729+00:00"
+  },
+  {
+    "message_id": 98,
+    "article_url": "https://www.continental.com/en/press/press-releases/volkswagen-concept-tire-world-record/",
+    "title": "Volkswagen Concept Vehicle Mission Efficiency Sets World Record on Continental Tires",
+    "primary_category": "tires",
+    "sent_at": "2026-10-15T07:40:49.784153+00:00"
+  },
+  {
+    "message_id": 99,
+    "article_url": "https://www.continental.com/de/presse/pressemitteilungen/volkswagen-konzeptreifen-weltrekord/",
+    "title": "Volkswagen Konzeptfahrzeug Mission Efficiency fährt auf Continental-Reifen zum Weltrekord",
+    "primary_category": "people",
+    "sent_at": "2026-10-15T07:40:52.119941+00:00"
+  },
+  {
+    "message_id": 100,
+    "article_url": "https://www.sydneyswans.com.au/news/2151860/keane-wraps-up-continental-tyres-afl-trade-period",
+    "title": "Keane wraps up Continental Tyres AFL Trade Period",
+    "primary_category": "tires",
+    "sent_at": "2026-10-15T07:40:54.475223+00:00"
+  },
+  {
+    "message_id": 101,
+    "article_url": "https://www.continental.com/en/press/press-releases/20261014-continental-ibu-join-forces/",
+    "title": "Continental and the International Biathlon Union Join Forces for a New Winter Sport Partnership",
+    "primary_category": "company",
+    "sent_at": "2026-10-15T07:40:58.287825+00:00"
   }
 ]
