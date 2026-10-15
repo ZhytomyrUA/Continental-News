@@ -1449,5 +1449,51 @@
       "title_tokens:biathlon forces international join partnership sport union winter",
       "url:https://continental.com/en/press/press-releases/20261014-continental-ibu-join-forces"
     ]
+  },
+  {
+    "article_url": "https://www.isportconnect.com/international-biathlon-union-signs-continental-reifen-deutschland-gmbh-as-premium-sponsor/",
+    "title": "International Biathlon Union Signs Continental Reifen Deutschland GmbH As Premium Sponsor",
+    "source_name": "iSportConnect",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "International Biathlon Union Signs Continental Reifen Deutschland GmbH As Premium Sponsor iSportConnect The partnership includes extensive branding and activation rights, including venue advertising | IBU Sponsorship",
+    "summary_de": "",
+    "article_text": "The partnership includes extensive branding and activation rights, including venue advertising | IBU Sponsorship",
+    "published_at": "2026-10-15T05:27:23+00:00",
+    "sent_at": "2026-10-15T16:41:19.492406+00:00",
+    "message_id": 102,
+    "dedup_keys": [
+      "title:international biathlon union signs continental reifen deutschland gmbh as premium sponsor",
+      "title_tokens:biathlon deutschland international premium reifen signs sponsor union",
+      "url:https://isportconnect.com/international-biathlon-union-signs-continental-reifen-deutschland-gmbh-as-premium-sponsor"
+    ]
+  },
+  {
+    "article_url": "https://reifenpresse.de/2026/10/15/rollwiderstand-einer-der-reichweitenhebel-von-elektrofahrzeugen/",
+    "title": "Rollwiderstand einer der Reichweitenhebel von Elektrofahrzeugen",
+    "source_name": "Reifenpresse.de",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Rollwiderstand einer der Reichweitenhebel von Elektrofahrzeugen Reifenpresse.de Reifen zählen laut Continental zu den zentralen Effizienzfaktoren von Elektroautos. Da rund 20 Prozent der Antriebsenergie solcher Fahrzeuge auf den Rollwiderstand ihrer Bereifung entfallen, seien sie ein entscheidender Hebel, um die Reichweite einer Batterieladung zu steigern, so der Reifenhersteller. Einen Beleg dafür hat ein auf dem „EcoContact 7“ des Anbieters basierender Konzeptreifen geliefert montiert an dem „Mission Effiency“, wobei Volkswagen diese Fahrzeugstudie als „das weltweit effizienteste seriennahe Elektroauto“ bezeichnet und mit ihm gleich drei Weltrekorde aufgestellt hat.",
+    "summary_de": "",
+    "article_text": "Reifen zählen laut Continental zu den zentralen Effizienzfaktoren von Elektroautos. Da rund 20 Prozent der Antriebsenergie solcher Fahrzeuge auf den Rollwiderstand ihrer Bereifung entfallen, seien sie ein entscheidender Hebel, um die Reichweite einer Batterieladung zu steigern, so der Reifenhersteller. Einen Beleg dafür hat ein auf dem „EcoContact 7“ des Anbieters basierender Konzeptreifen geliefert montiert an dem „Mission Effiency“, wobei Volkswagen diese Fahrzeugstudie als „das weltweit effizienteste seriennahe Elektroauto“ bezeichnet und mit ihm gleich drei Weltrekorde aufgestellt hat.",
+    "published_at": "2026-10-15T13:32:10+00:00",
+    "sent_at": "2026-10-15T16:41:22.689159+00:00",
+    "message_id": 103,
+    "dedup_keys": [
+      "title:rollwiderstand einer der reichweitenhebel von elektrofahrzeugen",
+      "title_tokens:einer elektrofahrzeugen reichweitenhebel rollwiderstand",
+      "url:https://reifenpresse.de/2026/10/15/rollwiderstand-einer-der-reichweitenhebel-von-elektrofahrzeugen"
+    ]
   }
 ]
