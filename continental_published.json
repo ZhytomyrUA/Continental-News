@@ -1495,5 +1495,52 @@
       "title_tokens:einer elektrofahrzeugen reichweitenhebel rollwiderstand",
       "url:https://reifenpresse.de/2026/10/15/rollwiderstand-einer-der-reichweitenhebel-von-elektrofahrzeugen"
     ]
+  },
+  {
+    "article_url": "https://www.moderntiredealer.com/suppliers/news/55412338/continental-supplies-ecocontact-7-s-as-oe-tires-for-volvo-ex60",
+    "title": "Continental Supplies OE Tires for Volvo EX60",
+    "source_name": "Modern Tire Dealer",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental Supplies EcoContact 7 S as OE Tires for Volvo EX60 Modern Tire Dealer Continental Tire will supply the EcoContact 7 S as original equipment for the fully electric Volvo EX60.",
+    "summary_de": "",
+    "article_text": "Continental Tire will supply the EcoContact 7 S as original equipment for the fully electric Volvo EX60.",
+    "published_at": "2026-10-15T00:00:00+00:00",
+    "sent_at": "2026-10-16T07:38:38.908720+00:00",
+    "message_id": 104,
+    "dedup_keys": [
+      "title:continental supplies oe tires for volvo ex60",
+      "title_tokens:ex60 supplies tires volvo",
+      "url:https://moderntiredealer.com/suppliers/news/55412338/continental-supplies-ecocontact-7-s-as-oe-tires-for-volvo-ex60"
+    ]
+  },
+  {
+    "article_url": "https://www.ad-hoc-news.de/boerse/news/vorboerse/continental-reports-record-tire-efficiency-result-stock-pre-market-at-eur-70-75/70335273",
+    "title": "Continental reports record tire efficiency result: stock pre-market at EUR 70.75",
+    "source_name": "ad-hoc-news.de",
+    "primary_category": "tires",
+    "categories": [
+      "tires",
+      "company"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental reports record tire efficiency result: stock pre-market at EUR 70.75 ad-hoc-news.de Continental said its concept tire helped Volkswagen’s Mission Efficiency vehicle set a world record",
+    "summary_de": "",
+    "article_text": "Continental said its concept tire helped Volkswagen’s Mission Efficiency vehicle set a world record",
+    "published_at": "2026-10-16T05:33:30+00:00",
+    "sent_at": "2026-10-16T07:38:41.727665+00:00",
+    "message_id": 105,
+    "dedup_keys": [
+      "title:continental reports record tire efficiency result stock pre-market at eur 70 75",
+      "title_tokens:efficiency market record reports result stock tire",
+      "url:https://ad-hoc-news.de/boerse/news/vorboerse/continental-reports-record-tire-efficiency-result-stock-pre-market-at-eur-70-75/70335273"
+    ]
   }
 ]
