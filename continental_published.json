@@ -1542,5 +1542,28 @@
       "title_tokens:efficiency market record reports result stock tire",
       "url:https://ad-hoc-news.de/boerse/news/vorboerse/continental-reports-record-tire-efficiency-result-stock-pre-market-at-eur-70-75/70335273"
     ]
+  },
+  {
+    "article_url": "https://cyclingmagazine.ca/mtb/continental-joins-the-32-club-with-a-gravel-xc-option/",
+    "title": "Continental joins the 32\" club with a gravel / XC option - Canadian Cycling Magazine",
+    "source_name": "Canadian Cycling Magazine",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental joins the 32″ club with a gravel / XC option Canadian Cycling Magazine As 32″ tires gain traction, Continental Tires is joining the party. The German company, founded way back ini 1871. is expanding into 32-inch tires with its Dubnital tire. Given the brand’s century+ history, this might not be the largest bicycle tire the brand’s made. 32″‘s big, but not quite penny farthing territory yet. Dubnital is a logical first step for Conti as it can pull double duty as a gravel or cross country tire. Continental describes it as a “fast-rolling all-rounder.” “By scaling its tread design to the larger dimension,” Conti’s PR says, “The new tire maximizes momentum retention, improves obstacle rollover, and increases overall traction and stability.” The bigger Dubnital will be available in Continentals Race Casing and fast-rolling “Rapid” compound to start.",
+    "summary_de": "",
+    "article_text": "As 32″ tires gain traction, Continental Tires is joining the party. The German company, founded way back ini 1871. is expanding into 32-inch tires with its Dubnital tire. Given the brand’s century+ history, this might not be the largest bicycle tire the brand’s made. 32″‘s big, but not quite penny farthing territory yet. Dubnital is a logical first step for Conti as it can pull double duty as a gravel or cross country tire. Continental describes it as a “fast-rolling all-rounder.” “By scaling its tread design to the larger dimension,” Conti’s PR says, “The new tire maximizes momentum retention, improves obstacle rollover, and increases overall traction and stability.” The bigger Dubnital will be available in Continentals Race Casing and fast-rolling “Rapid” compound to start.",
+    "published_at": "2026-10-17T00:05:59+00:00",
+    "sent_at": "2026-10-17T07:37:41.249955+00:00",
+    "message_id": 106,
+    "dedup_keys": [
+      "title:continental joins the 32 club with a gravel xc option - canadian cycling magazine",
+      "title_tokens:canadian club cycling gravel joins magazine option with",
+      "url:https://cyclingmagazine.ca/mtb/continental-joins-the-32-club-with-a-gravel-xc-option"
+    ]
   }
 ]
