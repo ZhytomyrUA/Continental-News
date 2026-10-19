@@ -1565,5 +1565,30 @@
       "title_tokens:canadian club cycling gravel joins magazine option with",
       "url:https://cyclingmagazine.ca/mtb/continental-joins-the-32-club-with-a-gravel-xc-option"
     ]
+  },
+  {
+    "article_url": "https://businessday.ng/life/article/turning-regional-advantage-to-continental-competitiveness-the-case-for-the-baar-states/?amp",
+    "title": "Turning regional advantage to continental competitiveness: the case for the BAAR states",
+    "source_name": "Businessday NG",
+    "primary_category": "company",
+    "categories": [
+      "plants"
+    ],
+    "plant": null,
+    "event_families": [
+      "investment"
+    ],
+    "event_key": "",
+    "summary": "Turning regional advantage to continental competitiveness: the case for the BAAR states Businessday NG There have been growing calls for integrated regional development particularly among crude oil producing states in the Niger There have been growing calls for integrated regional development particularly among crude oil producing states in the Niger Delta region with the aim of integrating the economic potentials among congruent states. At the recent Niger Delta Economic and Investment Summit (NDEIS) organised by the Niger Delta Chamber of Commerce Industry, Trade, Mines and Agriculture (NDCCITMA) with the support of the Niger Delta Development Commission (NDDC) in Port Harcourt, Rivers State, the issue of a regional development was touted. The issue was also echoed at the WPL Annual 2026 SME Conference with the theme: Harnessing Economic and Investment Opportunities Through SMEs, organised by Wider Perspectives Limited (WPL) in Yenagoa, the Bayelsa State capital.",
+    "summary_de": "",
+    "article_text": "There have been growing calls for integrated regional development particularly among crude oil producing states in the Niger There have been growing calls for integrated regional development particularly among crude oil producing states in the Niger Delta region with the aim of integrating the economic potentials among congruent states. At the recent Niger Delta Economic and Investment Summit (NDEIS) organised by the Niger Delta Chamber of Commerce Industry, Trade, Mines and Agriculture (NDCCITMA) with the support of the Niger Delta Development Commission (NDDC) in Port Harcourt, Rivers State, the issue of a regional development was touted. The issue was also echoed at the WPL Annual 2026 SME Conference with the theme: Harnessing Economic and Investment Opportunities Through SMEs, organised by Wider Perspectives Limited (WPL) in Yenagoa, the Bayelsa State capital.",
+    "published_at": "2026-10-18T17:46:14+00:00",
+    "sent_at": "2026-10-19T07:48:11.767852+00:00",
+    "message_id": 107,
+    "dedup_keys": [
+      "title:turning regional advantage to continental competitiveness the case for the baar states",
+      "title_tokens:advantage baar case competitiveness regional states turning",
+      "url:https://businessday.ng/life/article/turning-regional-advantage-to-continental-competitiveness-the-case-for-the-baar-states"
+    ]
   }
 ]
