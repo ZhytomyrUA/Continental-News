@@ -1590,5 +1590,51 @@
       "title_tokens:advantage baar case competitiveness regional states turning",
       "url:https://businessday.ng/life/article/turning-regional-advantage-to-continental-competitiveness-the-case-for-the-baar-states"
     ]
+  },
+  {
+    "article_url": "https://www.aftermarketnews.com/volkswagen-concept-vehicle-mission-efficiency-sets-world-record-on-continental-tires/",
+    "title": "Continental Concept Tire Supports VW Mission Efficiency World Record",
+    "source_name": "AftermarketNews",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental Concept Tire Supports VW Mission Efficiency World Record AftermarketNews Adapted from the EcoContact 7, Continental’s concept tire underpinned Volkswagen’s certified Mission Efficiency record by delivering 4.9 kg/t rolling resistance—about 25% below EU label class A.",
+    "summary_de": "",
+    "article_text": "Adapted from the EcoContact 7, Continental’s concept tire underpinned Volkswagen’s certified Mission Efficiency record by delivering 4.9 kg/t rolling resistance—about 25% below EU label class A.",
+    "published_at": "2026-10-19T12:35:05+00:00",
+    "sent_at": "2026-10-19T16:44:18.224711+00:00",
+    "message_id": 108,
+    "dedup_keys": [
+      "title:continental concept tire supports vw mission efficiency world record",
+      "title_tokens:concept efficiency mission record supports tire world",
+      "url:https://aftermarketnews.com/volkswagen-concept-vehicle-mission-efficiency-sets-world-record-on-continental-tires"
+    ]
+  },
+  {
+    "article_url": "https://www.tyrepress.com/2026/10/continental-tyres-contribute-to-volkswagen-ev-record/",
+    "title": "Continental tyres contribute to Volkswagen EV record - Tyrepress",
+    "source_name": "Tyrepress",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental tyres contribute to Volkswagen EV record Tyrepress",
+    "summary_de": "",
+    "article_text": "Continental tyres contribute to Volkswagen EV record Tyrepress",
+    "published_at": "2026-10-19T07:45:32+00:00",
+    "sent_at": "2026-10-19T16:44:19.629007+00:00",
+    "message_id": 109,
+    "dedup_keys": [
+      "title:continental tyres contribute to volkswagen ev record - tyrepress",
+      "title_tokens:contribute record tyrepress tyres volkswagen",
+      "url:https://tyrepress.com/2026/10/continental-tyres-contribute-to-volkswagen-ev-record"
+    ]
   }
 ]
