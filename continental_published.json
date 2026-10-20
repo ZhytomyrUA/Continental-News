@@ -1731,5 +1731,28 @@
       "title_tokens:5000 collector edition grand pogačar prix präsentiert tadej zusammenarbeit",
       "url:https://continental.com/de/presse/pressemitteilungen/20261020-pogacar-collectors-edition"
     ]
+  },
+  {
+    "article_url": "https://velo.outsideonline.com/gravel/gravel-gear/new-32-inch-tires-continental-rene-herse/",
+    "title": "32-inch Gravel Gains Steam with New Tires from Continental and Rene Herse",
+    "source_name": "Outside Magazine",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "32-inch Gravel Gains Steam with New Tires from Continental and Rene Herse Outside Magazine The tire offerings from both big and small brands build on the rumors that 32-inch wheel gravel bikes from big brands will be rolling out early next year.",
+    "summary_de": "",
+    "article_text": "The tire offerings from both big and small brands build on the rumors that 32-inch wheel gravel bikes from big brands will be rolling out early next year.",
+    "published_at": "2026-10-20T16:08:20+00:00",
+    "sent_at": "2026-10-20T16:41:08.369406+00:00",
+    "message_id": 114,
+    "dedup_keys": [
+      "title:32-inch gravel gains steam with new tires from continental and rene herse",
+      "title_tokens:from gains gravel herse inch rene steam tires with",
+      "url:https://velo.outsideonline.com/gravel/gravel-gear/new-32-inch-tires-continental-rene-herse"
+    ]
   }
 ]
