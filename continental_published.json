@@ -1778,5 +1778,75 @@
       "title_tokens:growth mexico sustainability targets tire",
       "url:https://mexicobusiness.news/automotive/news/continental-tire-targets-growth-sustainability-mexico"
     ]
+  },
+  {
+    "article_url": "https://lifestyleandtech.co.za/smart-tech/article/2026-10-21/new-audi-q3-fitted-with-original-equipment-continental-tyres",
+    "title": "New Audi Q3 Fitted with Original Equipment Continental Tyres",
+    "source_name": "Lifestyle & Tech",
+    "primary_category": "tires",
+    "categories": [
+      "plants",
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "New Audi Q3 Fitted with Original Equipment Continental Tyres Lifestyle & Tech Hanover, Germany, October 21, 2026. Continental supplies factory-fitted tyres for the new Audi Q3 compact SUV, having been granted original",
+    "summary_de": "",
+    "article_text": "Hanover, Germany, October 21, 2026. Continental supplies factory-fitted tyres for the new Audi Q3 compact SUV, having been granted original",
+    "published_at": "2026-10-21T10:05:22+00:00",
+    "sent_at": "2026-10-21T16:42:43.136970+00:00",
+    "message_id": 116,
+    "dedup_keys": [
+      "title:new audi q3 fitted with original equipment continental tyres",
+      "title_tokens:audi equipment fitted original tyres with",
+      "url:https://lifestyleandtech.co.za/smart-tech/article/2026-10-21/new-audi-q3-fitted-with-original-equipment-continental-tyres"
+    ]
+  },
+  {
+    "article_url": "https://townpress.co.za/new-audi-q3-gets-continental-tyres-designed-to-cut-fuel-use/",
+    "title": "New Audi Q3 gets Continental tyres designed to cut fuel use | Townpress Newspaper",
+    "source_name": "Townpress Newspaper",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "New Audi Q3 gets Continental tyres designed to cut fuel use Townpress Newspaper HANOVER — Audi has approved Continental’s EcoContact 6 Q tyres as original equipment for the new Q3, with the manufacturer targeting lower fuel consumption and reduced road noise across three wheel sizes. The approval covers 18-, 19- and 20-inch fitments for the compact SUV. Original-equipment approval allows the tyres to be fitted during vehicle production,",
+    "summary_de": "",
+    "article_text": "HANOVER — Audi has approved Continental’s EcoContact 6 Q tyres as original equipment for the new Q3, with the manufacturer targeting lower fuel consumption and reduced road noise across three wheel sizes. The approval covers 18-, 19- and 20-inch fitments for the compact SUV. Original-equipment approval allows the tyres to be fitted during vehicle production,",
+    "published_at": "2026-10-21T10:46:59+00:00",
+    "sent_at": "2026-10-21T16:42:48.497815+00:00",
+    "message_id": 117,
+    "dedup_keys": [
+      "title:new audi q3 gets continental tyres designed to cut fuel use townpress newspaper",
+      "title_tokens:audi designed fuel gets newspaper townpress tyres",
+      "url:https://townpress.co.za/new-audi-q3-gets-continental-tyres-designed-to-cut-fuel-use"
+    ]
+  },
+  {
+    "article_url": "https://www.todomountainbike.net/en/continental-launches-special-edition-grand-prix-5000-s-tr-honoring-tadej-pogacar-complete-exclusive-collectible",
+    "title": "Continental Launches Special-Edition Grand Prix 5000 S TR Honoring Tadej Pogacar, Complete With an Exclusive Collectible",
+    "source_name": "TodoMountainBike",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental Launches Special-Edition Grand Prix 5000 S TR Honoring Tadej Pogacar, Complete With an Exclusive Collectible TodoMountainBike Continental unveils the Grand Prix 5000 S TR Pogacar Edition, a limited-edition tubeless road tire with exclusive graphics, collectible figurine, and $137.95 price.",
+    "summary_de": "",
+    "article_text": "Continental unveils the Grand Prix 5000 S TR Pogacar Edition, a limited-edition tubeless road tire with exclusive graphics, collectible figurine, and $137.95 price.",
+    "published_at": "2026-10-20T10:13:25+00:00",
+    "sent_at": "2026-10-21T16:42:51.659474+00:00",
+    "message_id": 118,
+    "dedup_keys": [
+      "title:continental launches special-edition grand prix 5000 s tr honoring tadej pogacar complete with an exclusive collectible",
+      "title_tokens:5000 collectible complete edition exclusive grand honoring launches pogacar prix special tadej with",
+      "url:https://todomountainbike.net/en/continental-launches-special-edition-grand-prix-5000-s-tr-honoring-tadej-pogacar-complete-exclusive-collectible"
+    ]
   }
 ]
