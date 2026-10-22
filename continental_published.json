@@ -1848,5 +1848,31 @@
       "title_tokens:5000 collectible complete edition exclusive grand honoring launches pogacar prix special tadej with",
       "url:https://todomountainbike.net/en/continental-launches-special-edition-grand-prix-5000-s-tr-honoring-tadej-pogacar-complete-exclusive-collectible"
     ]
+  },
+  {
+    "article_url": "https://www.ad-hoc-news.de/boerse/news/vorboerse/continental-aktie-quartalszahlen-am-04-11-2026-vorboerslich-leicht-schwaecher/70390332",
+    "title": "Continental-Aktie: Quartalszahlen am 04.11.2026, vorbörslich leicht schwächer",
+    "source_name": "AD HOC NEWS",
+    "primary_category": "tires",
+    "categories": [
+      "tires",
+      "company"
+    ],
+    "plant": null,
+    "event_families": [
+      "results"
+    ],
+    "event_key": "",
+    "summary": "Continental-Aktie: Quartalszahlen am 04.11.2026, vorbörslich leicht schwächer AD HOC NEWS Continental entwickelt Reifen und Lösungen für Autohersteller sowie Industrie- und Endkunden. Bei La",
+    "summary_de": "",
+    "article_text": "Continental entwickelt Reifen und Lösungen für Autohersteller sowie Industrie- und Endkunden. Bei La",
+    "published_at": "2026-10-22T05:59:34+00:00",
+    "sent_at": "2026-10-22T07:45:19.481643+00:00",
+    "message_id": 119,
+    "dedup_keys": [
+      "title:continental-aktie quartalszahlen am 04 11 2026 vorbörslich leicht schwächer",
+      "title_tokens:2026 aktie leicht quartalszahlen schwächer vorbörslich",
+      "url:https://ad-hoc-news.de/boerse/news/vorboerse/continental-aktie-quartalszahlen-am-04-11-2026-vorboerslich-leicht-schwaecher/70390332"
+    ]
   }
 ]
