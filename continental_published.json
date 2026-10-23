@@ -1874,5 +1874,32 @@
       "title_tokens:2026 aktie leicht quartalszahlen schwächer vorbörslich",
       "url:https://ad-hoc-news.de/boerse/news/vorboerse/continental-aktie-quartalszahlen-am-04-11-2026-vorboerslich-leicht-schwaecher/70390332"
     ]
+  },
+  {
+    "article_url": "https://dailynews.co.tz/tanzania-earns-continental-recognition-for-its-advanced-water-management/",
+    "title": "Tanzania earns continental recognition for its advanced water management - Daily News",
+    "source_name": "Daily News",
+    "primary_category": "company",
+    "categories": [
+      "plants",
+      "company"
+    ],
+    "plant": null,
+    "event_families": [
+      "investment",
+      "management"
+    ],
+    "event_key": "",
+    "summary": "Tanzania earns continental recognition for its advanced water management Daily News LUANDA: TANZANIA has earned recognition from African leaders for its investment in the water sector, with the government’s funding and management of water projects highlighted at a continental meeting in Luanda, Angola. The recognition came during a meeting of African presidents, foreign affairs ministers and water ministers held under the theme “Water as a Link …",
+    "summary_de": "",
+    "article_text": "LUANDA: TANZANIA has earned recognition from African leaders for its investment in the water sector, with the government’s funding and management of water projects highlighted at a continental meeting in Luanda, Angola. The recognition came during a meeting of African presidents, foreign affairs ministers and water ministers held under the theme “Water as a Link …",
+    "published_at": "2026-10-22T15:09:03+00:00",
+    "sent_at": "2026-10-23T07:43:47.008246+00:00",
+    "message_id": 120,
+    "dedup_keys": [
+      "title:tanzania earns continental recognition for its advanced water management - daily news",
+      "title_tokens:advanced daily earns management news recognition tanzania water",
+      "url:https://dailynews.co.tz/tanzania-earns-continental-recognition-for-its-advanced-water-management"
+    ]
   }
 ]
