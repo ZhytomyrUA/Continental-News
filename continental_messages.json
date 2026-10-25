@@ -572,5 +572,19 @@
     "title": "Tanzania earns continental recognition for its advanced water management - Daily News",
     "primary_category": "company",
     "sent_at": "2026-10-23T07:43:47.008246+00:00"
+  },
+  {
+    "message_id": 121,
+    "article_url": "https://www.carexpert.com.au/car-news/expert-insights-qanda-with-continental-tyres-managing-director-mitchell-golledge",
+    "title": "Expert Insights: Q&A with Continental Tyres Australia managing director Mitchell Golledge",
+    "primary_category": "tires",
+    "sent_at": "2026-10-25T08:33:07.413139+00:00"
+  },
+  {
+    "message_id": 122,
+    "article_url": "https://www.welt.de/finanzen/boerse/article6adb3063d8be1e987154e44a/continental-aktie-zweiter-tag-mit-verlusten.html",
+    "title": "Continental-Aktie: Zweiter Tag mit Verlusten - WELT",
+    "primary_category": "company",
+    "sent_at": "2026-10-25T08:33:09.857448+00:00"
   }
 ]

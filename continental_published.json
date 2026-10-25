@@ -1901,5 +1901,51 @@
       "title_tokens:advanced daily earns management news recognition tanzania water",
       "url:https://dailynews.co.tz/tanzania-earns-continental-recognition-for-its-advanced-water-management"
     ]
+  },
+  {
+    "article_url": "https://www.carexpert.com.au/car-news/expert-insights-qanda-with-continental-tyres-managing-director-mitchell-golledge",
+    "title": "Expert Insights: Q&A with Continental Tyres Australia managing director Mitchell Golledge",
+    "source_name": "CarExpert",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Expert Insights: Q&A with Continental Tyres Australia managing director Mitchell Golledge CarExpert The boss of Continental tyres in Australia joins us to discuss road safety, Chinese rivals, EU lawmakers, and new challenges born from electric cars.",
+    "summary_de": "",
+    "article_text": "The boss of Continental tyres in Australia joins us to discuss road safety, Chinese rivals, EU lawmakers, and new challenges born from electric cars.",
+    "published_at": "2026-10-24T21:00:00+00:00",
+    "sent_at": "2026-10-25T08:33:07.413139+00:00",
+    "message_id": 121,
+    "dedup_keys": [
+      "title:expert insights q a with continental tyres australia managing director mitchell golledge",
+      "title_tokens:australia director expert golledge insights managing mitchell tyres with",
+      "url:https://carexpert.com.au/car-news/expert-insights-qanda-with-continental-tyres-managing-director-mitchell-golledge"
+    ]
+  },
+  {
+    "article_url": "https://www.welt.de/finanzen/boerse/article6adb3063d8be1e987154e44a/continental-aktie-zweiter-tag-mit-verlusten.html",
+    "title": "Continental-Aktie: Zweiter Tag mit Verlusten - WELT",
+    "source_name": "WELT",
+    "primary_category": "company",
+    "categories": [
+      "company"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental-Aktie: Zweiter Tag in Folge Verluste WELT Mit einer Abwärtsbewegung von 1,04 Prozent gehört Continental zum hinteren Drittel des Dax.",
+    "summary_de": "",
+    "article_text": "Mit einer Abwärtsbewegung von 1,04 Prozent gehört Continental zum hinteren Drittel des Dax.",
+    "published_at": "2026-10-23T10:01:07.929000+00:00",
+    "sent_at": "2026-10-25T08:33:09.857448+00:00",
+    "message_id": 122,
+    "dedup_keys": [
+      "title:continental-aktie zweiter tag mit verlusten - welt",
+      "title_tokens:aktie verlusten welt zweiter",
+      "url:https://elt.de/finanzen/boerse/article6adb3063d8be1e987154e44a/continental-aktie-zweiter-tag-mit-verlusten.html"
+    ]
   }
 ]
