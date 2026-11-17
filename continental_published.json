@@ -1947,5 +1947,200 @@
       "title_tokens:aktie verlusten welt zweiter",
       "url:https://elt.de/finanzen/boerse/article6adb3063d8be1e987154e44a/continental-aktie-zweiter-tag-mit-verlusten.html"
     ]
+  },
+  {
+    "article_url": "https://www.tractionnews.com/continental-expands-sensor-ready-portfolio-with-conti-hsc-3-and-hdc-3/",
+    "title": "Continental Adds Conti HSC 3 and HDC 3 to Sensor Ready Portfolio | Traction News",
+    "source_name": "Traction News",
+    "primary_category": "company",
+    "categories": [
+      "plants"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental Expands Sensor Ready Portfolio With Conti HSC 3 and HDC 3 Traction News Continental added the Conti HSC 3 and HDC 3 in 11R22.5 and 11R24.5 to its Sensor Ready portfolio, with a factory sensor pocket for ContiConnect.",
+    "summary_de": "",
+    "article_text": "Continental added the Conti HSC 3 and HDC 3 in 11R22.5 and 11R24.5 to its Sensor Ready portfolio, with a factory sensor pocket for ContiConnect.",
+    "published_at": "2026-11-16T00:52:33.720000+00:00",
+    "sent_at": "2026-11-17T17:40:05.973551+00:00",
+    "message_id": 123,
+    "dedup_keys": [
+      "title:continental adds conti hsc 3 and hdc 3 to sensor ready portfolio traction news",
+      "title_tokens:adds conti news portfolio ready sensor traction",
+      "url:https://tractionnews.com/continental-expands-sensor-ready-portfolio-with-conti-hsc-3-and-hdc-3"
+    ]
+  },
+  {
+    "article_url": "https://africa.businessinsider.com/local/markets/uganda-courts-africas-richest-man-for-billion-dollar-refinery-and-fertiliser-projects/g4t8qfx",
+    "title": "Uganda courts Africa's richest man for billion-dollar refinery and fertiliser projects as Dangote raises his continental investment ambitions to $70 billion",
+    "source_name": "Business Insider",
+    "primary_category": "company",
+    "categories": [
+      "plants",
+      "company"
+    ],
+    "plant": null,
+    "event_families": [
+      "investment"
+    ],
+    "event_key": "",
+    "summary": "Uganda courts Africa's richest man for billion-dollar refinery and fertiliser projects as Dangote raises his continental investment ambitions to $70 billion Business Insider Uganda is actively courting Nigerian billionaire Aliko Dangote to invest billions in its oil refinery, fertiliser, and salt production projects as part of its industrialisation strategy",
+    "summary_de": "",
+    "article_text": "Uganda is actively courting Nigerian billionaire Aliko Dangote to invest billions in its oil refinery, fertiliser, and salt production projects as part of its industrialisation strategy",
+    "published_at": "2026-11-16T13:06:51+00:00",
+    "sent_at": "2026-11-17T17:40:08.319161+00:00",
+    "message_id": 124,
+    "dedup_keys": [
+      "title:uganda courts africa's richest man for billion-dollar refinery and fertiliser projects as dangote raises his continental investment ambitions to 70 billion",
+      "title_tokens:africa ambitions billion courts dangote dollar fertiliser investment projects raises refinery richest uganda",
+      "url:https://africa.businessinsider.com/local/markets/uganda-courts-africas-richest-man-for-billion-dollar-refinery-and-fertiliser-projects/g4t8qfx"
+    ]
+  },
+  {
+    "article_url": "https://africa.businessinsider.com/local/markets/with-a-dollar16-billion-kenya-refinery-and-dollar25-billion-namibia-fuel-project/ljrv0c3",
+    "title": "With a $16 billion Kenya refinery and $2.5 billion Namibia fuel project underway, Africa’s richest man raises continental investment ambition to $70 billion and considers a 10,000MW power push",
+    "source_name": "Business Insider Africa",
+    "primary_category": "company",
+    "categories": [
+      "plants"
+    ],
+    "plant": null,
+    "event_families": [
+      "investment"
+    ],
+    "event_key": "",
+    "summary": "With a $16 billion Kenya refinery and $2.5 billion Namibia fuel project underway, Africa’s richest man raises continental investment ambition to $70 billion and considers a 10,000MW power push Business Insider Africa Africa’s richest man, Aliko Dangote, has raised his continental investment ambition to $70 billion and is considering a separate 10,000MW power programme",
+    "summary_de": "",
+    "article_text": "Africa’s richest man, Aliko Dangote, has raised his continental investment ambition to $70 billion and is considering a separate 10,000MW power programme",
+    "published_at": "2026-11-13T18:13:14+00:00",
+    "sent_at": "2026-11-17T17:40:10.506984+00:00",
+    "message_id": 125,
+    "dedup_keys": [
+      "title:with a 16 billion kenya refinery and 2 5 billion namibia fuel project underway africa's richest man raises continental investment ambition to 70 billion and considers a 10 000mw power push",
+      "title_tokens:000mw africa ambition billion considers fuel investment kenya namibia power project push raises refinery richest underway with",
+      "url:https://africa.businessinsider.com/local/markets/with-a-dollar16-billion-kenya-refinery-and-dollar25-billion-namibia-fuel-project/ljrv0c3"
+    ]
+  },
+  {
+    "article_url": "https://www.continental-reifen.de/about-us/stories/52-contituningtag/",
+    "title": "52. ContiTuningTag | Continental Reifen",
+    "source_name": "Continental Reifen",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Entdecken Sie hier alle Highlights des 52. ContiTuningTags! m Fokus stehen Fahrerlebnisse, moderne Reifentechnologie und leistungsstarke Tuning-Fahrzeuge. Besucher konnten dabei die Performance der Continental Reifen unter realen Bedingungen hautnah erleben. Entdecken Sie hier alle Highlights des 52. ContiTuningTags! m Fokus stehen Fahrerlebnisse, moderne Reifentechnologie und leistungsstarke Tuning-Fahrzeuge. Besucher konnten dabei die Performance der Continental Reifen unter realen Bedingungen hautnah erleben.",
+    "summary_de": "",
+    "article_text": "Entdecken Sie hier alle Highlights des 52. ContiTuningTags! m Fokus stehen Fahrerlebnisse, moderne Reifentechnologie und leistungsstarke Tuning-Fahrzeuge. Besucher konnten dabei die Performance der Continental Reifen unter realen Bedingungen hautnah erleben.",
+    "published_at": "2026-11-12T23:00:00+00:00",
+    "sent_at": "2026-11-17T17:40:12.326236+00:00",
+    "message_id": 126,
+    "dedup_keys": [
+      "title:52 contituningtag continental reifen",
+      "title_tokens:contituningtag reifen",
+      "url:https://continental-reifen.de/about-us/stories/52-contituningtag"
+    ]
+  },
+  {
+    "article_url": "https://www.continental.com/de/presse/mediathek/the-continental-tires-garage/the-continental-tires-garage-folge-7/",
+    "title": "The Continental Tires Garage: Wie funktioniert Reifenrecycling?",
+    "source_name": "Continental AG",
+    "primary_category": "tires",
+    "categories": [
+      "tires",
+      "company"
+    ],
+    "plant": null,
+    "event_families": [
+      "results"
+    ],
+    "event_key": "",
+    "summary": "The Continental Tires Garage: Wie funktioniert Reifenrecycling? Continental AG Reifenrecycling: Wie lassen sich wertvolle Materialien aus Altreifen sicher zurückgewinnen und warum ist diese Aufgabe so anspruchsvoll? Das zeigen wir in der neuesten Folge von The Tires Garage.",
+    "summary_de": "",
+    "article_text": "Reifenrecycling: Wie lassen sich wertvolle Materialien aus Altreifen sicher zurückgewinnen und warum ist diese Aufgabe so anspruchsvoll? Das zeigen wir in der neuesten Folge von The Tires Garage.",
+    "published_at": "2026-11-16T00:00:00+00:00",
+    "sent_at": "2026-11-17T17:40:15.584484+00:00",
+    "message_id": 127,
+    "dedup_keys": [
+      "title:the continental tires garage wie funktioniert reifenrecycling",
+      "title_tokens:funktioniert garage reifenrecycling tires",
+      "url:https://continental.com/de/presse/mediathek/the-continental-tires-garage/the-continental-tires-garage-folge-7"
+    ]
+  },
+  {
+    "article_url": "https://www.continental.com/de/presse/pressemitteilungen/volkswagen-id-cross/",
+    "title": "Volkswagen setzt beim neuen ID. Cross auf Reifen von Continental",
+    "source_name": "Continental AG",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Volkswagen setzt beim neuen ID. Cross auf Reifen von Continental Continental AG Volkswagen erteilt für den neuen ID. Cross Erstausrüstungsfreigaben für Continental-Reifen",
+    "summary_de": "",
+    "article_text": "Volkswagen erteilt für den neuen ID. Cross Erstausrüstungsfreigaben für Continental-Reifen",
+    "published_at": "2026-11-05T00:00:00+00:00",
+    "sent_at": "2026-11-17T17:40:17.783986+00:00",
+    "message_id": 128,
+    "dedup_keys": [
+      "title:volkswagen setzt beim neuen id cross auf reifen von continental",
+      "title_tokens:beim cross neuen reifen setzt volkswagen",
+      "url:https://continental.com/de/presse/pressemitteilungen/volkswagen-id-cross"
+    ]
+  },
+  {
+    "article_url": "https://www.continental.com/en/press/press-releases/results-nine-months-2026/",
+    "title": "Continental Raises Outlook After Good Third Quarter",
+    "source_name": "Continental",
+    "primary_category": "tires",
+    "categories": [
+      "tires",
+      "company"
+    ],
+    "plant": null,
+    "event_families": [
+      "results"
+    ],
+    "event_key": "",
+    "summary": "Continental has raised its outlook for the adjusted EBIT margin and adjusted free cash flow for continuing operations after its tire business once again achieved very good results in the third quarter of 2026. This was primarily due to the strong earnings performance in Europe, where the tire manufacturer further improved on last year’s good foundation. In Asia, Continental once again posted very good results. In North and South America, earnings were negatively impacted by weak replacement… Continental has raised its outlook for the adjusted EBIT margin and adjusted free cash flow for continuing operations after its tire business once again achieved very good results in the third quarter of 2026.",
+    "summary_de": "",
+    "article_text": "Continental has raised its outlook for the adjusted EBIT margin and adjusted free cash flow for continuing operations after its tire business once again achieved very good results in the third quarter of 2026.",
+    "published_at": "2026-11-04T00:00:00+00:00",
+    "sent_at": "2026-11-17T17:40:20.066277+00:00",
+    "message_id": 129,
+    "dedup_keys": [
+      "title:continental raises outlook after good third quarter",
+      "title_tokens:after good outlook quarter raises third",
+      "url:https://continental.com/en/press/press-releases/results-nine-months-2026"
+    ]
+  },
+  {
+    "article_url": "https://www.continental-reifen.de/about-us/stories/essen-motor-show-2026-continental/",
+    "title": "Continental auf der Essen Motor Show 2026",
+    "source_name": "Continental Reifen",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Erleben Sie Continental auf der Essen Motor Show 2026. Entdecken Sie unsere Performance-Reifen, außergewöhnliche Fahrzeuge und die Highlights unseres Messestands. Erleben Sie Continental auf der Essen Motor Show 2026. Entdecken Sie unsere Performance-Reifen, außergewöhnliche Fahrzeuge und die Highlights unseres Messestands.",
+    "summary_de": "",
+    "article_text": "Erleben Sie Continental auf der Essen Motor Show 2026. Entdecken Sie unsere Performance-Reifen, außergewöhnliche Fahrzeuge und die Highlights unseres Messestands.",
+    "published_at": "2026-11-12T23:00:00+00:00",
+    "sent_at": "2026-11-17T17:40:21.854182+00:00",
+    "message_id": 130,
+    "dedup_keys": [
+      "title:continental auf der essen motor show 2026",
+      "title_tokens:2026 essen motor show",
+      "url:https://continental-reifen.de/about-us/stories/essen-motor-show-2026-continental"
+    ]
   }
 ]
