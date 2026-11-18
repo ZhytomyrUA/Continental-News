@@ -642,5 +642,47 @@
     "title": "Continental auf der Essen Motor Show 2026",
     "primary_category": "tires",
     "sent_at": "2026-11-17T17:40:21.854182+00:00"
+  },
+  {
+    "message_id": 131,
+    "article_url": "https://www.hna.de/niedersachsen/leerstehend-und-gigantisch-altes-werk-zaehlt-zu-groessten-lost-places-in-niedersachsen-94595501.html",
+    "title": "Leerstehend und gigantisch: Altes Werk zählt zu größten Lost Places in Niedersachsen",
+    "primary_category": "company",
+    "sent_at": "2026-11-18T17:13:25.737005+00:00"
+  },
+  {
+    "message_id": 132,
+    "article_url": "https://www.continental.com/en/press/press-releases/volkswagen-id-cross/",
+    "title": "Volkswagen Chooses Continental Tires for the New ID. Cross",
+    "primary_category": "tires",
+    "sent_at": "2026-11-18T17:13:28.883182+00:00"
+  },
+  {
+    "message_id": 133,
+    "article_url": "https://reifenpresse.de/2026/11/04/region-emea-ist-das-ertragsfundament-des-continental-reifengeschaefts/",
+    "title": "Region EMEA ist das Ertragsfundament des Continental-Reifengeschäfts",
+    "primary_category": "tires",
+    "sent_at": "2026-11-18T17:13:38.209975+00:00"
+  },
+  {
+    "message_id": 134,
+    "article_url": "https://reifenpresse.de/2026/11/05/winter-ganzjahresreifen-autobild-tophersteller-fuer-2026-stehen-fest/",
+    "title": "Winter-/Ganzjahresreifen: AutoBild-Tophersteller für 2026 stehen fest",
+    "primary_category": "tires",
+    "sent_at": "2026-11-18T17:13:42.170147+00:00"
+  },
+  {
+    "message_id": 135,
+    "article_url": "https://www.continental.com/de/presse/pressemitteilungen/20261116-best-brands-2026/",
+    "title": "Best Brands 2026: Continental feiert Doppelsieg bei sport auto-Leserwahl",
+    "primary_category": "tires",
+    "sent_at": "2026-11-18T17:13:45.725275+00:00"
+  },
+  {
+    "message_id": 136,
+    "article_url": "https://reifenpresse.de/2026/11/06/weiteres-freigabedreierpack-fuer-conti-bei-vw/",
+    "title": "Weiteres Freigabedreierpack für Conti bei VW",
+    "primary_category": "tires",
+    "sent_at": "2026-11-18T17:13:49.472034+00:00"
   }
 ]
