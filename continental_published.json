@@ -2284,5 +2284,170 @@
       "title_tokens:conti freigabedreierpack weiteres",
       "url:https://reifenpresse.de/2026/11/06/weiteres-freigabedreierpack-fuer-conti-bei-vw"
     ]
+  },
+  {
+    "article_url": "https://www.continental.com/en/press/press-releases/oe-mercedes/",
+    "title": "Factory-fitted with Continental Tires: The New Mercedes-AMG CLA",
+    "source_name": "Continental",
+    "primary_category": "tires",
+    "categories": [
+      "plants",
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental has received original-equipment approvals for the new all-electric Mercedes-AMG CLA series. The performance model is factory-fitted with a version of the SportContact 7 developed specifically for it. SportContact 7 approved for new all-electric performance model from Mercedes-AMG",
+    "summary_de": "",
+    "article_text": "SportContact 7 approved for new all-electric performance model from Mercedes-AMG",
+    "published_at": "2026-11-19T00:00:00+00:00",
+    "sent_at": "2026-11-19T17:21:13.271268+00:00",
+    "message_id": 137,
+    "dedup_keys": [
+      "title:factory-fitted with continental tires the new mercedes-amg cla",
+      "title_tokens:factory fitted mercedes tires with",
+      "url:https://continental.com/en/press/press-releases/oe-mercedes"
+    ]
+  },
+  {
+    "article_url": "https://www.continental.com/de/presse/pressemitteilungen/oe-mercedes/",
+    "title": "Ab Werk auf Continental-Reifen: der neue Mercedes-AMG CLA",
+    "source_name": "Continental AG",
+    "primary_category": "tires",
+    "categories": [
+      "plants",
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Ab Werk auf Continental-Reifen: der neue Mercedes-AMG CLA Continental AG SportContact 7 für neues elektrisches Performancemodell von Mercedes-AMG freigegeben",
+    "summary_de": "",
+    "article_text": "SportContact 7 für neues elektrisches Performancemodell von Mercedes-AMG freigegeben",
+    "published_at": "2026-11-19T00:00:00+00:00",
+    "sent_at": "2026-11-19T17:21:16.690072+00:00",
+    "message_id": 138,
+    "dedup_keys": [
+      "title:ab werk auf continental-reifen der neue mercedes-amg cla",
+      "title_tokens:mercedes neue reifen werk",
+      "url:https://continental.com/de/presse/pressemitteilungen/oe-mercedes"
+    ]
+  },
+  {
+    "article_url": "https://www.africa-energy.com/news-centre/article/dangote-continues-continental-expansion-kenya-and-namibia",
+    "title": "Dangote continues continental expansion with Kenya and Namibia downstream investments | African Energy",
+    "source_name": "African Energy",
+    "primary_category": "company",
+    "categories": [
+      "plants"
+    ],
+    "plant": null,
+    "event_families": [
+      "investment"
+    ],
+    "event_key": "",
+    "summary": "Dangote continues continental expansion with Kenya and Namibia downstream investments African Energy Aliko Dangote’s pan-African investment spree has continued with the announcement of two large downstream investments by the billionaire’s eponymous conglomerate.",
+    "summary_de": "",
+    "article_text": "Aliko Dangote’s pan-African investment spree has continued with the announcement of two large downstream investments by the billionaire’s eponymous conglomerate.",
+    "published_at": "2026-11-19T16:36:40+00:00",
+    "sent_at": "2026-11-19T17:21:21.026148+00:00",
+    "message_id": 139,
+    "dedup_keys": [
+      "title:dangote continues continental expansion with kenya and namibia downstream investments african energy",
+      "title_tokens:african continues dangote downstream energy expansion investments kenya namibia with",
+      "url:https://africa-energy.com/news-centre/article/dangote-continues-continental-expansion-kenya-and-namibia"
+    ]
+  },
+  {
+    "article_url": "https://www.continental.com/en/press/press-releases/20261119-vendel/",
+    "title": "A Partnership That Makes a Difference: Franz-Peter Vendel Freight Forwarding and Continental Tires",
+    "source_name": "Continental",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "A medium-sized freight forwarding company with a high-performance fleet. The entire fleet relies on premium tires from Continental. A medium-sized freight forwarding company with a high-performance fleet. The entire fleet relies on premium tires from Continental.",
+    "summary_de": "",
+    "article_text": "A medium-sized freight forwarding company with a high-performance fleet. The entire fleet relies on premium tires from Continental.",
+    "published_at": "2026-11-19T00:00:00+00:00",
+    "sent_at": "2026-11-19T17:21:24.615164+00:00",
+    "message_id": 140,
+    "dedup_keys": [
+      "title:a partnership that makes a difference franz-peter vendel freight forwarding and continental tires",
+      "title_tokens:difference forwarding franz freight makes partnership peter that tires vendel",
+      "url:https://continental.com/en/press/press-releases/20261119-vendel"
+    ]
+  },
+  {
+    "article_url": "https://reifenpresse.de/2026/11/19/mercedes-amg-cla-mit-einem-der-conti-kernprodukte-fuers-uhp-segment/",
+    "title": "Mercedes-AMG CLA mit einem der Conti-Kernprodukte fürs UHP-Segment",
+    "source_name": "Reifenpresse.de",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Mercedes-AMG CLA mit einem der Conti-Kernprodukte fürs UHP-Segment Reifenpresse.de Den „SportContact 7” bezeichnet Continental als eines seiner „Kernprodukte (…) im Ultra-High-Performance-Segment“. Eine speziell für das Fahrzeug entwickelten",
+    "summary_de": "",
+    "article_text": "Den „SportContact 7” bezeichnet Continental als eines seiner „Kernprodukte (…) im Ultra-High-Performance-Segment“. Eine speziell für das Fahrzeug entwickelten",
+    "published_at": "2026-11-19T13:42:01+00:00",
+    "sent_at": "2026-11-19T17:21:28.717395+00:00",
+    "message_id": 141,
+    "dedup_keys": [
+      "title:mercedes-amg cla mit einem der conti-kernprodukte fürs uhp-segment",
+      "title_tokens:conti einem fürs kernprodukte mercedes segment",
+      "url:https://reifenpresse.de/2026/11/19/mercedes-amg-cla-mit-einem-der-conti-kernprodukte-fuers-uhp-segment"
+    ]
+  },
+  {
+    "article_url": "https://reifenpresse.de/2026/11/11/auch-beim-neuen-tucson-ist-nexen-wieder-reifenerstausruester/",
+    "title": "Auch beim neuen Tucson ist Nexen wieder Reifenerstausrüster",
+    "source_name": "Reifenpresse.de",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Auch beim neuen Tucson ist Nexen wieder Reifenerstausrüster Reifenpresse.de Fungierte über Continental hinaus Nexen Tire mit seinem „N’Fera Primus“ bis dato ebenfalls schon als Erstausrüster beim Tucson, so liefert der koreanische",
+    "summary_de": "",
+    "article_text": "Fungierte über Continental hinaus Nexen Tire mit seinem „N’Fera Primus“ bis dato ebenfalls schon als Erstausrüster beim Tucson, so liefert der koreanische",
+    "published_at": "2026-11-11T13:03:48+00:00",
+    "sent_at": "2026-11-19T17:21:32.800899+00:00",
+    "message_id": 142,
+    "dedup_keys": [
+      "title:auch beim neuen tucson ist nexen wieder reifenerstausrüster",
+      "title_tokens:auch beim neuen nexen reifenerstausrüster tucson wieder",
+      "url:https://reifenpresse.de/2026/11/11/auch-beim-neuen-tucson-ist-nexen-wieder-reifenerstausruester"
+    ]
+  },
+  {
+    "article_url": "https://reifenpresse.de/2026/11/09/puenktlich-zur-handball-wm-semperit-wird-sponsor-der-deutschen-nationalmannschaften/",
+    "title": "Pünktlich zur Handball-WM: Semperit wird Sponsor der deutschen Nationalmannschaften",
+    "source_name": "Reifenpresse.de",
+    "primary_category": "tires",
+    "categories": [
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Pünktlich zur Handball-WM: Semperit wird Sponsor der deutschen Nationalmannschaften Reifenpresse.de Die Continental-Marke Semperit ist ab sofort Partner der Frauen- und Männer-Nationalmannschaften des Deutschen Handballbundes (DHB). Künftig werde sie bei den",
+    "summary_de": "",
+    "article_text": "Die Continental-Marke Semperit ist ab sofort Partner der Frauen- und Männer-Nationalmannschaften des Deutschen Handballbundes (DHB). Künftig werde sie bei den",
+    "published_at": "2026-11-09T13:52:34+00:00",
+    "sent_at": "2026-11-19T17:21:40.853404+00:00",
+    "message_id": 143,
+    "dedup_keys": [
+      "title:pünktlich zur handball-wm semperit wird sponsor der deutschen nationalmannschaften",
+      "title_tokens:deutschen handball nationalmannschaften pünktlich semperit sponsor wird",
+      "url:https://reifenpresse.de/2026/11/09/puenktlich-zur-handball-wm-semperit-wird-sponsor-der-deutschen-nationalmannschaften"
+    ]
   }
 ]
