@@ -2449,5 +2449,225 @@
       "title_tokens:deutschen handball nationalmannschaften pünktlich semperit sponsor wird",
       "url:https://reifenpresse.de/2026/11/09/puenktlich-zur-handball-wm-semperit-wird-sponsor-der-deutschen-nationalmannschaften"
     ]
+  },
+  {
+    "article_url": "https://www.continental.com/en/press/press-releases/continental-south-africa/",
+    "title": "Continental Considers Discontinuing Tire Production at Its Gqeberha Plant in South Africa",
+    "source_name": "Continental",
+    "primary_category": "plants",
+    "categories": [
+      "plants",
+      "tires",
+      "company"
+    ],
+    "plant": {
+      "city": "Gqeberha",
+      "country": "South Africa",
+      "country_de": "Südafrika",
+      "flag": "🇿🇦",
+      "priority": 250,
+      "aliases": [
+        "gqeberha",
+        "port elizabeth"
+      ]
+    },
+    "event_families": [
+      "investment"
+    ],
+    "event_key": "",
+    "summary": "Continental is considering discontinuing tire production at its plant in Gqeberha, South Africa. The reason for this is the underutilization of local production capacity, which has not improved over several years despite extensive turnaround efforts. This trend has been exacerbated by intensifying price competition from low-cost imports and increasingly challenging market conditions. South Africa remains an important market for Continental; with local sales operations continuing to serve all customers on the African continent",
+    "summary_de": "",
+    "article_text": "South Africa remains an important market for Continental; with local sales operations continuing to serve all customers on the African continent",
+    "published_at": "2026-11-20T00:00:00+00:00",
+    "sent_at": "2026-11-25T17:53:18.216583+00:00",
+    "message_id": 144,
+    "dedup_keys": [
+      "title:continental considers discontinuing tire production at its gqeberha plant in south africa",
+      "title_tokens:africa considers discontinuing gqeberha plant production south tire",
+      "url:https://continental.com/en/press/press-releases/continental-south-africa"
+    ]
+  },
+  {
+    "article_url": "https://reifenpresse.de/2026/11/23/continental-plant-schliessung-seines-reifenwerkes-in-suedafrika-deutliche-unterauslastung/",
+    "title": "Continental plant Schließung seines Reifenwerkes in Südafrika – Deutliche Unterauslastung",
+    "source_name": "Reifenpresse.de",
+    "primary_category": "plants",
+    "categories": [
+      "plants",
+      "tires",
+      "people"
+    ],
+    "plant": {
+      "city": "Gqeberha",
+      "country": "South Africa",
+      "country_de": "Südafrika",
+      "flag": "🇿🇦",
+      "priority": 250,
+      "aliases": [
+        "gqeberha",
+        "port elizabeth"
+      ]
+    },
+    "event_families": [
+      "closure_stop"
+    ],
+    "event_key": "",
+    "summary": "Continental plant Schließung seines Reifenwerkes in Südafrika – Deutliche Unterauslastung Reifenpresse.de Bei Continental plant man die Schließung des 1947 in Betrieb gegangenen Reifenwerkes im südafrikanischen Gqeberha, dem früheren Port Elizabeth. Das einzige Reifenwerk, das der deutsche Hersteller in Afrika betreibt, beschäftigt aktuell noch 950 Mitarbeiter, kämpfe einer Mitteilung aus Hannover zufolge aber seit mehreren Jahren mit „anhaltenden wettbewerblichen und betrieblichen Herausforderungen“.",
+    "summary_de": "",
+    "article_text": "Bei Continental plant man die Schließung des 1947 in Betrieb gegangenen Reifenwerkes im südafrikanischen Gqeberha, dem früheren Port Elizabeth. Das einzige Reifenwerk, das der deutsche Hersteller in Afrika betreibt, beschäftigt aktuell noch 950 Mitarbeiter, kämpfe einer Mitteilung aus Hannover zufolge aber seit mehreren Jahren mit „anhaltenden wettbewerblichen und betrieblichen Herausforderungen“.",
+    "published_at": "2026-11-23T11:49:40+00:00",
+    "sent_at": "2026-11-25T17:53:22.600452+00:00",
+    "message_id": 145,
+    "dedup_keys": [
+      "title:continental plant schließung seines reifenwerkes in südafrika deutliche unterauslastung",
+      "title_tokens:deutliche plant reifenwerkes schließung seines südafrika unterauslastung",
+      "url:https://reifenpresse.de/2026/11/23/continental-plant-schliessung-seines-reifenwerkes-in-suedafrika-deutliche-unterauslastung"
+    ]
+  },
+  {
+    "article_url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/continental-stock-faces-risk-to-950-jobs-at-south-african-plant/70542138",
+    "title": "Continental stock faces risk to 950 jobs at South African plant",
+    "source_name": "ad-hoc-news.de",
+    "primary_category": "plants",
+    "categories": [
+      "plants",
+      "tires",
+      "people",
+      "company"
+    ],
+    "plant": {
+      "city": "Gqeberha",
+      "country": "South Africa",
+      "country_de": "Südafrika",
+      "flag": "🇿🇦",
+      "priority": 250,
+      "aliases": [
+        "gqeberha",
+        "port elizabeth"
+      ]
+    },
+    "event_families": [],
+    "event_key": "",
+    "summary": "Continental stock faces risk to 950 jobs at South African plant ad-hoc-news.de Continental stock faces a consultation over its Gqeberha tire plant, with approximately 950 employee",
+    "summary_de": "",
+    "article_text": "Continental stock faces a consultation over its Gqeberha tire plant, with approximately 950 employee",
+    "published_at": "2026-11-21T10:34:08+00:00",
+    "sent_at": "2026-11-25T17:53:26.024837+00:00",
+    "message_id": 146,
+    "dedup_keys": [
+      "title:continental stock faces risk to 950 jobs at south african plant",
+      "title_tokens:african faces jobs plant risk south stock",
+      "url:https://ad-hoc-news.de/boerse/news/corporate-news/continental-stock-faces-risk-to-950-jobs-at-south-african-plant/70542138"
+    ]
+  },
+  {
+    "article_url": "https://cedirates.com/news/german-tyre-maker-continental-considers-closing-79-year-old-south-african-factory-as-cheap-imports-from-asian-countries-squeeze-local-industry-putting-950-jobs-at-risk",
+    "title": "German tyre maker Continental considers closing 79-year-old South African factory as cheap imports from Asian countries squeeze local industry, putting 950 jobs at risk",
+    "source_name": "CediRates",
+    "primary_category": "plants",
+    "categories": [
+      "plants",
+      "tires",
+      "people"
+    ],
+    "plant": {
+      "city": "Gqeberha",
+      "country": "South Africa",
+      "country_de": "Südafrika",
+      "flag": "🇿🇦",
+      "priority": 250,
+      "aliases": [
+        "gqeberha",
+        "port elizabeth"
+      ]
+    },
+    "event_families": [],
+    "event_key": "",
+    "summary": "German tyre maker Continental considers closing 79-year-old South African factory as cheap imports from Asian countries squeeze local industry, putting 950 jobs at risk CediRates Continental AG is considering shutting down its nearly 80-year-old tyre manufacturing plant in Gqeberha, South Africa, in a move that could put about 950 jobs at risk as cheaper Asian imports and rising production costs squeeze the country's automotive industry.",
+    "summary_de": "",
+    "article_text": "Continental AG is considering shutting down its nearly 80-year-old tyre manufacturing plant in Gqeberha, South Africa, in a move that could put about 950 jobs at risk as cheaper Asian imports and rising production costs squeeze the country's automotive industry.",
+    "published_at": "2026-11-21T23:04:47+00:00",
+    "sent_at": "2026-11-25T17:53:28.841258+00:00",
+    "message_id": 147,
+    "dedup_keys": [
+      "title:german tyre maker continental considers closing 79-year-old south african factory as cheap imports from asian countries squeeze local industry putting 950 jobs at risk",
+      "title_tokens:african asian cheap closing considers countries factory from german imports industry jobs local maker putting risk south squeeze tyre year",
+      "url:https://cedirates.com/news/german-tyre-maker-continental-considers-closing-79-year-old-south-african-factory-as-cheap-imports-from-asian-countries-squeeze-local-industry-putting-950-jobs-at-risk"
+    ]
+  },
+  {
+    "article_url": "https://www.algoafm.co.za/business/continental-weighs-gqeberha-plant-closure-950-jobs-at-risk",
+    "title": "Continental weighs Gqeberha plant closure, 950 jobs at risk",
+    "source_name": "Algoa FM",
+    "primary_category": "plants",
+    "categories": [
+      "plants",
+      "tires",
+      "people"
+    ],
+    "plant": {
+      "city": "Gqeberha",
+      "country": "South Africa",
+      "country_de": "Südafrika",
+      "flag": "🇿🇦",
+      "priority": 250,
+      "aliases": [
+        "gqeberha",
+        "port elizabeth"
+      ]
+    },
+    "event_families": [
+      "closure_stop",
+      "investment"
+    ],
+    "event_key": "",
+    "summary": "Continental weighs Gqeberha plant closure, 950 jobs at risk Algoa FM This article may contain graphic and/or adult content unsuitable for minors and sensitive readers. Continental is considering discontinuing tyre production at its Gqeberha manufacturing plant, a move that could affect approximately 950 employees. The company announced on Friday, November 20, that it had launched a formal consultation process under Section 189A of South Africa’s Labour Relations Act to explore alternatives to the proposed closure and discuss measures to reduce the impact on workers. If no viable alternative is identified, the company could discontinue operations at the plant by early 2027. Continental says the proposal follows several years of underutilised production capacity, despite extensive efforts to turn the facility around.",
+    "summary_de": "",
+    "article_text": "This article may contain graphic and/or adult content unsuitable for minors and sensitive readers. Continental is considering discontinuing tyre production at its Gqeberha manufacturing plant, a move that could affect approximately 950 employees. The company announced on Friday, November 20, that it had launched a formal consultation process under Section 189A of South Africa’s Labour Relations Act to explore alternatives to the proposed closure and discuss measures to reduce the impact on workers. If no viable alternative is identified, the company could discontinue operations at the plant by early 2027. Continental says the proposal follows several years of underutilised production capacity, despite extensive efforts to turn the facility around.",
+    "published_at": "2026-11-20T13:03:00+00:00",
+    "sent_at": "2026-11-25T17:53:33.538440+00:00",
+    "message_id": 148,
+    "dedup_keys": [
+      "title:continental weighs gqeberha plant closure 950 jobs at risk",
+      "title_tokens:closure gqeberha jobs plant risk weighs",
+      "url:https://algoafm.co.za/business/continental-weighs-gqeberha-plant-closure-950-jobs-at-risk"
+    ]
+  },
+  {
+    "article_url": "https://www.thecommonsense.co.za/economics_and_policy/continental-closure-threatens-950-jobs-as-factory-costs-rise",
+    "title": "Continental Closure Threatens 950 Jobs as Factory Costs Rise",
+    "source_name": "The Common Sense",
+    "primary_category": "plants",
+    "categories": [
+      "plants",
+      "tires",
+      "people"
+    ],
+    "plant": {
+      "city": "Gqeberha",
+      "country": "South Africa",
+      "country_de": "Südafrika",
+      "flag": "🇿🇦",
+      "priority": 250,
+      "aliases": [
+        "gqeberha",
+        "port elizabeth"
+      ]
+    },
+    "event_families": [
+      "closure_stop"
+    ],
+    "event_key": "",
+    "summary": "Continental Closure Threatens 950 Jobs as Factory Costs Rise The Common Sense Continental is considering closing its Gqeberha tyre factory, putting 950 jobs at risk, as a business lobby group warns that rising costs and port delays...",
+    "summary_de": "",
+    "article_text": "Continental is considering closing its Gqeberha tyre factory, putting 950 jobs at risk, as a business lobby group warns that rising costs and port delays...",
+    "published_at": "2026-11-24T10:00:00+00:00",
+    "sent_at": "2026-11-25T17:53:36.449529+00:00",
+    "message_id": 149,
+    "dedup_keys": [
+      "title:continental closure threatens 950 jobs as factory costs rise",
+      "title_tokens:closure costs factory jobs rise threatens",
+      "url:https://thecommonsense.co.za/economics_and_policy/continental-closure-threatens-950-jobs-as-factory-costs-rise"
+    ]
   }
 ]

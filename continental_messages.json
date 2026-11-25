@@ -733,5 +733,47 @@
     "title": "Pünktlich zur Handball-WM: Semperit wird Sponsor der deutschen Nationalmannschaften",
     "primary_category": "tires",
     "sent_at": "2026-11-19T17:21:40.853404+00:00"
+  },
+  {
+    "message_id": 144,
+    "article_url": "https://www.continental.com/en/press/press-releases/continental-south-africa/",
+    "title": "Continental Considers Discontinuing Tire Production at Its Gqeberha Plant in South Africa",
+    "primary_category": "plants",
+    "sent_at": "2026-11-25T17:53:18.216583+00:00"
+  },
+  {
+    "message_id": 145,
+    "article_url": "https://reifenpresse.de/2026/11/23/continental-plant-schliessung-seines-reifenwerkes-in-suedafrika-deutliche-unterauslastung/",
+    "title": "Continental plant Schließung seines Reifenwerkes in Südafrika – Deutliche Unterauslastung",
+    "primary_category": "plants",
+    "sent_at": "2026-11-25T17:53:22.600452+00:00"
+  },
+  {
+    "message_id": 146,
+    "article_url": "https://www.ad-hoc-news.de/boerse/news/corporate-news/continental-stock-faces-risk-to-950-jobs-at-south-african-plant/70542138",
+    "title": "Continental stock faces risk to 950 jobs at South African plant",
+    "primary_category": "plants",
+    "sent_at": "2026-11-25T17:53:26.024837+00:00"
+  },
+  {
+    "message_id": 147,
+    "article_url": "https://cedirates.com/news/german-tyre-maker-continental-considers-closing-79-year-old-south-african-factory-as-cheap-imports-from-asian-countries-squeeze-local-industry-putting-950-jobs-at-risk",
+    "title": "German tyre maker Continental considers closing 79-year-old South African factory as cheap imports from Asian countries squeeze local industry, putting 950 jobs at risk",
+    "primary_category": "plants",
+    "sent_at": "2026-11-25T17:53:28.841258+00:00"
+  },
+  {
+    "message_id": 148,
+    "article_url": "https://www.algoafm.co.za/business/continental-weighs-gqeberha-plant-closure-950-jobs-at-risk",
+    "title": "Continental weighs Gqeberha plant closure, 950 jobs at risk",
+    "primary_category": "plants",
+    "sent_at": "2026-11-25T17:53:33.538440+00:00"
+  },
+  {
+    "message_id": 149,
+    "article_url": "https://www.thecommonsense.co.za/economics_and_policy/continental-closure-threatens-950-jobs-as-factory-costs-rise",
+    "title": "Continental Closure Threatens 950 Jobs as Factory Costs Rise",
+    "primary_category": "plants",
+    "sent_at": "2026-11-25T17:53:36.449529+00:00"
   }
 ]
