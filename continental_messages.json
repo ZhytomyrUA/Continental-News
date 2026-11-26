@@ -775,5 +775,47 @@
     "title": "Continental Closure Threatens 950 Jobs as Factory Costs Rise",
     "primary_category": "plants",
     "sent_at": "2026-11-25T17:53:36.449529+00:00"
+  },
+  {
+    "message_id": 150,
+    "article_url": "https://www.sowetan.co.za/opinion/2026-11-24-sowetan-tyre-plant-closure-a-major-setback-to-jobs/",
+    "title": "SOWETAN | Tyre plant closure a major setback to jobs",
+    "primary_category": "plants",
+    "sent_at": "2026-11-26T17:36:57.944876+00:00"
+  },
+  {
+    "message_id": 151,
+    "article_url": "https://www.vfplus.org.za/media-releases/impending-closure-of-continentals-tyre-plant-shows-sa-is-losing-manufacturing-capacity/",
+    "title": "Impending closure of Continental’s tyre plant shows SA is losing manufacturing capacity | Freedom Front Plus",
+    "primary_category": "plants",
+    "sent_at": "2026-11-26T17:37:04.635735+00:00"
+  },
+  {
+    "message_id": 152,
+    "article_url": "https://www.enca.com/business/continental-shutdown-puts-nearly-1000-jobs-risk",
+    "title": "Continental shutdown puts nearly 1000 jobs at risk",
+    "primary_category": "plants",
+    "sent_at": "2026-11-26T17:37:07.123448+00:00"
+  },
+  {
+    "message_id": 153,
+    "article_url": "https://www.european-rubber-journal.com/article/2100027/continental-mulling-closure-of-south-african-tire-plant",
+    "title": "Continental mulls closure of South African tire plant | European Rubber Journal",
+    "primary_category": "plants",
+    "sent_at": "2026-11-26T17:37:09.880050+00:00"
+  },
+  {
+    "message_id": 154,
+    "article_url": "https://www.dailymaverick.co.za/opinionista/2026-11-26-continentals-gqeberha-plant-is-what-policy-drift-looks-like-on-the-factory-floor-1/",
+    "title": "Continentalâs Gqeberha plant is what policy drift looks like on the factory floor",
+    "primary_category": "plants",
+    "sent_at": "2026-11-26T17:37:12.677944+00:00"
+  },
+  {
+    "message_id": 155,
+    "article_url": "https://iol.co.za/mercury/news/2026-11-26-aa-warns-of-wider-crisis-as-continental-considers-ending-gqeberha-tyre-production/",
+    "title": "AA warns of wider crisis as Continental considers ending Gqeberha tyre production",
+    "primary_category": "plants",
+    "sent_at": "2026-11-26T17:37:14.913637+00:00"
   }
 ]

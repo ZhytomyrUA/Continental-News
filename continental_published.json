@@ -2669,5 +2669,224 @@
       "title_tokens:closure costs factory jobs rise threatens",
       "url:https://thecommonsense.co.za/economics_and_policy/continental-closure-threatens-950-jobs-as-factory-costs-rise"
     ]
+  },
+  {
+    "article_url": "https://www.sowetan.co.za/opinion/2026-11-24-sowetan-tyre-plant-closure-a-major-setback-to-jobs/",
+    "title": "SOWETAN | Tyre plant closure a major setback to jobs",
+    "source_name": "Sowetan",
+    "primary_category": "plants",
+    "categories": [
+      "plants",
+      "tires",
+      "people"
+    ],
+    "plant": {
+      "city": "Gqeberha",
+      "country": "South Africa",
+      "country_de": "Südafrika",
+      "flag": "🇿🇦",
+      "priority": 250,
+      "aliases": [
+        "gqeberha",
+        "port elizabeth"
+      ]
+    },
+    "event_families": [
+      "closure_stop"
+    ],
+    "event_key": "",
+    "summary": "Tyre plant closure a major setback to jobs Sowetan Continental Tyres plans to close its Gqeberha plant, putting at least 950 jobs at risk amid worsening unemployment",
+    "summary_de": "",
+    "article_text": "Continental Tyres plans to close its Gqeberha plant, putting at least 950 jobs at risk amid worsening unemployment",
+    "published_at": "2026-11-24T03:00:00+00:00",
+    "sent_at": "2026-11-26T17:36:57.944876+00:00",
+    "message_id": 150,
+    "dedup_keys": [
+      "title:sowetan tyre plant closure a major setback to jobs",
+      "title_tokens:closure jobs major plant setback sowetan tyre",
+      "url:https://sowetan.co.za/opinion/2026-11-24-sowetan-tyre-plant-closure-a-major-setback-to-jobs"
+    ]
+  },
+  {
+    "article_url": "https://www.vfplus.org.za/media-releases/impending-closure-of-continentals-tyre-plant-shows-sa-is-losing-manufacturing-capacity/",
+    "title": "Impending closure of Continental’s tyre plant shows SA is losing manufacturing capacity | Freedom Front Plus",
+    "source_name": "Freedom Front Plus",
+    "primary_category": "plants",
+    "categories": [
+      "plants",
+      "tires",
+      "people"
+    ],
+    "plant": {
+      "city": "Gqeberha",
+      "country": "South Africa",
+      "country_de": "Südafrika",
+      "flag": "🇿🇦",
+      "priority": 250,
+      "aliases": [
+        "gqeberha",
+        "port elizabeth"
+      ]
+    },
+    "event_families": [
+      "closure_stop",
+      "investment"
+    ],
+    "event_key": "",
+    "summary": "Impending closure of Continental’s tyre plant shows SA is losing manufacturing capacity Freedom Front Plus The impending closure of Continental’s tyre manufacturing plant in Gqeberha, with approximately 950 jobs at stake, serves as yet another serious warning",
+    "summary_de": "",
+    "article_text": "The impending closure of Continental’s tyre manufacturing plant in Gqeberha, with approximately 950 jobs at stake, serves as yet another serious warning",
+    "published_at": "2026-11-23T07:40:23+00:00",
+    "sent_at": "2026-11-26T17:37:04.635735+00:00",
+    "message_id": 151,
+    "dedup_keys": [
+      "title:impending closure of continental's tyre plant shows sa is losing manufacturing capacity freedom front plus",
+      "title_tokens:capacity closure freedom front impending losing manufacturing plant plus shows tyre",
+      "url:https://vfplus.org.za/media-releases/impending-closure-of-continentals-tyre-plant-shows-sa-is-losing-manufacturing-capacity"
+    ]
+  },
+  {
+    "article_url": "https://www.enca.com/business/continental-shutdown-puts-nearly-1000-jobs-risk",
+    "title": "Continental shutdown puts nearly 1000 jobs at risk",
+    "source_name": "eNCA",
+    "primary_category": "plants",
+    "categories": [
+      "plants",
+      "tires",
+      "people"
+    ],
+    "plant": {
+      "city": "Gqeberha",
+      "country": "South Africa",
+      "country_de": "Südafrika",
+      "flag": "🇿🇦",
+      "priority": 250,
+      "aliases": [
+        "gqeberha",
+        "port elizabeth"
+      ]
+    },
+    "event_families": [
+      "closure_stop"
+    ],
+    "event_key": "",
+    "summary": "Continental shutdown puts nearly 1000 jobs at risk eNCA Continental is the latest tyre manufacturer is considering halting production at its Gqeberha plant.",
+    "summary_de": "",
+    "article_text": "Continental is the latest tyre manufacturer is considering halting production at its Gqeberha plant.",
+    "published_at": "2026-11-23T00:00:00+00:00",
+    "sent_at": "2026-11-26T17:37:07.123448+00:00",
+    "message_id": 152,
+    "dedup_keys": [
+      "title:continental shutdown puts nearly 1000 jobs at risk",
+      "title_tokens:1000 jobs nearly puts risk shutdown",
+      "url:https://enca.com/business/continental-shutdown-puts-nearly-1000-jobs-risk"
+    ]
+  },
+  {
+    "article_url": "https://www.european-rubber-journal.com/article/2100027/continental-mulling-closure-of-south-african-tire-plant",
+    "title": "Continental mulls closure of South African tire plant | European Rubber Journal",
+    "source_name": "European Rubber Journal",
+    "primary_category": "plants",
+    "categories": [
+      "plants",
+      "tires"
+    ],
+    "plant": {
+      "city": "Gqeberha",
+      "country": "South Africa",
+      "country_de": "Südafrika",
+      "flag": "🇿🇦",
+      "priority": 250,
+      "aliases": [
+        "gqeberha",
+        "port elizabeth"
+      ]
+    },
+    "event_families": [
+      "closure_stop"
+    ],
+    "event_key": "",
+    "summary": "Continental mulls closure of South African tire plant European Rubber Journal Tire maker cites low-cost imports, rising costs and continued underutilisation at Gqeberha plant",
+    "summary_de": "",
+    "article_text": "Tire maker cites low-cost imports, rising costs and continued underutilisation at Gqeberha plant",
+    "published_at": "2026-11-23T06:35:45+00:00",
+    "sent_at": "2026-11-26T17:37:09.880050+00:00",
+    "message_id": 153,
+    "dedup_keys": [
+      "title:continental mulls closure of south african tire plant european rubber journal",
+      "title_tokens:african closure european journal mulls plant rubber south tire",
+      "url:https://european-rubber-journal.com/article/2100027/continental-mulling-closure-of-south-african-tire-plant"
+    ]
+  },
+  {
+    "article_url": "https://www.dailymaverick.co.za/opinionista/2026-11-26-continentals-gqeberha-plant-is-what-policy-drift-looks-like-on-the-factory-floor-1/",
+    "title": "Continentalâs Gqeberha plant is what policy drift looks like on the factory floor",
+    "source_name": "Daily Maverick",
+    "primary_category": "plants",
+    "categories": [
+      "plants",
+      "people"
+    ],
+    "plant": {
+      "city": "Gqeberha",
+      "country": "South Africa",
+      "country_de": "Südafrika",
+      "flag": "🇿🇦",
+      "priority": 250,
+      "aliases": [
+        "gqeberha",
+        "port elizabeth"
+      ]
+    },
+    "event_families": [
+      "closure_stop"
+    ],
+    "event_key": "",
+    "summary": "Continental’s Gqeberha plant is what policy drift looks like on the factory floor Daily Maverick Continentalâs proposed Gqeberha factory closure, putting 950 jobs at risk, is the latest warning that South Africaâs automotive manufacturing base is eroding under cheap imports, rising costs and poliâ¦",
+    "summary_de": "",
+    "article_text": "Continentalâs proposed Gqeberha factory closure, putting 950 jobs at risk, is the latest warning that South Africaâs automotive manufacturing base is eroding under cheap imports, rising costs and poliâ¦",
+    "published_at": "2026-11-26T12:04:17+00:00",
+    "sent_at": "2026-11-26T17:37:12.677944+00:00",
+    "message_id": 154,
+    "dedup_keys": [
+      "title:continentalâ s gqeberha plant is what policy drift looks like on the factory floor",
+      "title_tokens:continentalâ drift factory floor gqeberha like looks plant policy what",
+      "url:https://dailymaverick.co.za/opinionista/2026-11-26-continentals-gqeberha-plant-is-what-policy-drift-looks-like-on-the-factory-floor-1"
+    ]
+  },
+  {
+    "article_url": "https://iol.co.za/mercury/news/2026-11-26-aa-warns-of-wider-crisis-as-continental-considers-ending-gqeberha-tyre-production/",
+    "title": "AA warns of wider crisis as Continental considers ending Gqeberha tyre production",
+    "source_name": "IOL",
+    "primary_category": "plants",
+    "categories": [
+      "plants",
+      "tires",
+      "people"
+    ],
+    "plant": {
+      "city": "Gqeberha",
+      "country": "South Africa",
+      "country_de": "Südafrika",
+      "flag": "🇿🇦",
+      "priority": 250,
+      "aliases": [
+        "gqeberha",
+        "port elizabeth"
+      ]
+    },
+    "event_families": [],
+    "event_key": "",
+    "summary": "AA warns of wider crisis as Continental considers ending Gqeberha tyre production IOL Continental is considering closing its Gqeberha tyre plant by early 2027, putting about 950 jobs at risk. The Automobile Association says the proposal highlights mounting pressure on South Africa’s automotive supply chain.",
+    "summary_de": "",
+    "article_text": "Continental is considering closing its Gqeberha tyre plant by early 2027, putting about 950 jobs at risk. The Automobile Association says the proposal highlights mounting pressure on South Africa’s automotive supply chain.",
+    "published_at": "2026-11-26T09:00:00+00:00",
+    "sent_at": "2026-11-26T17:37:14.913637+00:00",
+    "message_id": 155,
+    "dedup_keys": [
+      "title:aa warns of wider crisis as continental considers ending gqeberha tyre production",
+      "title_tokens:considers crisis ending gqeberha production tyre warns wider",
+      "url:https://iol.co.za/mercury/news/2026-11-26-aa-warns-of-wider-crisis-as-continental-considers-ending-gqeberha-tyre-production"
+    ]
   }
 ]
