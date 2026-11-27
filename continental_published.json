@@ -2888,5 +2888,209 @@
       "title_tokens:considers crisis ending gqeberha production tyre warns wider",
       "url:https://iol.co.za/mercury/news/2026-11-26-aa-warns-of-wider-crisis-as-continental-considers-ending-gqeberha-tyre-production"
     ]
+  },
+  {
+    "article_url": "https://reifenpresse.de/2026/11/27/quaranta-tritt-verdier-nachfolge-bei-aumovio-tochter-an/",
+    "title": "Quaranta tritt Verdier-Nachfolge bei Aumovio-Tochter an",
+    "source_name": "Reifenpresse.de",
+    "primary_category": "tires",
+    "categories": [
+      "plants",
+      "tires"
+    ],
+    "plant": null,
+    "event_families": [],
+    "event_key": "",
+    "summary": "Quaranta tritt Verdier-Nachfolge bei Aumovio-Tochter an Reifenpresse.de Die seit vergangenem Herbst unter dem Namen Aumovio eigenständig im Markt agierende ehemalige Automotive-Division von Continental hat Frederic Quaranta zum Geschäftsführer ihrer Tochtergesellschaft Aumovio Engineering Solutions (AES) ernannt, die Engineering- und Produktionslösungen für Kunden aus der Automobilindustrie und anderen Industriezweigen weltweit anbietet. In dieser Position ist er damit Nachfolger von Jean-Michel Verdier, der sich entschieden hat, neue berufliche Möglichkeiten außerhalb des Unternehmens wahrzunehmen. Quaranta werden mehr als 30 Jahre internationale Führungserfahrung in Entwicklung, operativem Geschäft und kaufmännischer Leitung bescheinigt. Unter dem Conti-Dach hatte er leitende Positionen in Europa und Asien inne unter anderem in Frankreich, Deutschland, China und Malaysia sowie zum Teil auch rund um das Reifengeschäft.",
+    "summary_de": "",
+    "article_text": "Die seit vergangenem Herbst unter dem Namen Aumovio eigenständig im Markt agierende ehemalige Automotive-Division von Continental hat Frederic Quaranta zum Geschäftsführer ihrer Tochtergesellschaft Aumovio Engineering Solutions (AES) ernannt, die Engineering- und Produktionslösungen für Kunden aus der Automobilindustrie und anderen Industriezweigen weltweit anbietet. In dieser Position ist er damit Nachfolger von Jean-Michel Verdier, der sich entschieden hat, neue berufliche Möglichkeiten außerhalb des Unternehmens wahrzunehmen. Quaranta werden mehr als 30 Jahre internationale Führungserfahrung in Entwicklung, operativem Geschäft und kaufmännischer Leitung bescheinigt. Unter dem Conti-Dach hatte er leitende Positionen in Europa und Asien inne unter anderem in Frankreich, Deutschland, China und Malaysia sowie zum Teil auch rund um das Reifengeschäft.",
+    "published_at": "2026-11-27T09:14:48+00:00",
+    "sent_at": "2026-11-27T17:14:44.188950+00:00",
+    "message_id": 156,
+    "dedup_keys": [
+      "title:quaranta tritt verdier-nachfolge bei aumovio-tochter an",
+      "title_tokens:aumovio nachfolge quaranta tochter tritt verdier",
+      "url:https://reifenpresse.de/2026/11/27/quaranta-tritt-verdier-nachfolge-bei-aumovio-tochter-an"
+    ]
+  },
+  {
+    "article_url": "https://cbn.co.za/industry-news/manufacturing-news/aa-warns-sas-automotive-supply-chain-is-folding-as-continental-weighs-gqeberha-closure/",
+    "title": "AA warns SA’s automotive supply chain is folding as Continental weighs Gqeberha closure",
+    "source_name": "Cape Business News",
+    "primary_category": "plants",
+    "categories": [
+      "plants",
+      "people"
+    ],
+    "plant": {
+      "city": "Gqeberha",
+      "country": "South Africa",
+      "country_de": "Südafrika",
+      "flag": "🇿🇦",
+      "priority": 250,
+      "aliases": [
+        "gqeberha",
+        "port elizabeth"
+      ]
+    },
+    "event_families": [
+      "closure_stop"
+    ],
+    "event_key": "",
+    "summary": "AA warns SA’s automotive supply chain is folding as Continental weighs Gqeberha closure Cape Business News AA warns that Continental’s potential Gqeberha plant closure threatens 950 jobs and highlights the decline of South Africa’s automotive supply chain.",
+    "summary_de": "",
+    "article_text": "AA warns that Continental’s potential Gqeberha plant closure threatens 950 jobs and highlights the decline of South Africa’s automotive supply chain.",
+    "published_at": "2026-11-27T04:06:08+00:00",
+    "sent_at": "2026-11-27T17:14:47.791041+00:00",
+    "message_id": 157,
+    "dedup_keys": [
+      "title:aa warns sa's automotive supply chain is folding as continental weighs gqeberha closure",
+      "title_tokens:automotive chain closure folding gqeberha supply warns weighs",
+      "url:https://cbn.co.za/industry-news/manufacturing-news/aa-warns-sas-automotive-supply-chain-is-folding-as-continental-weighs-gqeberha-closure"
+    ]
+  },
+  {
+    "article_url": "https://theherald.co.za/news/2026-11-27-aa-sounds-alarm-on-automotive-job-losses-in-gqeberha/",
+    "title": "AA sounds alarm on automotive job losses as Continental faces Gqeberha closure | The Herald",
+    "source_name": "HeraldLIVE",
+    "primary_category": "plants",
+    "categories": [
+      "plants",
+      "tires",
+      "people"
+    ],
+    "plant": {
+      "city": "Gqeberha",
+      "country": "South Africa",
+      "country_de": "Südafrika",
+      "flag": "🇿🇦",
+      "priority": 250,
+      "aliases": [
+        "gqeberha",
+        "port elizabeth"
+      ]
+    },
+    "event_families": [
+      "closure_stop"
+    ],
+    "event_key": "",
+    "summary": "AA sounds alarm on automotive job losses as Continental faces Gqeberha closure HeraldLIVE The Automobile Association warns that Nelson Mandela Bay risks losing more than 2,000 tyre-manufacturing jobs following Continental's announcement of a potential plant c…",
+    "summary_de": "",
+    "article_text": "The Automobile Association warns that Nelson Mandela Bay risks losing more than 2,000 tyre-manufacturing jobs following Continental's announcement of a potential plant c…",
+    "published_at": "2026-11-27T03:40:39+00:00",
+    "sent_at": "2026-11-27T17:14:49.589720+00:00",
+    "message_id": 158,
+    "dedup_keys": [
+      "title:aa sounds alarm on automotive job losses as continental faces gqeberha closure the herald",
+      "title_tokens:alarm automotive closure faces gqeberha herald losses sounds",
+      "url:https://theherald.co.za/news/2026-11-27-aa-sounds-alarm-on-automotive-job-losses-in-gqeberha"
+    ]
+  },
+  {
+    "article_url": "https://theherald.co.za/opinion/editorials/2026-11-25-another-tyre-plant-another-looming-jobs-bloodbath/",
+    "title": "Continental plant closure threatens to wipe out Eastern Cape tyre manufacturing | The Herald",
+    "source_name": "HeraldLIVE",
+    "primary_category": "plants",
+    "categories": [
+      "plants",
+      "tires",
+      "people"
+    ],
+    "plant": {
+      "city": "Gqeberha",
+      "country": "South Africa",
+      "country_de": "Südafrika",
+      "flag": "🇿🇦",
+      "priority": 250,
+      "aliases": [
+        "gqeberha",
+        "port elizabeth"
+      ]
+    },
+    "event_families": [
+      "closure_stop"
+    ],
+    "event_key": "",
+    "summary": "Continental plant closure threatens to wipe out Eastern Cape tyre manufacturing HeraldLIVE Continental is considering shutting its historic Gqeberha tyre plant, putting 950 jobs on the line and threatening the near-total wipeout of Eastern Cape tyre manufactur…",
+    "summary_de": "",
+    "article_text": "Continental is considering shutting its historic Gqeberha tyre plant, putting 950 jobs on the line and threatening the near-total wipeout of Eastern Cape tyre manufactur…",
+    "published_at": "2026-11-25T04:40:48+00:00",
+    "sent_at": "2026-11-27T17:14:55.601859+00:00",
+    "message_id": 159,
+    "dedup_keys": [
+      "title:continental plant closure threatens to wipe out eastern cape tyre manufacturing the herald",
+      "title_tokens:cape closure eastern herald manufacturing plant threatens tyre wipe",
+      "url:https://theherald.co.za/opinion/editorials/2026-11-25-another-tyre-plant-another-looming-jobs-bloodbath"
+    ]
+  },
+  {
+    "article_url": "https://scrolla.africa/race-to-save-950-jobs-at-gqeberha-tyre-factory/",
+    "title": "Race to save 950 jobs at Gqeberha tyre factory - Scrolla.Africa",
+    "source_name": "Scrolla.Africa",
+    "primary_category": "plants",
+    "categories": [
+      "plants",
+      "tires",
+      "people"
+    ],
+    "plant": {
+      "city": "Gqeberha",
+      "country": "South Africa",
+      "country_de": "Südafrika",
+      "flag": "🇿🇦",
+      "priority": 250,
+      "aliases": [
+        "gqeberha",
+        "port elizabeth"
+      ]
+    },
+    "event_families": [],
+    "event_key": "",
+    "summary": "Race to save 950 jobs at Gqeberha tyre factory Scrolla.Africa Continental says it could end tyre production in Gqeberha by early 2027. Numsa is drawing up a rescue plan with workers, and an Eastern Cape industry body wants proposals on the table within 60 days.",
+    "summary_de": "",
+    "article_text": "Continental says it could end tyre production in Gqeberha by early 2027. Numsa is drawing up a rescue plan with workers, and an Eastern Cape industry body wants proposals on the table within 60 days.",
+    "published_at": "2026-11-24T09:01:17+00:00",
+    "sent_at": "2026-11-27T17:15:00.959179+00:00",
+    "message_id": 160,
+    "dedup_keys": [
+      "title:race to save 950 jobs at gqeberha tyre factory - scrolla africa",
+      "title_tokens:africa factory gqeberha jobs race save scrolla tyre",
+      "url:https://scrolla.africa/race-to-save-950-jobs-at-gqeberha-tyre-factory"
+    ]
+  },
+  {
+    "article_url": "https://www.komani.co.za/950-jobs-at-risk-as-continental-considers-closing-gqeberha-tyre-factory/",
+    "title": "950 Jobs at Risk as Continental Considers Closing Gqeberha Tyre Factory",
+    "source_name": "Komani News",
+    "primary_category": "plants",
+    "categories": [
+      "plants",
+      "tires",
+      "people"
+    ],
+    "plant": {
+      "city": "Gqeberha",
+      "country": "South Africa",
+      "country_de": "Südafrika",
+      "flag": "🇿🇦",
+      "priority": 250,
+      "aliases": [
+        "gqeberha",
+        "port elizabeth"
+      ]
+    },
+    "event_families": [],
+    "event_key": "",
+    "summary": "950 Jobs at Risk as Continental Considers Closing Gqeberha Tyre Factory Komani News Tyre manufacturer Continental is considering ending production at its Gqeberha factory in the Eastern Cape, a move that could affect approximately 950 employees.…",
+    "summary_de": "",
+    "article_text": "Tyre manufacturer Continental is considering ending production at its Gqeberha factory in the Eastern Cape, a move that could affect approximately 950 employees.…",
+    "published_at": "2026-11-20T17:58:15+00:00",
+    "sent_at": "2026-11-27T17:15:06.464627+00:00",
+    "message_id": 161,
+    "dedup_keys": [
+      "title:950 jobs at risk as continental considers closing gqeberha tyre factory",
+      "title_tokens:closing considers factory gqeberha jobs risk tyre",
+      "url:https://komani.co.za/950-jobs-at-risk-as-continental-considers-closing-gqeberha-tyre-factory"
+    ]
   }
 ]
